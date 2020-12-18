@@ -9,7 +9,7 @@ objectives:
 keypoints:
 - "Matplotlib is great for HEP!"
 ---
-FIXME
+The example-based nature of [Matplotlib documentation](https://matplotlib.org/) is GREAT.
 
 {% include links.md %}
 

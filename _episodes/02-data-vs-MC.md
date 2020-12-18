@@ -1,13 +1,13 @@
 ---
 title: "Data vs MC"
-teaching: 0
-exercises: 0
+teaching: 5
+exercises: 5
 questions:
 - "How might I plot a data vs MC comparison?"
 objectives:
-- "First learning objective. (FIXME)"
+- "Provide an example data vs MC comparison plot"
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Data vs MC comparison plots look nice with matplotlib!"
 ---
 
 FIXME
@@ -15,6 +15,8 @@ FIXME
 plot such as
 
 ![m4l](../fig/m4l.jpg){:width="40%"}
+
+from [the ATLAS Higgs discovery paper](https://www.sciencedirect.com/science/article/pii/S037026931200857X#fg0020).
 
 ~~~
 def plot_data_vs_MC(data, x_variable='m4l', xmin=80, xmax=250, step_size=5, signal_label=r'Signal ($m_H$ = 125 GeV)', 
