@@ -1,13 +1,13 @@
 ---
 title: "Introduction"
-teaching: 0
+teaching: 5
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "Why use matplotlib for HEP?"
 objectives:
-- "First learning objective. (FIXME)"
+- "Understand why matplotlib is useful for HEP"
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Matplotlib is great for HEP!"
 ---
 FIXME
 
