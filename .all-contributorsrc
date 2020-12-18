@@ -3,12 +3,21 @@
     "README.md",
     "_includes/authors.html"
   ],
-  "projectName": "test-module",
+  "projectName": "hsf-training-matplotlib",
   "projectOwner": "hsf-training",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true,
   "contributors": [
+    {
+      "login": "meevans1",
+      "name": "Meirin Oan Evans",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/32399892?v=4",
+      "profile": "https://meirinoanevans.wixsite.com/portfolio",
+      "contributions": [
+        "content"
+      ]
+    }
   ],
   "contributorsPerLine": 7
 }
