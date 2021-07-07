@@ -18,6 +18,8 @@ plot such as
 
 from [the ATLAS Higgs discovery paper](https://www.sciencedirect.com/science/article/pii/S037026931200857X#fg0040)
 
+Using your version of the 'Matplotlib Data fit' notebook you created in the [Setup page](https://hsf-training.github.io/hsf-training-matplotlib/setup.html)
+
 ~~~
 def plot_data_fit(df, # data as a dataframe
                   xmin=100, # x-axis minimum

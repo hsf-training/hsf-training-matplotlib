@@ -18,8 +18,10 @@ plot such as
 
 from [the ATLAS Higgs discovery paper](https://www.sciencedirect.com/science/article/pii/S037026931200857X#fg0020).
 
+Access the 'Matplotlib Data vs MC' notebook you created in the [Setup page](https://hsf-training.github.io/hsf-training-matplotlib/setup.html)
+
 ~~~
-def plot_data_vs_MC(data, x_variable='m4l', xmin=80, xmax=250, step_size=5, signal_label=r'Signal ($m_H$ = 125 GeV)', 
+def plot_data_vs_MC(data, x_variable='mllll', xmin=80, xmax=250, step_size=5, signal_label='ggH125_ZZ4lep', 
                     xlabel=r'$\mathrm{m_{4l}}$', x_units = 'GeV', experiment_label='ATLAS', 
                     process_label=r'$H \rightarrow ZZ^* \rightarrow 4\ell$', cme='13 TeV', lumi='10 fb', mc_weight='totalWeight'):
 
@@ -35,19 +37,18 @@ def plot_data_vs_MC(data, x_variable='m4l', xmin=80, xmax=250, step_size=5, sign
 
     signal_x = data[signal_label][x_variable] # histogram the signal
     signal_weights = data[signal_label][mc_weight] # get the weights of the signal events
-    signal_color = samples[signal_label]['color'] # get the colour for the signal bar
+    signal_color = colors_list[-1] # get the colour for the signal bar
 
     mc_x = [] # define list to hold the Monte Carlo histogram entries
     mc_weights = [] # define list to hold the Monte Carlo weights
-    mc_colors = [] # define list to hold the colors of the Monte Carlo bars
+    mc_colors = colors_list[:-1] # define list to hold the colors of the Monte Carlo bars
     mc_labels = [] # define list to hold the legend labels of the Monte Carlo bars
 
     mc_stat_err_squared = np.zeros(len(bin_centres)) # define array to hold the MC statistical uncertainties
-    for s in samples: # loop over samples
+    for s in samples_list: # loop over samples
         if s not in ['data', signal_label]: # if not data nor signal
             mc_x.append( data[s][x_variable] ) # append to the list of Monte Carlo histogram entries
             mc_weights.append( data[s][mc_weight] ) # append to the list of Monte Carlo weights
-            mc_colors.append( samples[s]['color'] ) # append to the list of Monte Carlo bar colors
             mc_labels.append( s ) # append to the list of Monte Carlo legend labels
             weights_squared,_ = np.histogram(data[s][x_variable], bins=bin_edges,
                                              weights=data[s][mc_weight]**2) # square the totalWeights
@@ -69,6 +70,7 @@ def plot_data_vs_MC(data, x_variable='m4l', xmin=80, xmax=250, step_size=5, sign
     mc_heights = plt.hist(mc_x, bins=bin_edges, 
                           weights=mc_weights, stacked=True, 
                           color=mc_colors, label=mc_labels )
+    print(mc_heights)
     
     mc_x_tot = mc_heights[0][-1] # stacked background MC y-axis value
     mc_x_err = np.sqrt( mc_stat_err_squared ) # statistical error on the MC bars
@@ -84,6 +86,7 @@ def plot_data_vs_MC(data, x_variable='m4l', xmin=80, xmax=250, step_size=5, sign
             alpha=0.5, # half transparency
             bottom=mc_x_tot-mc_x_err, color='none', 
             hatch="////", width=step_size, label='Stat. Unc.' )
+    
 
     # set the x-limit of the main axes
     plt.xlim( left=xmin, right=xmax ) 
