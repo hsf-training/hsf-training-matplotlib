@@ -26,28 +26,28 @@ or a factual error.
 This is a good way to introduce yourself
 and to meet some of our community members.
 
-1.  If you do not have a [GitHub][github] account,
+1. If you do not have a [GitHub][github] account,
     you can write the convenors an email.
     However,
     we will be able to respond more quickly if you use one of the other methods described below.
 
-2.  If you have a [GitHub][github] account,
+2. If you have a [GitHub][github] account,
     or are willing to [create one][github-join],
     but do not know how to use Git,
     you can report problems or suggest improvements by [creating an issue][issues].
     This allows us to assign the item to someone
     and to respond to it in a threaded discussion.
 
-3.  If you are comfortable with Git,
+3. If you are comfortable with Git,
     and would like to add or change material,
     you can submit a pull request (PR).
     Instructions for doing this are [included below](#using-github).
 
 ## Where to Contribute
 
-1.  If you wish to change the content of this lesson, work in <https://github.com/hsf-training/hsf-training-NAME-OF-MODULE>
+1. If you wish to change the content of this lesson, work in <https://github.com/hsf-training/hsf-training-NAME-OF-MODULE>
 
-2.  If you wish to change CSS style files, tools,
+2. If you wish to change CSS style files, tools,
     or HTML boilerplate for lessons or workshops stored in `_includes` or `_layouts`,
     please work in <https://github.com/hsf-training/hsf-styles>.
 
@@ -94,16 +94,16 @@ Each lesson has two maintainers who review issues and pull requests or encourage
 The maintainers are community volunteers and have final say over what gets merged into the lesson.
 To use the web interface for contributing to a lesson:
 
-1.  Fork the originating repository to your GitHub profile.
-2.  Within your version of the forked repository, move to the `gh-pages` branch and
+1. Fork the originating repository to your GitHub profile.
+2. Within your version of the forked repository, move to the `gh-pages` branch and
 create a new branch for each significant change being made.
-3.  Navigate to the file(s) you wish to change within the new branches and make revisions as required.
-4.  Commit all changed files within the appropriate branches.
-5.  Create individual pull requests from each of your changed branches
+3. Navigate to the file(s) you wish to change within the new branches and make revisions as required.
+4. Commit all changed files within the appropriate branches.
+5. Create individual pull requests from each of your changed branches
 to the `gh-pages` branch within the originating repository.
-6.  If you receive feedback, make changes using your issue-specific branches of the forked
+6. If you receive feedback, make changes using your issue-specific branches of the forked
 repository and the pull requests will update automatically.
-7.  Repeat as needed until all feedback has been addressed.
+7. Repeat as needed until all feedback has been addressed.
 
 When starting work, please make sure your clone of the originating `gh-pages` branch is up-to-date
 before creating your own revision-specific branch(es) from there.
@@ -124,4 +124,3 @@ More information on how to contribute or how to contact us: [HSF training home][
 [github-join]: https://github.com/join
 [how-contribute]: https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github
 [issues]: https://guides.github.com/features/issues/
-
