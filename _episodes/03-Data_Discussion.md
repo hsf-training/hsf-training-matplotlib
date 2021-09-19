@@ -1,16 +1,13 @@
 ---
 title: "Data Discussion"
-teaching: 10
-exercises: 5
+teaching: 5
+exercises: 0
 questions:
 - "What dataset is being used?"
-- "How do some of the variables look?"
 objectives:
 - "Briefly describe the dataset."
-- "Take a peek at some variables."
 keypoints:
 - "One must know a bit about your data before any machine learning takes place."
-- "It's a good idea to visualise your data before any machine learning takes place."
 ---
 
 

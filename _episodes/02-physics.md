@@ -7,8 +7,7 @@ questions:
 objectives:
 - "Learn the basics of the physics processes present in the data"
 keypoints:
-- "Analysis studies Higgs boson decays to two tau leptons with a muon and a hadronic tau in the final state"
-- "The analysis estimates all processes but QCD directly from simulation"
+- "Analysis studies Higgs boson decays"
 ---
 
 The following sections describe the relevant physics processes of the analysis.

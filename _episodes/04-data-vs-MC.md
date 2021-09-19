@@ -20,6 +20,9 @@ from [the ATLAS Higgs discovery paper](https://www.sciencedirect.com/science/art
 
 Access the 'Matplotlib Data vs MC' notebook you created in the [Setup page](https://hsf-training.github.io/hsf-training-matplotlib/setup.html)
 
+
+1. 
+
 ~~~
 def plot_data_vs_MC(data, x_variable='mllll', xmin=80, xmax=250, step_size=5, signal_label='ggH125_ZZ4lep', 
                     xlabel=r'$\mathrm{m_{4l}}$', x_units = 'GeV', experiment_label='ATLAS', 

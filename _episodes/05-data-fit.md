@@ -21,6 +21,747 @@ from [the ATLAS Higgs discovery paper](https://www.sciencedirect.com/science/art
 Using your version of the 'Matplotlib Data fit' notebook you created in the [Setup page](https://hsf-training.github.io/hsf-training-matplotlib/setup.html)
 
 ~~~
+plt.hist(all_data['myy'])
+~~~
+{: .language-python}
+
+What you learnt in school that you should always have axes labels applies here!
+
+~~~
+plt.hist(all_data['myy'])
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+~~~
+{: .language-python}
+
+If you look back at the graph we're aiming to reproduce, the x-axes are very different. Let's set the x-axis in our graph. In the graph from we're aiming to reproduce, the x-axis starts at 100, ends at 160 and there's a spacing of 2 between each data point. Notice how this code creates an array of values starting at 100 and ending at 160, separated by 2.
+
+~~~
+np.arange(start=100, # The interval includes this value
+          stop=160+2, # The interval doesn't include this value
+          step=2 ) # Spacing between values
+~~~
+{: .language-python}
+
+Let's define a variable `bin_edges` to hold that array, then use `bin_edges` in the `bins` option of the `plt.hist` function.
+
+~~~
+bin_edges = np.arange(start=100, # The interval includes this value
+                      stop=160+2, # The interval doesn't include this value
+                      step=2 ) # Spacing between values
+plt.hist(all_data['myy'],bins=bin_edges)
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+~~~
+{: .language-python}
+
+Looking a bit better... But we still have a histogram, whereas the graph we're trying to reproduce has data points with error bars. Ok let's define a variable to hold the histogrammed content, `data`. Let's also define the `errors`. Instead of `bin_edges`, we define a new variable `bin_centres` to plot the data points at the centre of each bin.
+
+~~~
+data,_ = np.histogram(all_data['myy'], bins=bin_edges ) # histogram the data
+errors = np.sqrt( data ) # statistical error on the data
+bin_centres = np.arange(start=101, # The interval includes this value
+                        stop=159+2, # The interval doesn't include this value
+                        step=2 ) # Spacing between values
+plt.errorbar(x=bin_centres, y=data, yerr=errors)
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+~~~
+{: .language-python}
+
+Nice! How can we make the data points black circles?
+
+~~~
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko') # 'k' means black, 'o' means circles
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+~~~
+{: .language-python}
+
+Another thing you might've learnt at school is to always add a legend. We need to add the option `label` to the `plt.errorbar` function and also add a line `plt.legend()` at the end.
+
+~~~
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles 
+	    label='Data')
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+plt.legend()
+~~~
+{: .language-python}
+
+
+Now let's add the line fit. Don't worry about the code that calculates the fit as it's not part of our intended learning outcomes for matplotlib. The important part is the last the 2 lines.
+~~~
+def func(x, a, b, c, d, e, A, mu, sigma): # define function for polynomial + Gaussian
+    return a + b*x + c*x**2+ d*x**3 + e*x**4 + A*np.exp(-0.5*((x-mu)/sigma)**2)
+
+# data fit
+popt,_ = curve_fit(func, # function to fit
+                   bin_centres, # x
+                   data, # y
+                   p0=[data.max(),0,0,0,0,91.7,125,2.4], # initial guesses for the fit parameters
+                   sigma=errors) # errors on y
+
+a = popt[0] # a of a + b*x + c*x^2 + d*x^3 + e*x^4
+b = popt[1] # b of a + b*x + c*x^2 + d*x^3 + e*x^4
+c = popt[2] # c of a + b*x + c*x^2 + d*x^3 + e*x^4
+d = popt[3] # d of a + b*x + c*x^2 + d*x^3 + e*x^4
+e = popt[4] # e of a + b*x + c*x^2 + d*x^3 + e*x^4
+A = popt[5] # amplitude of Gaussian
+mu = popt[6] # centre of Gaussian
+sigma = popt[7] # width of Gaussian
+fit = func(bin_centres,a,b,c,d,e,A,mu,sigma) # call func with fitted parameters
+
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+plt.legend()
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit) # y
+~~~
+{: .language-python}
+
+
+We should add a label to this line fit too! We have to move `plt.legend()` to the end of the code so that it picks up both labels.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         label='Sig+Bkg Fit (mH=125 GeV)')
+
+plt.legend()
+~~~
+{: .language-python}
+
+What if red is your favourite colour? Add `'r'` to `plt.plot`.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit (mH=125 GeV)')
+
+plt.legend()
+~~~
+{: .language-python}
+
+In the graph we're trying to reproduce, there's also a background fit. The important part is in the last few lines we've added.
+
+~~~
+# get the background only part of the fit to data
+background = a + b*bin_centres + c*bin_centres**2 + d*bin_centres**3 + e*bin_centres**4
+
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit (mH=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background) # y 
+
+plt.legend()
+~~~
+{: .language-python}
+
+Remember: label, label, label!
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit (mH=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+~~~
+{: .language-python}
+
+We want this one to be red too! We make it a dotted line like `'--r'`.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events')
+plt.xlabel('myy [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit (mH=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+~~~
+{: .language-python}
+
+How's your graph looking now? When we added the x-axis label, some of it should actually have been subscript. Let's do that now.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events')
+plt.xlabel('$m_{yy}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit (mH=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+~~~
+{: .language-python}
+
+The label for the fit should really have a subscript too.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events')
+plt.xlabel('$m_{yy}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+~~~
+{: .language-python}
+
+and in fact the x-axis label should use the greek letter gamma, rather than the roman letter y. How do we add latex to matplotlib?
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+~~~
+{: .language-python}
+
+Oh and our y-axis label isn't quite complete compared to the graph we're trying to reproduce. Let's complete it.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+~~~
+{: .language-python}
+
+If you look back at the graph we're aiming to reproduce, the x-axis really cuts off at 100 and 160. How do we do that?
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+
+# set the x-limit of the axes
+plt.xlim( left=100, right=160 )
+~~~
+{: .language-python}
+
+and what about the y-axis?
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 )
+~~~
+{: .language-python}
+
+Now for some text on the graph.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data')
+~~~
+{: .language-python}
+
+How can we make the text bold?
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold')
+~~~
+{: .language-python}
+
+and increase the font size a bit.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+~~~
+{: .language-python}
+
+Now for some more text that includes latex and superscripts and many fancy things!
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+~~~
+{: .language-python}
+
+and some more text... We need to use `r` before a text string to use some latex.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+
+plt.text(135, # x
+         100, # y
+         r'$H \rightarrow \gamma\gamma$')
+~~~
+{: .language-python}
+
+Once again let's increase the font size for this last piece of text.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend()
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+
+plt.text(135, # x
+         100, # y
+         r'$H \rightarrow \gamma\gamma$',
+         fontsize='13')
+~~~
+{: .language-python}
+
+You may notice that we have a box around our legend, whereas the graph we're trying to reproduce doesn't. We use the option `frameon=False` inside `plt.legend` to achieve this.
+
+~~~
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend(frameon=False)
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+
+plt.text(135, # x
+         100, # y
+         r'$H \rightarrow \gamma\gamma$',
+         fontsize='13')
+~~~
+{: .language-python}
+
+We can achieve some extra functionality if we "get the current axes" (gca) at the start of the code.
+
+~~~
+main_axes = plt.gca() # get current axes
+
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend(frameon=False)
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+
+plt.text(135, # x
+         100, # y
+         r'$H \rightarrow \gamma\gamma$',
+         fontsize='13')
+~~~
+{: .language-python}
+
+
+~~~
 def plot_data_fit(df, # data as a dataframe
                   xmin=100, # x-axis minimum
                   xmax=160, # x-axis maximum
