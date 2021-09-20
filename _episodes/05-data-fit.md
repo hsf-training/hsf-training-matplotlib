@@ -760,6 +760,299 @@ plt.text(135, # x
 ~~~
 {: .language-python}
 
+Using our new variable `main_axes` we can add minor tick labels on the x-axis.
+
+~~~
+main_axes = plt.gca() # get current axes
+
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend(frameon=False)
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+
+plt.text(135, # x
+         100, # y
+         r'$H \rightarrow \gamma\gamma$',
+         fontsize='13')
+
+# separation of x-axis minor ticks
+main_axes.xaxis.set_minor_locator( AutoMinorLocator() ) 
+~~~
+{: .language-python}
+
+...and the y-axis.
+
+~~~
+main_axes = plt.gca() # get current axes
+
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend(frameon=False)
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+
+plt.text(135, # x
+         100, # y
+         r'$H \rightarrow \gamma\gamma$',
+         fontsize='13')
+
+# separation of x-axis minor ticks
+main_axes.xaxis.set_minor_locator( AutoMinorLocator() ) 
+
+# separation of y-axis minor ticks
+main_axes.yaxis.set_minor_locator( AutoMinorLocator() ) 
+~~~
+{: .language-python}
+
+Next, we can put the tick labels inside the axes, for both the x and y axes. This brings our plot closer to the graph we're aiming to reproduce.
+
+~~~
+main_axes = plt.gca() # get current axes
+
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend(frameon=False)
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+
+plt.text(135, # x
+         100, # y
+         r'$H \rightarrow \gamma\gamma$',
+         fontsize='13')
+
+# separation of x-axis minor ticks
+main_axes.xaxis.set_minor_locator( AutoMinorLocator() ) 
+
+# separation of y-axis minor ticks
+main_axes.yaxis.set_minor_locator( AutoMinorLocator() ) 
+
+# set the axis tick parameters for the main axes
+main_axes.tick_params(which='both', # ticks on both x and y axes
+                      direction='in') # Put ticks inside the axes
+~~~
+{: .language-python}
+
+We can even add tick labels to the top axis.
+
+~~~
+main_axes = plt.gca() # get current axes
+
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend(frameon=False)
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+
+plt.text(135, # x
+         100, # y
+         r'$H \rightarrow \gamma\gamma$',
+         fontsize='13')
+
+# separation of x-axis minor ticks
+main_axes.xaxis.set_minor_locator( AutoMinorLocator() ) 
+
+# separation of y-axis minor ticks
+main_axes.yaxis.set_minor_locator( AutoMinorLocator() ) 
+
+# set the axis tick parameters for the main axes
+main_axes.tick_params(which='both', # ticks on both x and y axes
+                      direction='in', # Put ticks inside the axes
+                      top=True) # draw ticks on the top axis
+~~~
+{: .language-python}
+
+We better add tick labels to the right axis too!
+
+~~~
+main_axes = plt.gca() # get current axes
+
+# plot the data points
+plt.errorbar(x=bin_centres, y=data, yerr=errors, 
+            fmt='ko', # 'k' means black, 'o' means circles
+            label='Data')
+plt.ylabel('Events / 2 GeV')
+plt.xlabel('$m_{\gamma\gamma}$ [GeV]')
+
+# plot the signal + background fit
+plt.plot(bin_centres, # x
+         fit, # y
+         'r',
+         label='Sig+Bkg Fit ($m_{H}$=125 GeV)')
+
+# plot the background only fit
+plt.plot(bin_centres, # x
+         background, # y 
+         '--r',
+         label='Bkg (4th order polynomial)')
+
+plt.legend(frameon=False)
+
+# set the x-axis limit for the axes
+plt.xlim( left=100, right=160 )
+
+# set the y-axis limit for the axes
+plt.ylim( bottom=0 ) 
+
+
+plt.text(105, # x
+         500, # y
+         'ATLAS Open Data',
+         weight='bold',
+         fontsize='13')
+
+plt.text(105, # x
+         100, # y
+         '$\sqrt{s}$=13 TeV, $\int$Ldt=0.5fb$^{-1}$')
+
+plt.text(135, # x
+         100, # y
+         r'$H \rightarrow \gamma\gamma$',
+         fontsize='13')
+
+# separation of x-axis minor ticks
+main_axes.xaxis.set_minor_locator( AutoMinorLocator() ) 
+
+# separation of y-axis minor ticks
+main_axes.yaxis.set_minor_locator( AutoMinorLocator() ) 
+
+# set the axis tick parameters for the main axes
+main_axes.tick_params(which='both', # ticks on both x and y axes
+                      direction='in', # Put ticks inside the axes
+                      top=True, # draw ticks on the top axis
+                      right=True ) # draw ticks on right axis
+~~~
+{: .language-python}
+
+What do you think? Looking good right?!
 
 ~~~
 def plot_data_fit(df, # data as a dataframe
