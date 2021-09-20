@@ -11,7 +11,7 @@ For this tutorial we will be using [Kaggle](https://www.kaggle.com/). Kaggle off
 
 Once you are signed in, you will be given access to the full resources of a Kaggle Jupyter notebook kernel (16 GB of RAM). Once you are signed in please use the following link:
 
-* [Please click here](https://www.kaggle.com/meirinevans/plotting/edit) <---
+* [Please click here](https://www.kaggle.com/meirinevans/matplotlib-data-vs-mc/edit) <---
 * and [Please click here](https://www.kaggle.com/meirinevans/matplotlib-data-fit/edit) <---
 
 ![Copy and Edit](fig/copy_edit.png){:width="40%"}
