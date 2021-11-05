@@ -1,5 +1,5 @@
 ---
-title: "Data Discussion"
+title: "More advance plots"
 teaching: 5
 exercises: 0
 questions:

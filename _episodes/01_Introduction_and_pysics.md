@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Introduction and physics"
 teaching: 5
 exercises: 0
 questions:

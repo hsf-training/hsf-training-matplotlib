@@ -1,5 +1,5 @@
 ---
-title: "Data vs MC"
+title: "Higgs"
 teaching: 5
 exercises: 5
 questions:
