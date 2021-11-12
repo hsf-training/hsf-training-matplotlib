@@ -15,13 +15,13 @@ Matplotlib is the standard when it comes to making plots in Python. It is versat
 We will be focusing on using matplotlib for High Energy Physics.
 
 # A simple example
-A with any python code it is always a good practice to import the necessary libraries as a first step.
+A with any Python code it is always a good practice to import the necessary libraries as a first step.
 
 ```python
 import matplotlib.pyplot as plt
 ```
 
-Matplotlib graphs your data on Figures (i.e., windows, Jupyter widgets, etc.), each of which can contain one or more Axes (i.e., an area where points can be specified in terms of x-y coordinates, or theta-r in a polar plot, or x-y-z in a 3D plot, etc.). The simplest way of creating a figure with an axes is using pyplot.subplots. We can then use Axes.plot to draw some data on the axes:
+Matplotlib graphs your data on Figures (i.e., windows, Jupyter widgets, etc.), each of which can contain one or more Axes (i.e., an area where points can be specified in terms of x-y coordinates, or theta-r in a polar plot, or x-y-z in a 3D plot, etc.). The simplest way of creating a figure with an Axes object is using `pyplot.subplots`. We can then use `Axes.plot` to draw some data on the axes:
 
 ```python
 fig, ax = plt.subplots()  # Create a figure containing a single axes.
@@ -78,43 +78,116 @@ For the following example you will need these lines as a starting point.
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-
+#generate data points
 x1 = np.linspace(1,10)
 y1,y2,y3 = np.log(x1),np.cos(x1),np.sin(x1)
 
-plt.plot(x1,y1,x1,y2,x1,y3);
+#plotting
+plt.plot(x1,y1)
+plt.plot(x1,y2)
+plt.plot(x1,y3)
 plt.show()
-
 ```
-These will produce the same plot as in the **Notice** above
-
 
 
 ### Axes Labels
 
-In order to produce axes labels in matplotlib one uses the self descriptive command `xlabel` or `ylabel`
+In order to produce axes labels in matplotlib one uses the self descriptive command `xlabel` or `ylabel` like so
+
+```python
+plt.xlabel("X values")
+plt.ylabel("Y values")
+```
+
+One can also control the location, orientation and size of the text by adding the keyword arguments `size = 15, orientation = 45, `
+
+An important detail is that when you want to do changes and show them in your plot you must apply these changes between the `plt.plot` and `plt.show()` commands.
+Why? These commands act on the canvas that is currently being drawn, so it should make sense that one has to first create the canvas with the plot with `plt.plot()` and apply changes afterwards.
+When you are done with it, only then you may use the `plt.show()` as this will dump to the screen all changes applied. Any command used after `plt.show()` will return an error since matplotlib does not know what is the canvas to be worked on.
+
 
 ### Legend
 
+There are different ways to create a legend in matplotlib but the easiest one to use would be to pass the keyword argument `label` inside the `plt.plot()` and use the `plt.legend()` command to automatically detect and show the individual labels on the canvas
+```python
+plt.plot(x1,y1,label="log")
+plt.plot(x1,y2,label="cos")
+plt.plot(x1,y3,label="sin")
+
+plt.legend()
+```
 
 ### The Figure (resize and set the resolution)
 
+As mentioned, by default `plt.plot` creates the canvas automatically. We can have finer control over the shape and quality of the plots by using the `plt.figure` command using the keyword arguments `figsize` and `dpi` as follows.
+
+```python
+plt.figure(figsize = (9,5), dpi = 150)
+```
+
+This has to be set **before** any instance of `plt.plot` and it sets the width and height to 9 and 5 inches respectively. The keyword `dpi` refers to a density of _Dots Per Inch_.
+There is no particular reason to choose 150 as the value for dpi but there is a visually a noticeable difference in the size and quality of the plot.
+
+
 ### Title
 
-### Grid
+The title of a plot is placed at the top of the figure with the command `plt.title`
 
+```python
+plt.title("A figure multiple plots")
+```
+
+### Grid
+Now lets add a grid with `plt.grid`. This is self explanatory.
+
+```python
+plt.grid()
+```
 
 ### Ticks
 
 
-### Now for some styling (Lines or dots?)
+## Linestyles and markers
 
+The basic `plt.plot` uses lines by default, but we can specify what to use as a marker or the linestyle for each line. Here is a table with the different options available
 
+| character |      description      | character |     description     | character |  color  |
+|:---------:|:---------------------:|:---------:|:-------------------:|:---------:|:-------:|
+| '.'       | point marker          | '-'       | solid line style    | 'b'       | blue    |
+| ','       | pixel marker          | '--'      | dashed line style   | 'g'       | green   |
+| 'o'       | circle marker         | '-.'      | dash-dot line style | 'r'       | red     |
+| 'v'       | triangle_down marker  | ':'       | dotted line style   | 'c'       | cyan    |
+| '^'       | triangle_up marker    |           |                     | 'm'       | magenta |
+| '<'       | triangle_left marker  |           |                     | 'y'       | yellow  |
+| '>'       | triangle_right marker |           |                     | 'k'       | black   |
+| '1'       | tri_down marker       |           |                     | 'w'       | white   |
+| '2'       | tri_up marker         |           |                     |           |         |
+| '3'       | tri_left marker       |           |                     |           |         |
+| '4'       | tri_right marker      |           |                     |           |         |
+| '8'       | octagon marker        |           |                     |           |         |
+| 's'       | square marker         |           |                     |           |         |
+| 'p'       | pentagon marker       |           |                     |           |         |
+| 'P'       | plus (filled) marker  |           |                     |           |         |
+| '*'       | star marker           |           |                     |           |         |
+| 'h'       | hexagon1 marker       |           |                     |           |         |
+| 'H'       | hexagon2 marker       |           |                     |           |         |
+| '+'       | plus marker           |           |                     |           |         |
+| 'x'       | x marker              |           |                     |           |         |
+| 'X'       | x (filled) marker     |           |                     |           |         |
+| 'D'       | diamond marker        |           |                     |           |         |
+| 'd'       | thin_diamond marker   |           |                     |           |         |
+| '\|'      | vline marker          |           |                     |           |         |
+| '_'       | hline marker          |           |                     |           |         |
 
+Here are a few example for combinations of these.
 
-
-
-
+```
+'b'    # blue markers with default shape
+'or'   # red circles
+'-g'   # green solid line
+'--'   # dashed line with default color
+'^k:'  # black triangle_up markers connected by a dotted line
+```
 
 
 
