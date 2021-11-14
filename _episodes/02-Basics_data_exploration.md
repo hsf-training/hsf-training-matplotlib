@@ -1,5 +1,5 @@
 ---
-title: "Basic and exploring our tuples"
+title: "Basic data exploration"
 teaching: 5
 exercises: 0
 questions:

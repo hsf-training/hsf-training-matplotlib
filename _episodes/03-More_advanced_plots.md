@@ -1,5 +1,5 @@
 ---
-title: "More advance plots"
+title: "More advanced plots"
 teaching: 5
 exercises: 0
 questions:
