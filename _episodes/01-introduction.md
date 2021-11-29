@@ -122,7 +122,7 @@ plt.legend()
 As mentioned, by default `plt.plot` creates the canvas automatically. We can have finer control over the shape and quality of the plots by using the `plt.figure` command using the keyword arguments `figsize` and `dpi` as follows.
 
 ```python
-plt.figure(figsize = (9,5), dpi = 150)
+plt.figure(figsize = (10,10), dpi = 150)
 ```
 
 This has to be set **before** any instance of `plt.plot` and it sets the width and height to 9 and 5 inches respectively. The keyword `dpi` refers to a density of _Dots Per Inch_.
@@ -134,18 +134,37 @@ There is no particular reason to choose 150 as the value for dpi but there is a 
 The title of a plot is placed at the top of the figure with the command `plt.title`
 
 ```python
-plt.title("A figure multiple plots")
+plt.title("A figure with multiple lines")
 ```
+We can control the font size of the labels, the title and any text by passing the `fontsize` argument and giving any integer. This will determine the size in points.
+
+
+
+
 
 ### Grid
 Now lets add a grid with `plt.grid`. This is self explanatory.
 
+
 ```python
 plt.grid()
 ```
+Another nice thing is that we can add the `alpha` argument to make the lines of the grid more or less "see through". This can also be done lines, dots, shades, and almost anything else that has color.
 
 ### Ticks
 
+By default python will drop some ticks on the y and x axis but we can have control over them with the  arguments
+- `ticks` : When this argument is specified with an array-like object, you can control the location of the ticks to show. For example :
+```python
+plt.yticks(ticks=[1,2,5,6,7])
+```
+Will only show the numbers `[1,2,5,6,7]` in their proper location.
+- `labels` : This can only be used if `ticks` is also specified. This will be the physical text shown on each of the locations specified by `ticks`. For example:
+```python
+plt.yticks(ticks=[1,2,5,6,7],labels = ["One",2,"Five","Then sixth","The Last"])
+```
+Will show each of the specified labels in the locations as specified by `ticks`
+- `size`: This argument controls the fontsize of the tick labels.
 
 ## Linestyles and markers
 
@@ -191,11 +210,53 @@ Here are a few example for combinations of these.
 
 
 
+## The HEP way ;)
+
+We have available a useful python package called [mplhep](https://mplhep.readthedocs.io/en/latest/index.html#) which is a matplotlib wrapper for easy plotting required in high energy physics (HEP). Primarily “prebinned” 1D & 2D histograms and matplotlib style-sheets carrying recommended plotting styles of large LHC experiments - ATLAS, CMS & LHCb. This project is published on [GitHub](https://github.com/scikit-hep/mplhep) as part of the scikit-hep toolkit.
+
+### Usage
+```python
+import mplhep as hep
+hep.style.use(hep.style.ROOT) # For now ROOT defaults to CMS
+# Or choose one of the experiment styles
+hep.style.use(hep.style.ATLAS)
+# or
+hep.style.use("CMS") # string aliases work too
+# {"ALICE" | "ATLAS" | "CMS" | "LHCb1" | "LHCb2"}
+```
+
+and with just this addition we can produce the same plot as before with this new look.
 
 
+![mplhep-figure](../fig/mplhep_fig.png)
+<!-- is a wrapper based on Matplotlib. This package allows you to quickly change the default behavior of matplotlib and produce publication quality plots with the format of experiments like -->
+
+## Other types of plots
+With matplotlib there is no shortage of the kinds of plots to work with. Here we have only used line plots as a baseline to learn what things we can do. There are scatter plots, bar plots, stem plots and pie charts as well as visualize images, and vector fields and much more!
+
+In High Energy Physics we typically work with binned data and produce histograms. Histograms are used mainly to tell us about how things are distributed rather than a relationship between 2 variables.
+
+Matplotlib can take an array of data and with the `hist` python will bin the data to create histograms.
+
+We will discuss histograms more in detail later but here is an example code and plot of a generic histogram with errorbars applied.
 
 
+```python
+# first lets get some fake data
 
+data=np.random.normal(size=10_000)
+
+# now lets make the plot
+counts,bin_edges,_=plt.hist(data,bins=50,histtype='step',align="left")
+
+
+# add error bars
+plt.errorbar(bin_edges[:-1],counts,
+             yerr=np.sqrt(counts),
+             fmt='none')
+plt.show()
+```
+![first histogram](../fig/first_histo.png)
 
 
 
