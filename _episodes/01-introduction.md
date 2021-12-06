@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-teaching: 5
+teaching: 25
 exercises: 0
 questions:
 - "Why use matplotlib for HEP?"
@@ -15,7 +15,7 @@ Matplotlib is the standard when it comes to making plots in Python. It is versat
 We will be focusing on using matplotlib for High Energy Physics.
 
 # A simple example
-A with any Python code it is always a good practice to import the necessary libraries as a first step.
+As with any Python code it is always good practice to import the necessary libraries as a first step.
 
 ```python
 import matplotlib.pyplot as plt
@@ -26,6 +26,7 @@ Matplotlib graphs your data on Figures (i.e., windows, Jupyter widgets, etc.), e
 ```python
 fig, ax = plt.subplots()  # Create a figure containing a single axes.
 ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # Plot some data on the axes.
+plt.show() # Show the figure
 ```
 this code produces the following figure
 
@@ -36,20 +37,20 @@ this code produces the following figure
 > If you look at the plot and the order of the list of numbers you can clearly see that the order of the arguments is of the form
 >
 > ~~~
-> plt.plot(xpoints,ypoints)
+> ax.plot(xpoints,ypoints)
 > ~~~
 > {: .language-python}
 >
 >But what is useful is that if we wanted to do more than one plot in the same figure we could do this in two main ways.
 > ~~~
-> plt.plot(xpoints,ypoints , xpoints_2,ypoints_2, xpoints_3,ypoints_3)
+> ax.plot(xpoints,ypoints , xpoints_2,ypoints_2, xpoints_3,ypoints_3)
 > ~~~
 > {: .language-python}
 Or the more traditional way
 > ```python
-> plt.plot(xpoints,ypoints)
-> plt.plot(xpoints_2,ypoints_2)
-> plt.plot(xpoints_3,ypoints_3)
+> ax.plot(xpoints,ypoints)
+> ax.plot(xpoints_2,ypoints_2)
+> ax.plot(xpoints_3,ypoints_3)
 > ```
 > Both methods allow you to produce a plot like the following *(we will later see how to produce them in more detail)*
 > > ## See example plot
@@ -164,7 +165,7 @@ Will only show the numbers `[1,2,5,6,7]` in their proper location.
 plt.yticks(ticks=[1,2,5,6,7],labels = ["One",2,"Five","Then sixth","The Last"])
 ```
 Will show each of the specified labels in the locations as specified by `ticks`
-- `size`: This argument controls the fontsize of the tick labels.
+- `size`: This argument accepts integer values to controls the fontsize of the tick labels.
 
 ## Linestyles and markers
 
@@ -210,7 +211,7 @@ Here are a few example for combinations of these.
 
 
 
-## The HEP way ;)
+## With  HEP styling  
 
 We have available a useful python package called [mplhep](https://mplhep.readthedocs.io/en/latest/index.html#) which is a matplotlib wrapper for easy plotting required in high energy physics (HEP). Primarily “prebinned” 1D & 2D histograms and matplotlib style-sheets carrying recommended plotting styles of large LHC experiments - ATLAS, CMS & LHCb. This project is published on [GitHub](https://github.com/scikit-hep/mplhep) as part of the scikit-hep toolkit.
 
@@ -229,7 +230,17 @@ and with just this addition we can produce the same plot as before with this new
 
 
 ![mplhep-figure](../fig/mplhep_fig.png)
-<!-- is a wrapper based on Matplotlib. This package allows you to quickly change the default behavior of matplotlib and produce publication quality plots with the format of experiments like -->
+
+> ## Warning
+>
+> After you import and set the styling with  `hep.style.use("CMS")` all the plots made afterwards will have this styling implemented.
+> To get back the default styling do
+> ```python
+> import matplotlib
+> matplotlib.style.use('default')
+> ```
+{: .callout}
+
 
 ## Other types of plots
 With matplotlib there is no shortage of the kinds of plots to work with. Here we have only used line plots as a baseline to learn what things we can do. There are scatter plots, bar plots, stem plots and pie charts as well as visualize images, and vector fields and much more!
@@ -243,22 +254,26 @@ We will discuss histograms more in detail later but here is an example code and 
 
 ```python
 # first lets get some fake data
-
 data=np.random.normal(size=10_000)
 
 # now lets make the plot
-counts,bin_edges,_=plt.hist(data,bins=50,histtype='step',align="left")
+counts,bin_edges,_=plt.hist(data,bins=50,histtype='step')
 
+# we need to get the centers in order get the correct location for the errobars
+bin_centers= bin_edges[:-1] + np.diff(bin_edges)/2
 
 # add error bars
-plt.errorbar(bin_edges[:-1],counts,
+plt.errorbar(bin_centers,counts,
              yerr=np.sqrt(counts),
              fmt='none')
 plt.show()
 ```
 ![first histogram](../fig/first_histo.png)
 
+# More information?
+If you want to know what other parameters are available for the `plot` function, or want to learn about other types of plots, visit the [Matplotlib documentation](https://matplotlib.org/) page.
 
+You can also use the built-in python functions `dir(obj)` and `help(obj)` for information on the methods and immediate documentation of the python objects given as an argument.
 
 
 
