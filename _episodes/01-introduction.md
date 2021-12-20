@@ -30,8 +30,8 @@ plt.show() # Show the figure
 ```
 this code produces the following figure
 
-![basic_plot](https://matplotlib.org/stable/_images/sphx_glr_usage_002.png)
-
+<!-- ![basic_plot](https://matplotlib.org/stable/_images/sphx_glr_usage_002.png) -->
+![basic_plot](https://matplotlib.org/3.5.1/_images/sphx_glr_usage_001_2_0x.png)
 
 > ## Notice
 > If you look at the plot and the order of the list of numbers you can clearly see that the order of the arguments is of the form
