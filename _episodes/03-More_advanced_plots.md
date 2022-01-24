@@ -3,7 +3,7 @@ title: "More advanced plots"
 teaching: 5
 exercises: 0
 questions:
-- "Why we need to explore Data vs. MC distributions?"
+- "Why do we need to explore Data vs. MC distributions?"
 objectives:
 - "Do some stacked plots with MC."
 - "Apply a basic selection criteria."
@@ -16,9 +16,11 @@ keypoints:
 
 # MC distributions
 
-In the previous episode, you were able to make basic plots of some physical variables using the MC and data samples that we have been working with.
+In the previous episode, you were able to make basic plots of some physical variables using a few data samples from the Atlas open data dataset that we are using.
 
-Here we will focus on the principal MC samples that contribute more to the physics that we are looking for, this is 4 leptons final state,  and then we will compare it with real data.
+Here we will use all the 4 leptons final state samples that we have available for this tutorial, these are MC and data.
+
+The goal is to discover the Higgs component in data comparing the final distributions of MC and data in the mass of the 4 leptons variable.
 
 First we need to import matplotlib, pandas and numpy as usual:
 ~~~
@@ -35,119 +37,141 @@ import numpy as np
 
 
 
-We will work with 3 MC samples, the main backgrounds 'ttbar', 'llll', and the signal 'ggH125_ZZ44lep'.
-Additionally, we have the data sample 'data'.
-
-So, we need to start creating a list with the names of the samples:
+In the following dictionary, we have classified the samples we will work on, starting with the "data" samples, 
+followed by the "higgs" MC samples and at the end the zz" and "others" MC background components.
 ~~~
-samples_list = ['ttbar_lep','llll','ggH125_ZZ4lep', 'data']
+samples_dic= {'data': [['data', 'data_A'], 
+                       ['data', 'data_B'], 
+                       ['data', 'data_C'], 
+                       ['data', 'data_D']],
+              'higgs': [['mc', 'mc_345060.ggH125_ZZ4lep'], 
+                        ['mc', 'mc_344235.VBFH125_ZZ4lep']], 
+              'zz': [['mc', 'mc_363490.llll']], 
+              'other': [['mc', 'mc_361106.Zee'], 
+                        ['mc', 'mc_361107.Zmumu']]}
 ~~~
 {: .language-python}
-and we will use it to open our samples as pandas dataframes.
+We will use uproot to read the content of our samples that are in ROOT format. 
+~~~
+import uproot3 as uproot
+~~~
+{: .language-python}
+> ## Uproot tutorial
+>
+> If you want to lear more of the Uproot python Module you can take a look to the tutorial also given by the HEP software foundation in the following link
+> <https://hsf-training.github.io/hsf-training-uproot-webpage/index.html>
+{: .callout}
 
 For this we will write the next function that takes the above list and return a dictionary with the dataframes of the samples:
 ~~~
-def created_dic(samples_list):
-  dataFrame_dic = {}
-  for s in samples_list: 
-    dic_dfsamples[s] = pd.read_csv(path_samples+f'{s}.csv')
-  return dataFrame_dic
+processes = samples_dic.keys()
+Tuples={}
+samples=[]
+for p in processes:
+    for d in samples_dic[p]:
+        # Load the dataframes
+        sample = d[1] # Sample name
+        samples.append(sample)
+        DataUproot = uproot.open(f'/kaggle/input/reducehiggs4lep/samples_FilterGem_{sample}.root')
+        Tuples[sample] = DataUproot['myTree']
 ~~~
 {: .language-python}
-Let's run the function and verify the keys of the dictionary
+Let's take a look to the variables stored in out data samples, taking "data_A" as example
 ~~~
-dic_dfSamples=created_dic(samples_list)
-print(dic_dfSamples.keys())
+list(Tuples['data_A'].allkeys())
 ~~~
 {: .language-python}
 ~~~
-dict_keys(['ttbar_lep', 'llll', 'ggH125_ZZ4lep', 'data'])
-~~~
+[b'trigM',
+ b'm4l',
+ b'lep_pt',
+ b'sum_good_lep',
+ b'lep_charge',
+ b'lep_type',
+ b'trigE',
+ b'sum_lep_charge',
+ b'channelNumber',
+ b'goodlep_sumtypes',
+ b'eventNumber',
+ b'XSection',
+ b'good_lep',
+ b'lep_n',
+ b'lep_z0',
+ b'weight',
+ b'lep_phi',
+ b'runNumber',
+ b'lep_eta',
+ b'lep_E']
+ ~~~
 {: .output}
-Let's access to the dataframe of our signal and take a look at all the variables that we have available
+Let's access to the variables or branches as we normally called, and make a simple plot 
 ~~~
-dic_dfsamples['ggH125_ZZ4lep'].columns
+branches={}
+for s in samples:
+    branches[s] = Tuples[s].arrays(namedecode='utf-8')
 ~~~
 {: .language-python}
+
+Using the hist method we can visualize the distribution the mass of the 4 leptons "m4l" for this "data_A" sample. 
 ~~~
-Index(['entry', 'lep_pt_0', 'lep_pt_1', 'lep_pt_2', 'lep_pt_3', 'lep_eta_0',
-       'lep_eta_1', 'lep_eta_2', 'lep_eta_3', 'lep_phi_0', 'lep_phi_1',
-       'lep_phi_2', 'lep_phi_3', 'lep_E_0', 'lep_E_1', 'lep_E_2', 'lep_E_3',
-       'lep_charge_0', 'lep_charge_1', 'lep_charge_2', 'lep_charge_3',
-       'lep_type_0', 'lep_type_1', 'lep_type_2', 'lep_type_3', 'lep_z0_0',
-       'lep_z0_1', 'lep_z0_2', 'lep_z0_3', 'lep_sigd0_0', 'lep_sigd0_1',
-       'lep_sigd0_2', 'lep_sigd0_3', 'lep_ptconerel_0', 'lep_ptconerel_1',
-       'lep_ptconerel_2', 'lep_ptconerel_3', 'lep_etconerel_0',
-       'lep_etconerel_1', 'lep_etconerel_2', 'lep_etconerel_3', 'min_mll',
-       'mZ1', 'mZ2', 'mllll', 'totalWeight'],
-      dtype='object')
+plt.hist(branches['data_A']['m4l'])
+
+~~~
+{: .language-python}
+
+~~~
+(array([ 3., 13.,  3.,  5.,  4.,  2.,  0.,  0.,  1.,  1.]),
+ array([ 19.312525,  82.30848 , 145.30444 , 208.3004  , 271.29636 ,
+        334.2923  , 397.28827 , 460.2842  , 523.28015 , 586.2761  ,
+        649.2721  ], dtype=float32),
+ <BarContainer object of 10 artists>)
 ~~~
 {: .output} 
 
-You can see from the output that we have some kinematic variables for the leptons, as well as the mass of the Z1 and Z2 candidates that form the Higgs boson.  
-We will like to make a plot of this two masses ...
-
-### MC stack plot
-To do this, we will make first a plot only using the MC samples, and we will plot them using the stack option of the hist function of matplotlib.
-
-The first parameter 'x' of the `plt.hist` function allows us to plot multiple data, we can pass it a list of the variable we would like to plot for the different data frames we have for MC.
-
-The list of the MC distributions is:
-~~~
-mc_samples=samples_list[:3]
-~~~
-{: .language-python}
-
-Then, we will define a function that returns a list of the variable we want to plot, for the samples listed in the input list.
-
-~~~
-def stack_mc_list(var, mc_samples):
-    stack_samples_list=[]
-    for s in mc_samples:
-        stack_samples_list.append(dic_dfsamples[s][var])
-    return stack_samples_list
-~~~
-{: .language-python}
-Let's run the function for the variable 'mZ1' and verify the len of the list.
-~~~
-var_samples=stack_mc_list('mZ1')
-print(len(var_samples))
-~~~
-{: .language-python}
-~~~
-3
-~~~
-{: .output}
-We can now work in the function that will make the stack plot giving the previous list.
-~~~
-def plot_stacklist(stack_samples_list, list_label, var, var_units, range_ab, bins_i):
-    #Create a new figure
-    fig=plt.figure(figsize=(10,8))
-    #Create the histograma for the multiple samples in stack_samples_list, 
-    #list_label will be a list with the names of the samples in the same order than stack_samples_list
-    h=plt.hist(stack_samples_list, range=range_ab, bins=bins_i, label=list_label, stacked=True)
-    #Add the x and y label 
-    plt.ylabel('Events', fontsize=18 ,loc='top')
-    plt.xlabel(var+var_units, fontsize=18,loc='right')
-    #Change the appearance of ticks, inside of the axes, draw right and top thicks. 
-    plt.tick_params(which='both', direction='in', top=True, right=True, length=6, width=1)
-    #Modify the current tick label size
-    plt.yticks(fontsize=16)
-    plt.xticks(fontsize=16)
-    #Place a legend on the axes and modify the font size of the legend.
-    plt.legend(loc='best',fontsize=18,frameon=False)
-~~~
-{: .language-python}
-
-Let's run the function given an example arguments for the variable 'mZ1':
-~~~
-plot_stacklist(var_samples, mc_samples,'mZ1','[GeV]',[60,120],50)
-~~~
-{: .language-python}
-![mZ1_hist_0]({{ page.root }}/fig/mZ1_hist0.png)
+![nMuon_hist_1]({{ page.root }}/fig/m4lep_hist_1.png)
 
 # Selection criteria
+Is very important to include some selection criteria in our histograms that we are analyzing. 
+These selections are commonly know as "cuts".
+With these cuts we are able to select only events of our interest, this is, we will have a subset of our original samples and the distribution are going to change after this cuts.
+This will help out to do some physics analysis and start to search for the physics process in which we are interested.
+In this case is the 4 lepton final state.
 
+To do this, we will select from all samples that the following:
+
+- the leptons needed to activate either the muon or electron trigger,
+- number of leptons in the final state should be 4,
+- the total net charge should be zero,
+- the sum of the types (11:e, 13:mu) can be 44 (eeee), 52 (mumumumu) or 48 (eemumu),
+- good leptons with high transverse momentum
+
+Let's visualize some of these requirements TO DO
+
+Finally, we will apply all the requirements mentioned above to all samples as follows:
+~~~
+selection_events={}
+for s in samples:
+    trigger = ((branches[s]['trigM'] == True) | (branches[s]['trigE'] == True))
+    sum_leptons = branches[s]['sum_good_lep'] == 4
+    sum_charge = branches[s]['sum_lep_charge'] == 0
+    sum_types_ee = branches[s]['goodlep_sumtypes'] == 44
+    sum_types_mm = branches[s]['goodlep_sumtypes'] == 52
+    sum_types_em = branches[s]['goodlep_sumtypes'] == 48
+    sum_types_goodlep = (sum_types_ee | sum_types_mm | sum_types_em)
+    sum_lep_selection = (sum_leptons & sum_charge & sum_types_goodlep)
+    # Select good leptons with high transverse momentum
+    pt_0_selection = ((branches[s]['lep_pt'][:,0] > 25000) & (branches[s]['good_lep'][:,0] == 1))
+    pt_1_selection = ((branches[s]['lep_pt'][:,1] > 15000) & (branches[s]['good_lep'][:,1] == 1))
+    pt_2_selection = ((branches[s]['lep_pt'][:,2] > 10000) & (branches[s]['good_lep'][:,2] == 1))
+    high_pt_selection = (pt_0_selection & pt_1_selection & pt_2_selection)
+    final_selection = trigger & sum_types_goodlep & sum_lep_selection & high_pt_selection
+    selection_events[s] = final_selection
+~~~
+{: .language-python}
+
+
+
+Additionally,  
 
 
 > ## Exercise
@@ -174,9 +198,4 @@ plot_stacklist(var_samples, mc_samples,'mZ1','[GeV]',[60,120],50)
 
 
 # Data vs. MC
-
-
-{: .language-python}
-
-Before diving into plotting, there may be things you should do to clean up your data. 
 
