@@ -1,7 +1,7 @@
 ---
 title: "HEP Specific plotting"
 teaching: 15
-exercises: 4
+exercises: 15
 questions:
 - "How can I plot a data at publication quality?"
 objectives:
