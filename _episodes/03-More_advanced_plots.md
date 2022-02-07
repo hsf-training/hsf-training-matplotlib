@@ -1,10 +1,11 @@
 ---
 title: "More advanced plots"
-teaching: 5
-exercises: 0
+teaching: 30
+exercises: 15
 questions:
 - "Why do we need to explore Data vs. MC distributions?"
 objectives:
+- "Basic data exploration."
 - "Apply a basic selection criteria."
 - "Do some stacked plots with MC."
 - "Add error bars to the plot."
@@ -188,16 +189,16 @@ With these cuts we are able to select only events of our interest, this is, we w
 This will help out to do some physics analysis and start to search for the physics process in which we are interested.
 In this case is the 4 lepton final state.
 
-To do this, we will select from all samples that the following:
+To do this, we will select all events, from all the samples, that satisfy the following criteria:
 
-- the leptons needed to activate either the muon or electron trigger,
+- the leptons need to activate either the muon or electron trigger,
 - number of leptons in the final state should be 4,
 - the total net charge should be zero,
 - the sum of the types (11:e, 13:mu) can be 44 (eeee), 52 (mumumumu) or 48 (eemumu),
 - good leptons with high transverse momentum
 
-Let's visualize some of these requirements. For this, let continue working with the "data_A" sample.
-We can take a look how many good leptons we have in the event:
+Let's visualize some of these requirements. For now, let us continue working with the "data_A" sample.
+We can see how many good leptons we have in the event, by printing:
 ~~~
 branches['data_A']['good_lep']
 ~~~
@@ -207,8 +208,7 @@ branches['data_A']['good_lep']
 ~~~
 {: .output} 
 From the previous output, we can notice that not all events have 4 good leptons. 
-Then we can the sum per event of the good leptons and take into account the events with exactly 4 good leptons (this is the topology we are looking for).
-This sum is stored in the variable "sum_good_lep".
+Therefore, we can use the sum of the number of good leptons per event. This variable is stored as "sum_good_lep".  
 ~~~
 branches['data_A']['sum_good_lep']
 ~~~
@@ -219,8 +219,7 @@ array([4, 4, 3, 4, 4, 4, 2, 4, 4, 4, 2, 4, 3, 4, 4, 4, 4, 4, 4, 2, 4, 4,
 ~~~
 {: .output} 
 
-
-Then the requirement will be 
+We will keep the events with "sum_good_lep"==4 (this is the topology we are looking for).
 ~~~
 branches['data_A']['sum_good_lep'] == 4
 ~~~
@@ -284,7 +283,7 @@ for s in samples:
 ~~~
 {: .language-python}
 
-Moreover, we can compare the initial events and the events after the above selection or Final events.
+Moreover, we can compare, by printing, the number of initial  and final events after the previous selection .
 
 ~~~
 for s in samples:
@@ -325,7 +324,7 @@ mc_361107.Zmumu       After selection:  16
 Notice that the background events are reduced meanwhile we try to keep most of the signal.
 # MC samples
 To make a plot with all the MC samples we will do a stack plot.
-We will merge the samples following the classification we introduce at the beginning, this is:
+We will merge the samples following the classification we introduced at the beginning, that is:
 ~~~
 mc_samples=list(processes)[1:]
 print(mc_samples)
@@ -375,6 +374,8 @@ for k in range(0,3):
 And then make a plot, actually, let's make 2 plots, with matplotlib we can add sub-plots to the figure, 
 then, we will be able to compare the MC distribution without and with weights.
 
+In order to do this, we will use the `subplot` function. Notice that in this case, we are creating a figure 
+and defining the axes of the figure directly, the syntax of the functions that we call for these axes change a bit.
 ~~~
 var_name = 'm4l'
 units = ' [GeV]'
@@ -383,23 +384,23 @@ bines = 24
 ~~~
 {: .language-python}
 ~~~
-fig, (plot_1, plot_2) = plt.subplots(1,2, figsize=[18,7])
-plot_1.set_title("MC samples without weights")
-plot_1.hist(stack_mc_list_m4l, range=rangos[0], label=mc_samples, stacked=True, bins=bines)
-plot_1.set_ylabel('Events')
-plot_1.set_xlabel(var_name+units)
-plot_1.legend(frameon=False)
-plot_2.set_title("MC samples with weights")
-plot_2.hist(stack_mc_list_m4l, range=rangos[0], label=mc_samples, stacked=True, weights=stack_weights_list, bins=bines)
-plot_2.set_ylabel('Events')
-plot_2.set_xlabel(var_name+units)
-plot_2.tick_params(which='both',direction='in',top=True,right=True, length=6, width=1)
-plot_2.legend(frameon=False)
+fig, (ax_1, ax_2) = plt.subplots(1,2, figsize=[18,7])
+ax_1.set_title("MC samples without weights")
+ax_1.hist(stack_mc_list_m4l, range=rangos[0], label=mc_samples, stacked=True, bins=bines)
+ax_1.set_ylabel('Events')
+ax_1.set_xlabel(var_name+units)
+ax_1.legend(frameon=False)
+ax_2.set_title("MC samples with weights")
+ax_2.hist(stack_mc_list_m4l, range=rangos[0], label=mc_samples, stacked=True, weights=stack_weights_list, bins=bines)
+ax_2.set_ylabel('Events')
+ax_2.set_xlabel(var_name+units)
+ax_2.tick_params(which='both',direction='in',top=True,right=True, length=6, width=1)
+ax_2.legend(frameon=False)
 ~~~
 {: .language-python}
 ![MC_histogram_4]({{ page.root }}/fig/MC_histogram_4.png)
 # Data samples
-Let's append in `stack_dara_list_m4l` the values of the m4l variable for all th data samples A,B,C and D.
+Let's append in `stack_dara_list_m4l` the values of the m4l variable for all the data samples A,B,C and D.
 ~~~
 stack_data_list_m4l=[]
 for element in samples_dic['data']:
@@ -408,7 +409,7 @@ for element in samples_dic['data']:
     stack_data_list_m4l += data_list
 ~~~
 {: .language-python}
-We can print the length of the list to check again that all is ok.
+We can print the length of the list to check again that everything is fine.
 ~~~
 len(stack_data_list_m4l)
 ~~~
