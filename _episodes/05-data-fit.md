@@ -1,5 +1,5 @@
 ---
-title: "Further HEP steps"
+title: "Data fit"
 teaching: 5
 exercises: 5
 questions:

@@ -1,5 +1,5 @@
 ---
-title: "Basic data exploration"
+title: "Physics background"
 teaching: 5
 exercises: 0
 questions:
