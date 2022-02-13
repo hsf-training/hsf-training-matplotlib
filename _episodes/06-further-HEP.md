@@ -1,5 +1,5 @@
 ---
-title: "HEP Specific plotting"
+title: "Plotting with mplhep for HEP style plotting"
 teaching: 15
 exercises: 15
 questions:
@@ -83,7 +83,7 @@ center = (bins[:-1] + bins[1:]) / 2
 ```
 
 
-Let's look at some simulations from other processes there. Here are some Monte Carlo -simulated values for such events that have already been weighted by luminosity, cross-section and number of events. Basically we create a set of values that have some randomness in them, just like a real measurement would have, but which follows the distribution that has been observed in those processes.
+Let's look at some simulations from other processes there. Here are some Monte Carlo simulated values for such events that have already been weighted by luminosity, cross-section and number of events. Basically we create a set of values that have some randomness in them, just like a real measurement would have, but which follows the distribution that has been observed in those processes.
 
 
 
@@ -92,12 +92,9 @@ Copy and paste these lines to your code
 ```python
 dy = np.array([0,0,0,0,0,0.354797,0.177398,2.60481,0,0,0,0,0,0,0,0,0,0.177398,0.177398,0,0.177398,0,0,0,0,0,0,0,0,0,0,0,0.177398,0,0,0,0])
 
-
 ttbar = np.array([0.00465086,0,0.00465086,0,0,0,0,0,0,0,0.00465086,0,0,0,0,0,0.00465086,0,0,0,0,0.00465086,0.00465086,0,0,0.0139526,0,0,0.00465086,0,0,0,0.00465086,0.00465086,0.0139526,0,0])
 
-
 zz = np.array([0.181215,0.257161,0.44846,0.830071,1.80272,4.57354,13.9677,14.0178,4.10974,1.58934,0.989974,0.839775,0.887188,0.967021,1.07882,1.27942,1.36681,1.4333,1.45141,1.41572,1.51464,1.45026,1.47328,1.42899,1.38757,1.33561,1.3075,1.29831,1.31402,1.30672,1.36442,1.39256,1.43472,1.58321,1.85313,2.19304,2.95083])
-
 
 hzz = np.array([0.00340992,0.00450225,0.00808944,0.0080008,0.00801578,0.0108945,0.00794274,0.00950757,0.0130648,0.0163568,0.0233832,0.0334813,0.0427229,0.0738129,0.13282,0.256384,0.648352,2.38742,4.87193,0.944299,0.155005,0.0374193,0.0138906,0.00630364,0.00419265,0.00358719,0.00122527,0.000885718,0.000590479,0.000885718,0.000797085,8.86337e-05,0.000501845,8.86337e-05,0.000546162,4.43168e-05,8.86337e-05])
 
@@ -114,7 +111,7 @@ plt.figure(figsize = (10,5))
 hep.histplot(zz,bins= bins,histtype='fill',color = 'b', alpha =.5, edgecolor= 'black',label = r'ZZ $\rightarrow$ 4l')
 
 plt.xlabel('4l invariant mass (GeV)', fontsize = 15)
-plt.ylabel('Events / 3 GeV\n', fontsize = 15)
+plt.ylabel('Events / 3 GeV', fontsize = 15)
 plt.xlim(rmin,rmax)
 plt.legend()
 plt.show()
@@ -125,13 +122,26 @@ This would plot the following figure.
 
 
 
-## Exercise:
-Plot each of the backgrounds. You should have something similar to
+# Exercise:
+### Plot each of the backgrounds individually. You should have something similar to
 ![](../fig/drellyan.png)
 ![](../fig/ttbar.png)
 
-## Now let's merge the background together
-You can also stack them together with the data on top. It's customary to use `plt.errorbar` as data is usually shown with uncertainties.
+### Stacking histograms and adding the CMS logo.
+
+Let's stack them together and see what kind of shape we might expect from the experiment.
+To stack histograms together with `hep.histplot` you can pass in a list of the values to be binned like `[ttbar,dy,zz]` and also set the argument `stack=True`.
+
+For the legend you can also pass each corresponding label as a list.
+Example:  
+ ```python
+label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l']
+```
+Also use python lists to specify the colors for each plot.
+
+To add the CMS logo you can use the `hep.cms.label()` function. [Look here](https://mplhep.readthedocs.io/en/latest/api.html) for more information on mplhep methods like this one.
+### Now add the data
+It's customary to use `plt.errorbar` as data is usually shown with uncertainties.
 You can define both errors along the x and the y axis as python lists and add them to your data.
 
 Use this for the uncertainties.
@@ -140,19 +150,10 @@ Use this for the uncertainties.
 xerrs = [width*0.5 for i in range(0, nbins)]
 yerrs = np.sqrt(hist)
 ```
-
-> ## Adding the CMS logo
-> mplhep also has helper functions to add the experiment logos on the canvas.
-> Check the [mplhep documentation](https://mplhep.readthedocs.io/en/latest/api.html) for more info.
-> ```python
-> hep.cms.label()
->```
-{: .callout}
-
-**Hint**: To stack plots with `hep.histplot` use python lists for the data, the colors, and the labels of the legend.
+**Remember** : Google is your friend.
 
 
-> ## Solution
+> ## Solution (don't look before trying yourself)
 > ```python
 >
 >xerrs = [width*0.5 for i in range(0, nbins)]
@@ -163,7 +164,7 @@ yerrs = np.sqrt(hist)
 >             color = ['grey','g','b'], alpha =.5, edgecolor= 'black',
 >             label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l'])
 > # Measured data
->data_bar = plt.errorbar(center, hist, xerr = xerrs, yerr = yerrs,
+> plt.errorbar(center, hist, xerr = xerrs, yerr = yerrs,
 >                        linestyle = 'None', color = 'black',
 >                        marker = 'o', label = 'Data')
 >plt.title('$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n', fontsize = 15)
@@ -180,14 +181,13 @@ yerrs = np.sqrt(hist)
 {: .solution}
 
 
-
+# Putting it all together
 Almost there!
-
 
 Now it's just a matter of using what we have learned so far to add our signal MC of the Higgs assuming that it has a mass of 125 GeV.
 
 
-The following code will produce the background for the montecarlo. Use the same method as before to merge everything together!
+The following code will plot the signal from the montecarlo simulation of our Higgs. Use the same method as before to merge everything together!
 
 ```python
 # HZZ, our theoretical assumption of a Higgs via two Z bosons.
