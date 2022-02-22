@@ -1,7 +1,7 @@
 # Plotting with matplotlib
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Contributing
@@ -35,12 +35,14 @@ the content of the lesson:
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://meirinoanevans.wixsite.com/portfolio"><img src="https://avatars1.githubusercontent.com/u/32399892?v=4" width="100px;" alt=""/><br /><sub><b>Meirin Oan Evans</b></sub></a><br /><a href="#content-meevans1" title="Content">🖋</a></td>
+    <td align="center"><a href="https://meirinoanevans.wixsite.com/portfolio"><img src="https://avatars1.githubusercontent.com/u/32399892?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Meirin Oan Evans</b></sub></a><br /><a href="#content-meevans1" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/amorenobr"><img src="https://avatars.githubusercontent.com/u/60275989?v=4?s=100" width="100px;" alt=""/><br /><sub><b>amorenobr</b></sub></a><br /><a href="#content-amorenobr" title="Content">🖋</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 Even more people contributed to the framework, but they are too many to list!
