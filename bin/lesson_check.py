@@ -220,12 +220,8 @@ def check_config(reporter, source_dir):
     config = load_yaml(config_file)
     reporter.check_field(config_file, 'configuration',
                          config, 'kind', 'lesson')
-    reporter.check_field(config_file, 'configuration',
-<<<<<<< HEAD
-                         config, 'carpentry', ('hsf', 'swc', 'dc', 'lc', 'cp'))
-=======
-                         config, 'carpentry', ('swc', 'dc', 'lc', 'cp', 'incubator'))
->>>>>>> 14d73565c21f41fb51ca70cf7eefe8cfa73529d2
+    reporter.check_field(config_file, 'configuration', config, 'carpentry', ('hsf', 'swc', 'dc', 'lc', 'cp'))
+
     reporter.check_field(config_file, 'configuration', config, 'title')
     reporter.check_field(config_file, 'configuration', config, 'email')
 
