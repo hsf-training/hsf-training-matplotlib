@@ -271,7 +271,7 @@ We are going to focus on the data obtained at the ATLAS and CMS detectors at the
 
 ![atlas](../fig/Atlas.png){:width="40%"}
 ![cms](../fig/CMS.png){:width="40%"}
-![final-plot](../fig/final-plot.png){:width="80%"}
+![final-plot](../fig/final-plot_1.png){:width="80%"}
 
 
 
