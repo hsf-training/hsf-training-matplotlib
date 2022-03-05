@@ -1,22 +1,38 @@
 ---
 title: Setup
 ---
-For this tutorial we will be using [Kaggle](https://www.kaggle.com/). Kaggle offers a no-setup, customizable, Jupyter Notebooks environment. Make sure you have
+For this tutorial we will be using [Binder](https://mybinder.org/). It offers a no setup, click and ready to go Jupyter Notebook environment.
 
-* [Created an account by clicking here](https://www.kaggle.com/account/login?phase=startRegisterTab&returnUrl=%2F) <---
+We will be using the following [Github Repository](https://github.com/plttraining/hsf_matplotlib_notebooks) to follow the lesson.
 
-![Kaggle register](fig/Kaggle_register.png){:width="40%"}
+You would only need to look for the [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plttraining/hsf_matplotlib_notebooks/main)
 
-* Signed in
+## Plan b : Google Colab
 
-Once you are signed in, you will be given access to the full resources of a Kaggle Jupyter notebook kernel (16 GB of RAM). Once you are signed in please use the following link:
+If for whatever reason Binder is not working. All notebooks should have a
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+Just click and run the cells that say **If on Colab**
 
-* [Please click here](https://www.kaggle.com/meirinevans/matplotlib-data-vs-mc/edit) <---
-* and [Please click here](https://www.kaggle.com/meirinevans/matplotlib-data-fit/edit) <---
+## If you want to run locally
 
-![Copy and Edit](fig/copy_edit.png){:width="40%"}
+We highly recommend you create a virtual enviroment first. Open your terminal and do
 
-* Click Copy and Edit in the top-right corner of both tabs to have your own version of the notebooks!
+
+```bash
+conda create --name mpl
+conda activate mpl
+git clone https://github.com/plttraining/hsf_matplotlib_notebooks.git
+cd hsf_matplotlib_notebooks
+# Now install the requirements
+conda install -c conda-forge --file requirements.txt
+conda install notebook jupyter-lab
+```
+Now you can launch your jupyter notebook or jupyter-lab session
+```bash
+jupyter notebook --no-browser
+# Or
+jupyter lab --no-browser
+```
 
 Your feedback is very welcome! Most helpful for us is if you "[Improve this page on GitHub](https://github.com/hsf-training/hsf-training-matplotlib/edit/gh-pages/setup.md)". If you prefer anonymous feedback, please [fill this form](https://forms.gle/9ge6rkYk6UMUt2WT8).
 
