@@ -11,11 +11,11 @@ objectives:
 - "Add error bars to the plot."
 - "Perform a Data vs. MC plot comparison."
 keypoints:
-- "To do."
+- In High-energy physics, histograms are used to analyze different data and MC distributions, using Matplotlib that is an important tool.
 ---
 
 
-# Samples
+
 
 As we mentioned before the goal is to reveal the decay of the Standard Model Higgs boson to two Z bosons and subsequently to four leptons
 (H->ZZ->llll), this is called as a "golden channel". 
@@ -23,11 +23,10 @@ As we mentioned before the goal is to reveal the decay of the Standard Model Hig
 For this tutorial we will use the ATLAS data collected during 2016 at a center-of-mass energy of 13 TeV, equivalent to 10fb⁻¹ of integrated luminosity.
 Here we will use the available 4 leptons final state samples for simulated samples (Monte Carlo "MC") and data, that after a selection, we will reveal a narrow invariant mass peak at 125 GeV, the Higgs.
 
-First we need to import pandas, numpy and the `matplotlib.pyplot` module under the name `plt`, as usual:
+First we need to import numpy and the `matplotlib.pyplot` module under the name `plt`, as usual:
 ~~~
 import matplotlib.pyplot as plt
 %matplotlib inline
-import pandas as pd
 import numpy as np
 ~~~
 {: .language-python}
@@ -36,7 +35,7 @@ import numpy as np
 > The jupyter backends (activated via `%matplotlib inline`, `%matplotlib notebook`, or `%matplotlib widget`), call show() at the end of every cell by default. Thus, you usually don't have to call it explicitly there.
 {: .callout}
 
-
+# Samples
 
 In the following dictionary, we have classified the samples we will work on, starting with the "data" samples, 
 followed by the "higgs" MC samples and at the end the "zz" and "others" MC background components.
@@ -73,7 +72,7 @@ for p in processes:
         # Load the dataframes
         sample = d[1] # Sample name
         samples.append(sample)
-        DataUproot = uproot.open(f'/kaggle/input/reducehiggs4lep/samples_FilterGem_{sample}.root')
+        DataUproot = uproot.open(f'./Data_03_Higgs_Search/OpenData_Atlas_{sample}.root')
         Tuples[sample] = DataUproot['myTree']
 ~~~
 {: .language-python}
@@ -115,7 +114,7 @@ for s in samples:
 
 Using the `plt.hist` method we can visualize the distribution the mass of the 4 leptons "m4l" for example fot the "data_A" sample. 
 ~~~
-plt.title("First look to the samples")
+plt.title("First look at samples")
 plt.hist(branches['data_A']['m4l'])
 
 ~~~
@@ -140,7 +139,7 @@ matplotlib.rcParams.update({'font.size': 16, 'font.family': 'serif'})
 {: .language-python}
 Let's do the plot again
 ~~~
-plt.title("First look to the samples")
+plt.title("First look at samples")
 plt.hist(branches['data_A']['m4l'])
 
 ~~~
@@ -274,9 +273,9 @@ for s in samples:
     sum_types_goodlep = (sum_types_ee | sum_types_mm | sum_types_em)
     sum_lep_selection = (sum_leptons & sum_charge & sum_types_goodlep)
     # Select good leptons with high transverse momentum
-    pt_0_selection = ((branches[s]['lep_pt'][:,0] > 25000) & (branches[s]['good_lep'][:,0] == 1))
-    pt_1_selection = ((branches[s]['lep_pt'][:,1] > 15000) & (branches[s]['good_lep'][:,1] == 1))
-    pt_2_selection = ((branches[s]['lep_pt'][:,2] > 10000) & (branches[s]['good_lep'][:,2] == 1))
+    pt_0_selection = branches[s]['goodlep_pt_0'] > 25000
+    pt_1_selection = branches[s]['goodlep_pt_1'] > 15000
+    pt_2_selection = branches[s]['goodlep_pt_2'] > 10000
     high_pt_selection = (pt_0_selection & pt_1_selection & pt_2_selection)
     final_selection = trigger & sum_types_goodlep & sum_lep_selection & high_pt_selection
     selection_events[s] = final_selection
