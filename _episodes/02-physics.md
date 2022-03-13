@@ -13,23 +13,24 @@ keypoints:
 <!-- Mathjax Support -->
 <script type="text/javascript" async
 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script> 
+</script>
 
 You can take a look at the mathematical structure of the Standard Model of Particle Physics in the next section, or go directly to the main Higgs production mechanisms at hadron colliders.
+
 > {: .solution}
 >> {: .callout}
 >>
 >> ## The Standard Model of Particle Physics
->> ### The Standard Model Lagrangian   
+>> ### The Standard Model Lagrangian
 >>
 >> The SM is a quantum field theory that is based on the gauge symmetry $$SU(3)_{C}\times SU(2)_{L}\times U(1)_{Y}$$.  This gauge group includes the symmetry group of the strong interactions, $$SU(3)_{C}$$, and the symmetry group of the electroweak (EW) interactions, $$SU(2)_{L}\times U(1)_{Y}$$.
->> 
+>>
 >> The strong interaction part, quantum chromodynamics (QCD) is an SU(3) gauge theory described by the lagrangian density
 >>
 >> $${\cal{L}}_{SU(3)}=-\frac{1}{4}G_{\mu\nu}^{a}G_{a}^{\mu\nu}+\sum_{r}\overline{q}_{r\alpha}iD_{\mu\beta}^{\alpha}\gamma^{\mu}q_{r}^{\beta}$$,
 >>
 >> where $$G_{\mu\nu}^{a}=\partial_{\mu}G_{\nu}^{a}-\partial_{\nu}G_{\mu}^{a}+g_{s}f^{abc}G_{\mu}^{b}G_{\nu}^{c}$$ is the field strength tensor for the gluon fields $$G_{\mu}^{a}$$, $$a=1,\dots,8$$, and the structure constants $$f^{abc}$$ $$(a,b,c=1,\dots,8)$$ are defined by $$[T^{a},T^{b}]=if^{abc}T_{c}$$.
->> 
+>>
 >> The second term in $${\cal{L}}_{SU(3)}$$ is the gauge covariant derivative for the quarks: $$q_{r}$$ is the $$r^{th}$$ quark flavor, $$\alpha$$,$$\beta=1,2,3$$ are color indices, and
 >>
 >> $$D_{\mu\beta}^{\alpha}=(D_{\mu})_{\alpha\beta}=\partial_{\mu}\delta_{\alpha\beta}-ig_{s}T_{a\alpha\beta}G_{\mu}^{a}$$.
@@ -40,50 +41,50 @@ You can take a look at the mathematical structure of the Standard Model of Parti
 >> $${\cal{L}}_{fermions}=\overline{L}_{i}iD_{\mu}\gamma^{\mu}L_{i}+\overline{e}_{Ri}iD_{\mu}\gamma^{\mu}e_{Ri}+\overline{Q}_{i}iD_{\mu}\gamma^{\mu}Q_{i}+\overline{u}_{Ri}iD_{\mu}\gamma^{\mu}u_{Ri}+\overline{d}_{Ri}iD_{\mu}\gamma^{\mu}d_{Ri}$$,
 >>
 >> and where $$D_{\mu}=\partial_{\mu}-ig_{2}T_{a}W_{\mu}^{a}-ig_{1}\frac{Y_{q}}{2}B_{\mu}$$.
->> 
+>>
 >> The gauge part is
 >>
 >> $${\cal{L}}_{gauge}=-\frac{1}{4}W_{\mu\nu}^{a}W_{a}^{\mu\nu}-\frac{1}{4}B_{\mu\nu}B^{\mu\nu}$$,
 >>
 >> where $$W_{\mu\nu}^{a}=\partial_{\mu}W_{\nu}^{a}-\partial_{\nu}W_{\mu}^{a}+g_{2}\epsilon^{abc}W_{\mu}^{b}W_{\nu}^{c}$$ and $$B_{\mu\nu}=\partial_{\mu}B_{\nu}-\partial_{\nu}B_{\mu}$$ are the field strength tensors for the $$SU(2)$$ and $$U(1)$$ gauge fields, respectively.
->> 
+>>
 >> The scalar part of the lagrangian is
 >>
 >> $${\cal{L}}_{Scalar}=(D^{\mu}\Phi)^{\dagger}(D_{\mu}\Phi)-V(\Phi^{\dagger}\Phi)$$,
 >>
 >> where $$V(\Phi^{\dagger}\Phi)=\mu^{2}\Phi^{\dagger}\Phi+\lambda(\Phi^{\dagger}\Phi)^{2}$$.
->> 
+>>
 >> The Yukawa Lagrangian is
 >>
 >> $${\cal{L}_{Yuk}}=-\lambda_{e}\overline{L}\Phi e_{R}-\lambda_{d}\overline{Q}\Phi d_{R}-\lambda_{u}\overline{Q}\tilde\Phi u_{R}+h.c.$$.
 >>
 >> ### Spontaneous Symmetry Breaking and Mass Generation: The Higgs Mechanism in the SM
 >>
->> Experimentally, the weak bosons are massive. We give mass to the gauge bosons through the Higgs Mechanism:  generate mass terms from the kinetic 
-energy term of a scalar doublet field $${\Phi}$$ that undergoes spontaneous symmetry breaking. 
->> 
->> Introduce a complex $$SU(2)$$ doublet of scalar fields 
->> 
+>> Experimentally, the weak bosons are massive. We give mass to the gauge bosons through the Higgs Mechanism:  generate mass terms from the kinetic
+energy term of a scalar doublet field $${\Phi}$$ that undergoes spontaneous symmetry breaking.
+>>
+>> Introduce a complex $$SU(2)$$ doublet of scalar fields
+>>
 >> $$
->> \Phi = 
+>> \Phi =
 >> \begin{pmatrix}
 >> \phi^{+}\\
 >> \phi^{0}
 >> \end{pmatrix}, Y_{\Phi}=+1
 >> $$,
->> 
+>>
 >> in the scalar lagrangian
->> 
+>>
 >> $$
 >> {\cal{L}}_{Scalar}=(D^{\mu}\Phi)^{\dagger}(D_{\mu}\Phi)-V(\Phi^{\dagger}\Phi)
 $$,
->> 
+>>
 >> where
->> 
+>>
 >> $$
 {D_{\mu}=\partial_{\mu}-ig_{s}T_{a}G_{\mu}^{a}-ig_{2}T_{a}W^{a}_{\mu}-ig_{1}\frac{Y_{q}}{2}B_{\mu}}
 $$,
->> 
+>>
 and
 >>
 >>$$V(\Phi^{\dagger}\Phi)={\mu^{2}}\Phi^{\dagger}\Phi+{\lambda}(\Phi^{\dagger}\Phi)^{2}$$.
@@ -104,7 +105,7 @@ and
 >> Writing the field $$\Phi$$ in terms of four fields $$\phi_{1,2,3}(x)$$ and $$H(x)$$ at first order and expanding it around the minimum
 >>
 >> $$
->> \Phi =$$ 
+>> \Phi =$$
 >> $$\begin{pmatrix}
 >> \phi^{+}\\
 >> \phi^{0}
@@ -180,7 +181,7 @@ and
 >> \end{pmatrix}e_{R}+...
 >> =-\frac{1}{\sqrt{2}}\lambda_{e}(\upsilon+H)\overline{e}_{L}e_{R}+...
 >> $$.
->> 
+>>
 >> The constant term in front of $$\overline{f}_{L}f_{R}$$ (and h.c.) is identified with the fermion mass
 >>
 >> $$
@@ -243,7 +244,7 @@ $$.
 >> $$
 >> {\cal{L}}_{M_{V}}\sim M_{V}^{2}\bigg{(}1+\frac{H}{\upsilon}\bigg{)}^{2}$$,
 >>
->>$$ 
+>>$$
 >> {\cal{L}}_{m_{f}}\sim -m_{f}\bigg{(}1+\frac{H}{\upsilon}\bigg{)}
 $$,
 >>
@@ -254,10 +255,10 @@ $$,
 >> $$.
 >>
 
-## Higgs Production Mechanisms at Hadron Colliders 
+## Higgs Production Mechanisms at Hadron Colliders
 
 The four main Higgs production mechanisms at a hadron collider are
- 
+
 ![h_prod.jpg](../fig/h_prod.jpg){:width="40%"}
 
 The Higgs boson can decay into fermions and bosons, the total decay width and the branching ratios in function of the Higgs mass are shown below
@@ -272,9 +273,6 @@ We are going to focus on the data obtained at the ATLAS and CMS detectors at the
 ![atlas](../fig/Atlas.png){:width="40%"}
 ![cms](../fig/CMS.png){:width="40%"}
 ![final-plot](../fig/final-plot_1.png){:width="80%"}
-
-
-
 
 <!--- The following sections describe the relevant physics processes of the analysis.
 
@@ -301,5 +299,5 @@ The physical process of interest, also often called signal, is the production of
 
 Besides the Higgs boson, many other processes can produce very similar signatures in the detector, which have to be taken into account to draw any conclusions from the data.
 --->
- 
+
 {% include links.md %}

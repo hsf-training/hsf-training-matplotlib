@@ -12,7 +12,6 @@ keypoints:
 
 # Introduction
 
-
 ## Looking at the dimuon spectrum over a wide energy range
 
 <!-- Mathjax Support -->
@@ -27,14 +26,11 @@ keypoints:
 
 **Background**
 
-
 To determine the mass ($$m$$) of a particle you need to know the 4-momenta of the particles ($$\mathbf{P}$$) that are detected after the collision: the energy ($$E$$), the momentum in the x direction
 
 ($$p_x$$), the momentum in the y direction ($$p_y$$) and the momentum in the z direction ($$p_z$$).
 
-
 $$\mathbf{P} = (E,p_x,p_y,p_z)$$
-
 
 $$
  m = \sqrt{E^2-(p_x^2+p_y^2 + p_z^2)}
@@ -46,8 +42,6 @@ However, we can reconstruct the parent particle (sometimes referred to as <b>the
 
 $$\mathbf{P_{\rm parent}} = \mathbf{P_{\rm child 0}} + \mathbf{P_{\rm child 1}} + \mathbf{P_{\rm child 2}} + ...$$
 
-
-
 which breaks down into...
 
 $$E_{\rm parent} = E_{\rm child 0} + E_{\rm child 1} + E_{\rm child 2} + ...$$
@@ -58,12 +52,9 @@ $$p_{\rm y parent} = p_{\rm y child 0} + p_{\rm y child 1} + p_{\rm y child 2} +
 
 $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} + ...$$
 
-
 <b>Let's code!</b>
 
 Here is some very, very basic starter code. It reads in data from the CMS experiment.
-
-
 
 ```python
 import numpy as np
@@ -104,7 +95,6 @@ print(sum(cut)) #count how many anomalies
 
 We can use numpy to clean our arrays from anomalous events
 
-
 ```python
 e=np.delete(e,cut)
 px,py,pz=np.delete(px,cut),np.delete(py,cut),np.delete(pz,cut)
@@ -121,7 +111,6 @@ To do this, you will need to loop over all pairs of muons for each collision, su
 
 Do this for all pairs of muons for the case where the muons have opposite charges.
 
-
 <i>Hint!</i>
 
 It is very likely that a particle exists where there is a peak in the data. However, this is not always true.
@@ -129,8 +118,6 @@ A peak in the data is most likely the mass of a particle. You can look at the ap
 is found in the data.
 
 ---
-
-
 
 <!--
 <h2><font color="red">Challenge!</font></h2>
@@ -154,7 +141,6 @@ is found in the data. -->
 
 Your histogram should look something like the following sketch. The value of the peaks should be the mass of a particle. You should be able to find two particles in their ground state. <a href="http://en.wikipedia.org/wiki/J/psi_meson">Check your answer for the first particle!</a> <a href="http://en.wikipedia.org/wiki/Upsilon_meson">Check your answer for the second particle!</a>
 
-
 ```python
 from IPython.display import Image
 Image(url='https://raw.githubusercontent.com/particle-physics-playground/playground/master/activities/images/dimuons_sketch.jpeg')
@@ -164,10 +150,6 @@ Image(url='https://raw.githubusercontent.com/particle-physics-playground/playgro
 
 
 <img src="https://raw.githubusercontent.com/particle-physics-playground/playground/master/activities/images/dimuons_sketch.jpeg" />
-
-
-
-
 
 ```python
 plt.hist(M,bins=100,
@@ -179,12 +161,12 @@ plt.title('Muon Mass spectrum')
 plt.show()
 ```
 
-
 ![png](../fig/output_15_0.png){: width="560px"}
 
 Doesn't really look like much. How about we fix that!
 
-## Exercise :
+## Exercise:
+
 Using the code above, zoom in and fix the above plot to help **visually** estimate the mass of the muon.
 
 *Hint* Google search for the arguments of the `plt.hist` function
@@ -200,14 +182,11 @@ Using the code above, zoom in and fix the above plot to help **visually** estima
 >![png](../fig/output_17_0.png){: width="560px" .image-with-shadow }
 {: .solution}
 
-
 # Let's make the dimuon spectrum
 
 We need to calculate the sum the energies at the event level
 
-
 **REMEMBER**
-
 
 $$E_{\rm parent} = E_{\rm child 0} + E_{\rm child 1} + E_{\rm child 2} + ...$$
 
@@ -220,7 +199,6 @@ $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} +
 Let's assume that each event only has 2 muons.
 We will use the awkward arrays function `unflatten` because we can make pairs of muons this way.
 
-
 ```python
 e=ak.unflatten(e,2)
 px=ak.unflatten(px,2)
@@ -230,7 +208,6 @@ pz=ak.unflatten(pz,2)
 ```
 
 Now lets sum the 4-momenta components and calculate the event mass
-
 
 ```python
 # we use axis = 1 because it squishes the row dimension and gives us 1 value per row (i.e. 1 value per event)
@@ -261,19 +238,14 @@ pz = np.sum(pz,axis=1)
 >```
 {: .solution}
 
-
 ![png](../fig/output_26_0.png){: width="560px"}
 
-
-
 Depending on what you did, you may see hints of particles below $$20 GeV/c^2$$. It is possible you see signs of other particles at even higher energies. Plot your masses over a wide range of values, but then zoom in (change the plotting range) on different mass ranges to see if you can identify these particles.  
-
 
 ```python
 Image(url='https://twiki.cern.ch/twiki/pub/CMSPublic/HLTDiMuon2017and2018/CMS_HLT_DimuonMass_Inclusive_2017.png')
 ```
 
-
-
-
 <img src="https://twiki.cern.ch/twiki/pub/CMSPublic/HLTDiMuon2017and2018/CMS_HLT_DimuonMass_Inclusive_2017.png"/>
+
+{% include links.md %}

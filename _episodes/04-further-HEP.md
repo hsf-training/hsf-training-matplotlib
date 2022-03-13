@@ -19,7 +19,6 @@ The data we use here are actual, meaningful data from the CMS experiment that co
 
 The method used is pretty common and useful for many purposes. First we have some theoretical background, then we make measurements and try to see if those measurements contain something that correlates or clashes with our assumptions. Perhaps the results confirm our expectations, bring up new questions to look into, force us to adapt our theories or require entirely new ones to explain them. This cycle then continues time and time again.
 
-
 # Install mplhep and setup
 
 ```python
@@ -34,7 +33,9 @@ hep.style.use("CMS")
 # or use any of the following
 # {CMS | ATLAS | ALICE | LHCb1 | LHCb2}
 ```
+
 ## Getting the data
+
 Now we will get some data stored in a github repository.
 
 ```python
@@ -50,22 +51,14 @@ csvs += [pd.read_csv('https://raw.githubusercontent.com/GuillermoFidalgo/Python-
 fourlep = pd.concat(csvs) # here we have merged them into one big list and simultainiously convert it into a pandas dataframe.
 ```
 
-
-
-
 In this chapter we will see how to use mplhep commands to make a quality plot.
 
 This is our goal
 ![](../fig/Hto4lep_plot.png)
 
-
-
-
 ## Let's begin!
 
-
 According to the standard model, one of the ways the Higgs boson can decay is by first creating two Z bosons that then decay further into four leptons (electrons, muons...). It isn't the only process with such a final state, of course, so one has to sift through quite a lot of noise to see that happening. The theory doesn't say too much about what the mass of Higgs could be, but some clever assumptions and enlightened guesses can get you pretty far. For an example, four lepton decay is very dominant in some mass regions, which then guides our search.
-
 
 ```python
 # Let's set some values here in regards to the region we're looking at.
@@ -82,10 +75,7 @@ width = 1.0*(bins[1] - bins[0])
 center = (bins[:-1] + bins[1:]) / 2
 ```
 
-
 Let's look at some simulations from other processes there. Here are some Monte Carlo simulated values for such events that have already been weighted by luminosity, cross-section and number of events. Basically we create a set of values that have some randomness in them, just like a real measurement would have, but which follows the distribution that has been observed in those processes.
-
-
 
 Copy and paste these lines to your code
 
@@ -100,9 +90,7 @@ hzz = np.array([0.00340992,0.00450225,0.00808944,0.0080008,0.00801578,0.0108945,
 
 ```
 
-
 We will look at how these numbers contribute what is measured in the accelerators. Let's look at each individual contribution and then put it all together.
-
 
 ```python
 # ZZ, a pair of heavier bosons.
@@ -116,14 +104,15 @@ plt.xlim(rmin,rmax)
 plt.legend()
 plt.show()
 ```
+
 This would plot the following figure.
 
 ![](../fig/zz.png)
 
-
-
 # Exercise:
+
 ### Plot each of the backgrounds individually. You should have something similar to
+
 ![](../fig/drellyan.png)
 ![](../fig/ttbar.png)
 
@@ -133,14 +122,18 @@ Let's stack them together and see what kind of shape we might expect from the ex
 To stack histograms together with `hep.histplot` you can pass in a list of the values to be binned like `[ttbar,dy,zz]` and also set the argument `stack=True`.
 
 For the legend you can also pass each corresponding label as a list.
-Example:  
+Example:
+
  ```python
 label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l']
 ```
+
 Also use python lists to specify the colors for each plot.
 
 To add the CMS logo you can use the `hep.cms.label()` function. [Look here](https://mplhep.readthedocs.io/en/latest/api.html) for more information on mplhep methods like this one.
+
 ### Now add the data
+
 It's customary to use `plt.errorbar` as data is usually shown with uncertainties.
 You can define both errors along the x and the y axis as python lists and add them to your data.
 
@@ -150,8 +143,8 @@ Use this for the uncertainties.
 xerrs = [width*0.5 for i in range(0, nbins)]
 yerrs = np.sqrt(hist)
 ```
-**Remember** : Google is your friend.
 
+**Remember** : Google is your friend.
 
 > ## Solution (don't look before trying yourself)
 > ```python
@@ -180,12 +173,11 @@ yerrs = np.sqrt(hist)
 > ![](../fig/background+data.png)
 {: .solution}
 
-
 # Putting it all together
+
 Almost there!
 
 Now it's just a matter of using what we have learned so far to add our signal MC of the Higgs assuming that it has a mass of 125 GeV.
-
 
 The following code will plot the signal from the montecarlo simulation of our Higgs. Use the same method as before to merge everything together!
 
@@ -207,8 +199,8 @@ plt.xlim(rmin,rmax)
 
 plt.show()
 ```
-![](../fig/hzz.png)
 
+![](../fig/hzz.png)
 
 > ## Bonus question: how can something, that seems to have a mass of roughly 125 GeV decay via two Z bosons, with mass over 90 GeV?
 >Add that graph with all background + data and see how it lines up.
@@ -241,5 +233,9 @@ plt.show()
 >plt.show()
 >```
 {: .solution}
+
 ![](../fig/final-plot.png)
+
 # Done! We are ready to publish :)
+
+{% include links.md %}
