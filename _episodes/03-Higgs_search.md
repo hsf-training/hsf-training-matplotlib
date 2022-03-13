@@ -14,11 +14,10 @@ keypoints:
 - "To do."
 ---
 
-
 # Samples
 
 As we mentioned before the goal is to reveal the decay of the Standard Model Higgs boson to two Z bosons and subsequently to four leptons
-(H->ZZ->llll), this is called as a "golden channel". 
+(H->ZZ->llll), this is called as a "golden channel".
 
 For this tutorial we will use the ATLAS data collected during 2016 at a center-of-mass energy of 13 TeV, equivalent to 10fb⁻¹ of integrated luminosity.
 Here we will use the available 4 leptons final state samples for simulated samples (Monte Carlo "MC") and data, that after a selection, we will reveal a narrow invariant mass peak at 125 GeV, the Higgs.
@@ -31,15 +30,14 @@ import pandas as pd
 import numpy as np
 ~~~
 {: .language-python}
+
 > ## Auto-show in jupyter notebooks
 >
 > The jupyter backends (activated via `%matplotlib inline`, `%matplotlib notebook`, or `%matplotlib widget`), call show() at the end of every cell by default. Thus, you usually don't have to call it explicitly there.
 {: .callout}
 
+In the following dictionary, we have classified the samples we will work on, starting with the "data" samples, followed by the "higgs" MC samples and at the end the "zz" and "others" MC background components.
 
-
-In the following dictionary, we have classified the samples we will work on, starting with the "data" samples, 
-followed by the "higgs" MC samples and at the end the "zz" and "others" MC background components.
 ~~~
 samples_dic= {'data': [['data', 'data_A'], 
                        ['data', 'data_B'], 
@@ -52,11 +50,14 @@ samples_dic= {'data': [['data', 'data_A'],
                         ['mc', 'mc_361107.Zmumu']]}
 ~~~
 {: .language-python}
-We will use uproot to read the content of our samples that are in ROOT format. 
+
+We will use uproot to read the content of our samples that are in ROOT format.
+
 ~~~
 import uproot
 ~~~
 {: .language-python}
+
 > ## Uproot tutorial
 >
 > If you want to lear more of the Uproot python Module you can take a look to the tutorial also given by the HEP software foundation in the following link
@@ -64,6 +65,7 @@ import uproot
 {: .callout}
 
 For this we will write the next function that takes the above list and return a dictionary with the dataframes of the samples:
+
 ~~~
 processes = samples_dic.keys()
 Tuples={}
@@ -77,11 +79,14 @@ for p in processes:
         Tuples[sample] = DataUproot['myTree']
 ~~~
 {: .language-python}
+
 Let's take a look to the variables stored in out data samples, taking "data_A" as example
+
 ~~~
 list(Tuples['data_A'].keys())
 ~~~
 {: .language-python}
+
 ~~~
 ['trigM',
  'm4l',
@@ -105,7 +110,9 @@ list(Tuples['data_A'].keys())
  'lep_E']
  ~~~
 {: .output}
-Let's access to the variables or branches as we normally called, and make a simple plot 
+
+Let's access to the variables or branches as we normally called, and make a simple plot
+
 ~~~
 branches={}
 for s in samples:
@@ -113,11 +120,11 @@ for s in samples:
 ~~~
 {: .language-python}
 
-Using the `plt.hist` method we can visualize the distribution the mass of the 4 leptons "m4l" for example fot the "data_A" sample. 
+Using the `plt.hist` method we can visualize the distribution the mass of the 4 leptons "m4l" for example fot the "data_A" sample.
+
 ~~~
 plt.title("First look to the samples")
 plt.hist(branches['data_A']['m4l'])
-
 ~~~
 {: .language-python}
 
@@ -128,21 +135,23 @@ plt.hist(branches['data_A']['m4l'])
         649.2721  ], dtype=float32),
  <BarContainer object of 10 artists>)
 ~~~
-{: .output} 
+{: .output}
 
 ![m4lep_histogram_0]({{ page.root }}/fig/m4lep_histogram_0.png)
 
-<strong>Tip:</strong> In the previous plot the numbers in the axis are very small, we can change the font size (and font family) for all the following plots, including in our code:
+**Tip:** In the previous plot the numbers in the axis are very small, we can change the font size (and font family) for all the following plots, including in our code:
+
 ~~~
 # Update the matplotlib configuration parameters:
 matplotlib.rcParams.update({'font.size': 16, 'font.family': 'serif'})
 ~~~
 {: .language-python}
+
 Let's do the plot again
+
 ~~~
 plt.title("First look to the samples")
 plt.hist(branches['data_A']['m4l'])
-
 ~~~
 {: .language-python}
 
@@ -153,20 +162,20 @@ plt.hist(branches['data_A']['m4l'])
         649.2721  ], dtype=float32),
  <BarContainer object of 10 artists>)
 ~~~
-{: .output} 
+{: .output}
 
 ![m4lep_histogram_1]({{ page.root }}/fig/m4lep_histogram_1.png)
 
 > ## Exercise
 >
 > Make the histogram of the variable `m4l` for sample `mc_363490.llll`.
-> 
+>
 > In the range `[0,200]`.
-> 
+>
 > With `bins=50`.
-> 
+>
 > Include a legend "llll".
-> 
+>
 > Include the axis labels "Events" and "m4l", in the axis y and x, respectively.
 > > ## Solution
 > > ~~~
@@ -183,6 +192,7 @@ plt.hist(branches['data_A']['m4l'])
 {: .challenge}
 
 # Selection criteria
+
 Is very important to include some selection criteria in our samples MC and data that we are analyzing. 
 These selections are commonly know as "cuts".
 With these cuts we are able to select only events of our interest, this is, we will have a subset of our original samples and the distribution are going to change after this cuts.
@@ -199,31 +209,38 @@ To do this, we will select all events, from all the samples, that satisfy the fo
 
 Let's visualize some of these requirements. For now, let us continue working with the "data_A" sample.
 We can see how many good leptons we have in the event, by printing:
+
 ~~~
 branches['data_A']['good_lep']
 ~~~
 {: .language-python}
+
 ~~~
 <JaggedArray [[1 1 1 1] [1 1 1 1] [1 1 1 0] ... [1 1 0 0] [1 1 1 1] [1 0 1 1]] at 0x7f24910f5d50>
 ~~~
-{: .output} 
-From the previous output, we can notice that not all events have 4 good leptons. 
-Therefore, we can use the sum of the number of good leptons per event. This variable is stored as "sum_good_lep".  
+{: .output}
+
+From the previous output, we can notice that not all events have 4 good leptons.
+Therefore, we can use the sum of the number of good leptons per event. This variable is stored as "sum_good_lep".
+
 ~~~
 branches['data_A']['sum_good_lep']
 ~~~
 {: .language-python}
+
 ~~~
 array([4, 4, 3, 4, 4, 4, 2, 4, 4, 4, 2, 4, 3, 4, 4, 4, 4, 4, 4, 2, 4, 4,
        4, 4, 4, 4, 4, 4, 2, 2, 4, 3], dtype=int32)
 ~~~
-{: .output} 
+{: .output}
 
 We will keep the events with "sum_good_lep"==4 (this is the topology we are looking for).
+
 ~~~
 branches['data_A']['sum_good_lep'] == 4
 ~~~
 {: .language-python}
+
 ~~~
 
 array([ True,  True, False,  True,  True,  True, False,  True,  True,
@@ -231,12 +248,15 @@ array([ True,  True, False,  True,  True,  True, False,  True,  True,
         True, False,  True,  True,  True,  True,  True,  True,  True,
         True, False, False,  True, False])
 ~~~
-{: .output} 
+{: .output}
+
 We can save this array in a variable to use later in a more complicated combination of requirements using the &, | and ~ logical operators.
+
 ~~~
 sum_leptons_test = branches['data_A']['sum_good_lep'] == 4
 ~~~
 {: .language-python}
+
 Moreover, we can visualize this information with Matplotlib making a histogram.
 > ## Exercise
 >
@@ -287,10 +307,10 @@ Moreover, we can compare, by printing, the number of initial  and final events a
 
 ~~~
 for s in samples:
-    print(s,'      Initial events: ', len(branches[s]['m4l']))
-
+    print(s,'      Initial events: ', len(branches[s]['m4l']))s
 ~~~
 {: .language-python}
+
 ~~~
 data_A       Initial events:  32
 data_B       Initial events:  108
@@ -302,13 +322,15 @@ mc_363490.llll       Initial events:  547603
 mc_361106.Zee       Initial events:  244
 mc_361107.Zmumu       Initial events:  148
 ~~~
-{: .output} 
+{: .output}
+
 ~~~
 for s in samples:
     print(s,'      After selection: ', len(branches[s]['m4l'][selection_events[s]]))
 
 ~~~
 {: .language-python}
+
 ~~~
 data_A       After selection:  18
 data_B       After selection:  52
@@ -321,24 +343,30 @@ mc_361106.Zee       After selection:  27
 mc_361107.Zmumu       After selection:  16
 ~~~
 {: .output}
+
 Notice that the background events are reduced meanwhile we try to keep most of the signal.
+
 # MC samples
+
 To make a plot with all the MC samples we will do a stack plot.
 We will merge the samples following the classification we introduced at the beginning, that is:
+
 ~~~
 mc_samples=list(processes)[1:]
 print(mc_samples)
 ~~~
 {: .language-python}
+
 ~~~
 ['higgs', 'zz', 'other']
 ~~~
 {: .output}
-Remember that our variable of interest is the mass of the 4 leptons (m4l), 
-then, let's append in `stack_mc_list_m4l` the values of this variable for the 3 merged samples corresponding to the processes above. 
 
-On the other hand, a very important aspect of the MC samples is the weights, 
-these weights include important information that modifies the MC samples to be more like real data, 
+Remember that our variable of interest is the mass of the 4 leptons (m4l),
+then, let's append in `stack_mc_list_m4l` the values of this variable for the 3 merged samples corresponding to the processes above.
+
+On the other hand, a very important aspect of the MC samples is the weights,
+these weights include important information that modifies the MC samples to be more like real data,
 so we will save them in `stack_weights_list`.
 Notice that the weights should be of the same shape variable that we want to plot.
 
@@ -358,12 +386,15 @@ for s in mc_samples:
     stack_weights_list.append(list_weight_s)
 ~~~
 {: .language-python}
+
 We can check the lengths, to see that everything is ok.
+
 ~~~
 for k in range(0,3):
     print(len(stack_mc_list_m4l[k]), len(stack_weights_list[k]))
 ~~~
 {: .language-python}
+s
 ~~~
 302646 302646
 454699 454699
@@ -371,11 +402,10 @@ for k in range(0,3):
 ~~~
 {: .output}
 
-And then make a plot, actually, let's make 2 plots, with matplotlib we can add sub-plots to the figure, 
-then, we will be able to compare the MC distribution without and with weights.
+And then make a plot, actually, let's make 2 plots, with matplotlib we can add sub-plots to the figure, then, we will be able to compare the MC distribution without and with weights.
 
-In order to do this, we will use the `subplot` function. Notice that in this case, we are creating a figure 
-and defining the axes of the figure directly, the syntax of the functions that we call for these axes change a bit.
+In order to do this, we will use the `subplot` function. Notice that in this case, we are creating a figure and defining the axes of the figure directly, the syntax of the functions that we call for these axes change a bit.
+
 ~~~
 var_name = 'm4l'
 units = ' [GeV]'
@@ -383,6 +413,7 @@ rangos = [[80,170]]
 bines = 24 
 ~~~
 {: .language-python}
+
 ~~~
 fig, (ax_1, ax_2) = plt.subplots(1,2, figsize=[18,7])
 ax_1.set_title("MC samples without weights")
@@ -398,9 +429,13 @@ ax_2.tick_params(which='both',direction='in',top=True,right=True, length=6, widt
 ax_2.legend(frameon=False)
 ~~~
 {: .language-python}
+
 ![MC_histogram_4]({{ page.root }}/fig/MC_histogram_4.png)
+
 # Data samples
+
 Let's append in `stack_dara_list_m4l` the values of the m4l variable for all the data samples A,B,C and D.
+
 ~~~
 stack_data_list_m4l=[]
 for element in samples_dic['data']:
@@ -409,17 +444,22 @@ for element in samples_dic['data']:
     stack_data_list_m4l += data_list
 ~~~
 {: .language-python}
+
 We can print the length of the list to check again that everything is fine.
+
 ~~~
 len(stack_data_list_m4l)
 ~~~
 {: .language-python}
+
 ~~~
 321
 ~~~
 {: .output}
+
 To make more easy the data vs. MC final plot, we can define the following function that makes a histogram of the data and calculates the poisson uncertainty in each bin.
 When we want to make a plot that includes uncertainties we need to use the `plt.errorbar` function.
+
 ~~~
 def plotData(data_var, range_ab, bins_samples):
     data_hist,bins = np.histogram(data_var, range=range_ab, bins=bins_samples) 
@@ -429,7 +469,9 @@ def plotData(data_var, range_ab, bins_samples):
     h0=plt.errorbar(x=bin_center, y=data_hist, yerr=data_hist_errors,fmt='ko', label='Data')
  ~~~
 {: .language-python}
+
 # Data vs. MC plot
+
 ~~~
 plt.figure(figsize=(10,8))
 plotData(stack_data_list_m4l, rangos[0], bines)
@@ -440,6 +482,7 @@ plt.ylim(0,30)
 plt.legend(fontsize=18,frameon=False)
 ~~~
 {: .language-python}
+
 ![m4lep_histogram_5]({{ page.root }}/fig/m4lep_histogram_5.png)
 > ## Exercise
 >
@@ -462,6 +505,10 @@ plt.legend(fontsize=18,frameon=False)
 > > {: .language-python}
 > {: .solution}
 {: .challenge}
+
 ### Final Plot
+
 You can see at 125 GeV the component corresponding at the Higgs boson.
 ![m4lep_histogram_6]({{ page.root }}/fig/m4lep_histogram_6.png)
+
+{% include links.md %}
