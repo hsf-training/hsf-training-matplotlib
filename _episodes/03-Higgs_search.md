@@ -61,7 +61,7 @@ import uproot
 
 > ## Uproot tutorial
 >
-> If you want to lear more of the Uproot python Module you can take a look to the tutorial also given by the HEP software foundation in the following link
+> If you want to learn more of the Uproot python Module you can take a look to the tutorial also given by the HEP software foundation in the following link
 > <https://hsf-training.github.io/hsf-training-uproot-webpage/index.html>
 {: .callout}
 
