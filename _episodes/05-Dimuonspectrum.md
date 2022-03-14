@@ -26,9 +26,7 @@ keypoints:
 
 **Background**
 
-To determine the mass ($$m$$) of a particle you need to know the 4-momenta of the particles ($$\mathbf{P}$$) that are detected after the collision: the energy ($$E$$), the momentum in the x direction
-
-($$p_x$$), the momentum in the y direction ($$p_y$$) and the momentum in the z direction ($$p_z$$).
+To determine the mass ($$m$$) of a particle you need to know the 4-momenta of the particles ($$\mathbf{P}$$) that are detected after the collision: the energy ($$E$$), the momentum in the x direction ($$p_x$$), the momentum in the y direction ($$p_y$$) and the momentum in the z direction ($$p_z$$).
 
 $$\mathbf{P} = (E,p_x,p_y,p_z)$$
 
@@ -38,7 +36,7 @@ $$
 
 Some particles are very unstable and decay (turn into) to two or more other particles. In fact, they can decay so quickly, that they never interact with your detector! Yikes!
 
-However, we can reconstruct the parent particle (sometimes referred to as <b>the initial state particle</b>) and its 4-momentum by adding the 4-momenta of the child particles (sometimes referred to as <b>the decay products</b>).
+However, we can reconstruct the parent particle (sometimes referred to as **the initial state particle**) and its 4-momentum by adding the 4-momenta of the child particles (sometimes referred to as **the decay products**).
 
 $$\mathbf{P_{\rm parent}} = \mathbf{P_{\rm child 0}} + \mathbf{P_{\rm child 1}} + \mathbf{P_{\rm child 2}} + ...$$
 
@@ -52,56 +50,9 @@ $$p_{\rm y parent} = p_{\rm y child 0} + p_{\rm y child 1} + p_{\rm y child 2} +
 
 $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} + ...$$
 
-<b>Let's code!</b>
+**Let's code!**
 
 Here is some very, very basic starter code. It reads in data from the CMS experiment.
-
-```python
-import numpy as np
-import h5py
-import awkward as ak
-import matplotlib.pyplot as plt
-import mplhep as hep
-
-plt.style.use("default")
-```
-
-Or you can use mplhep styling
-
-```python
-hep.style.use("ROOT")
-
-# Load the data
-
-event=h5py.File('data/dimuon100k.hdf5',mode='r')
-
-# and extract it
-
-e=event['muons/e'][:]
-px =event['muons/px'][:]
-py =event['muons/py'][:]
-pz =event['muons/pz'][:]
-
-print(len(px))
-# see if there are any anomalies and clean them out
-cut=(e**2 - (px**2 + py**2 + pz**2)) <0
-
-print(sum(cut)) #count how many anomalies
-```
-
-    200000
-    343
-{: .output}
-
-We can use numpy to clean our arrays from anomalous events
-
-```python
-e=np.delete(e,cut)
-px,py,pz=np.delete(px,cut),np.delete(py,cut),np.delete(pz,cut)
-
-# let's calculate the mass
-M=(e**2 - (px**2 + py**2 + pz**2))**.5
-```
 
 <h2><font color="red">Challenge!</font></h2>
 
@@ -111,7 +62,7 @@ To do this, you will need to loop over all pairs of muons for each collision, su
 
 Do this for all pairs of muons for the case where the muons have opposite charges.
 
-<i>Hint!</i>
+*Hint!*
 
 It is very likely that a particle exists where there is a peak in the data. However, this is not always true.
 A peak in the data is most likely the mass of a particle. You can look at the approximate mass to figure out which particle
@@ -139,17 +90,75 @@ It is very likely that a particle exists where there is a peak in the data. Howe
 A peak in the data is most likely the mass of a particle. You can look at the approximate mass to figure out which particle
 is found in the data. -->
 
-Your histogram should look something like the following sketch. The value of the peaks should be the mass of a particle. You should be able to find two particles in their ground state. <a href="http://en.wikipedia.org/wiki/J/psi_meson">Check your answer for the first particle!</a> <a href="http://en.wikipedia.org/wiki/Upsilon_meson">Check your answer for the second particle!</a>
+Your histogram should look something like the following sketch. The value of the peaks should be the mass of a particle. You should be able to find two particles in their ground state.<a href="http://en.wikipedia.org/wiki/J/psi_meson"> Check your answer for the first particle!</a> <a href="http://en.wikipedia.org/wiki/Upsilon_meson">Check your answer for the second particle!</a>
 
 ```python
 from IPython.display import Image
 Image(url='https://raw.githubusercontent.com/particle-physics-playground/playground/master/activities/images/dimuons_sketch.jpeg')
 ```
 
-
-
-
 <img src="https://raw.githubusercontent.com/particle-physics-playground/playground/master/activities/images/dimuons_sketch.jpeg" />
+
+```python
+import numpy as np
+import h5py
+import awkward as ak
+import matplotlib.pyplot as plt
+import mplhep as hep
+
+plt.style.use("default")
+```
+
+Decide which styling you want to use
+
+```python
+plt.style.use("default") # This is the default style for matplotlib, do not change this cell if you desire this option
+
+# hep.style.use("ROOT") # This is the mplhep style, uncomment this line for this styling.
+```
+
+Load the data
+
+```python
+
+event=h5py.File('data/dimuon100k.hdf5',mode='r')  #  Make sure you have the correct path to the dimuon file!
+```
+
+And now extract it and perform sum
+
+```python
+e=event['muons/e'][:]
+px =event['muons/px'][:]
+py =event['muons/py'][:]
+pz =event['muons/pz'][:]
+
+# We will check for muons that do not pass the kinematics
+print(len(px)) # Number of muons
+
+# See if there are any anomalies and clean them out
+cut=(e**2 - (px**2 + py**2 + pz**2)) <0
+
+print(sum(cut)) # Count how many anomalies
+```
+
+    200000
+    343
+{: .output}
+
+We can use numpy to clean our arrays from anomalous events
+
+```python
+e=np.delete(e,cut)
+px,py,pz=np.delete(px,cut),np.delete(py,cut),np.delete(pz,cut)
+```
+
+Let's calculate the mass
+
+```python
+M = (e**2 - (px**2 + py**2 + pz**2))**.5
+```
+
+Make a histogram of the values of the Mass
 
 ```python
 plt.hist(M,bins=100,
@@ -167,9 +176,9 @@ Doesn't really look like much. How about we fix that!
 
 ## Exercise:
 
-Using the code above, zoom in and fix the above plot to help **visually** estimate the mass of the muon.
+Using the code above, zoom in and fix the above plot to help **visually** estimate the mass of the muon. Where is the value of the peak at?
 
-*Hint* Google search for the arguments of the `plt.hist` function
+*Hint:* Google search for the arguments of the `plt.hist` function
 
 > ## Solution
 >```python
@@ -181,6 +190,7 @@ Using the code above, zoom in and fix the above plot to help **visually** estima
 >
 >![png](../fig/output_17_0.png){: width="560px" .image-with-shadow }
 {: .solution}
+>
 
 # Let's make the dimuon spectrum
 
@@ -196,28 +206,98 @@ $$p_{\rm y parent} = p_{\rm y child 0} + p_{\rm y child 1} + p_{\rm y child 2} +
 
 $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} + ...$$
 
-Let's assume that each event only has 2 muons.
-We will use the awkward arrays function `unflatten` because we can make pairs of muons this way.
+## Looping over all the muons and checking for the possible charge combinations
+
+First, let's assume that each event only has 2 muons. We will loop over both muons and keep under seperate lists those with same charge (\+,\+) or (\-,\-) and those with oppossite charge (\+-,\-+)
 
 ```python
-e=ak.unflatten(e,2)
-px=ak.unflatten(px,2)
-py=ak.unflatten(py,2)
-pz=ak.unflatten(pz,2)
+def invmass(e,px,py,pz):                         # arguments for function is a list of 4-momentums 
 
+    etot,pxtot,pytot,pztot = 0,0,0,0 
+
+    for i in range(len(e)):                              # This loops over all of the 4-momentums in the list, and adds together all of their energy,
+        etot += e[i]                           # px, py, and pz components
+        pxtot += px[i]
+        pytot += py[i]
+        pztot += pz[i]                           
+        m2 = etot**2 - (pxtot**2 + pytot**2 + pztot**2)      # uses the total energy,px,py,and pz to calculate invariant mass
+    return(np.sqrt(abs(m2)))
 ```
-
-Now lets sum the 4-momenta components and calculate the event mass
 
 ```python
-# we use axis = 1 because it squishes the row dimension and gives us 1 value per row (i.e. 1 value per event)
-e = np.sum(e,axis=1)
-px = np.sum(px,axis=1)
-py = np.sum(py,axis=1)
-pz = np.sum(pz,axis=1)
+
+pp=[] # postive positive
+nn=[] # negative negative
+pm=[] # opposite charges
+M =[] # all combinations
+
+for i in range(0,len(q)-1,2) :  # loop every 2 muons
+    # Make a list with information for 2 muons 
+    E=[e[i],e[i+1]]
+    PX=[px[i],px[i+1]]
+    PY=[py[i],py[i+1]]
+    PZ=[pz[i],pz[i+1]]
+    M.append(invmass(E,PX,PY,PZ))
+    if q[i]*q[i+1] < 0 :
+        pm.append(invmass(E,PX,PY,PZ))
+    elif q[i]+q[i+1] == 2:
+        pp.append(invmass(E,PX,PY,PZ))
+    elif q[i]+q[i+1] == -2:
+        nn.append(invmass(E,PX,PY,PZ))
+    else : 
+        print('anomaly?')
+print("Done!")
 ```
 
-# Exercise: Now calculate the mass per event and make the plot.
+## Now we plot for all combinations
+
+I would like you to make these 4 histograms *in 4 different ways* focusing on on different mass ranges. To look at these mass ranges, you'll want to use the `bins` and `range` options in the `plt.hist()` function.
+
+- *Mass range 1*: 0 - 120
+- *Mass range 2*: 2 - 4
+- *Mass range 3*: 8 - 12
+- *Mass range 4*: 70 - 120
+
+Remember, you'll have 4 charge combinations for each of these histograms.
+
+1. All charge combinations
+2. Only positve muons
+3. Only negative muons
+4. Only oppositly charged muons
+
+Below I will give you some code to get you started. Please make your changes/additions below this cell and look at each mass range.
+
+```python
+# mass = 0-120
+
+plt.figure(figsize=(16,10))
+plt.subplot(221)
+plt.hist(M,bins=100,range=(0,120),histtype='step',label='All charge combinations')
+plt.xlabel(r'Mass (GeV/c$^2$)',fontsize=14)
+plt.legend(fontsize=18)
+
+
+plt.subplot(222)
+plt.hist(pp,bins=100,range=(0,120),histtype='step',label='$2+$')
+plt.xlabel(r'Mass (GeV/c$^2$)',fontsize=14)
+plt.legend(fontsize=18)
+
+
+plt.subplot(223)
+plt.hist(nn,bins=100,range=(0,120),histtype='step',label='$2-$')
+plt.xlabel(r'Mass (GeV/c$^2$)',fontsize=14)
+plt.legend(fontsize=18)
+
+
+plt.subplot(224)
+plt.hist(pm,bins=100,range=(0,120),histtype='step',label='Electrically neutral')
+plt.xlabel(r'Mass (GeV/c$^2$)',fontsize=14)
+plt.legend(fontsize=18)
+
+plt.tight_layout();
+```
+
+## Exercise: Now calculate the mass per event and make the plot.
 
 > ## Solution
 >```python
