@@ -102,7 +102,6 @@ Image(url='https://raw.githubusercontent.com/particle-physics-playground/playgro
 ```python
 import numpy as np
 import h5py
-import awkward as ak
 import matplotlib.pyplot as plt
 import mplhep as hep
 
