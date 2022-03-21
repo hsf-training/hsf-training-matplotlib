@@ -298,17 +298,18 @@ plt.tight_layout();
 
 ## Exercise: Now calculate the mass per event and make the plot.
 
+*Hint!*
+
+You could use the `np.logspace()` function for the binning. It helps in returing numbers spaced evenly on a log scale. You can find out more about it [here](https://numpy.org/doc/stable/reference/generated/numpy.logspace.html).
 > ## Solution
 >```python
->Mass=np.sqrt((e**2-(px**2+py**2+pz**2)))
+>logbins=np.logspace(0,2.5,200)
 >
->
->plt.hist(Mass,bins=2000,
->         histtype='step')
+>plt.hist(pm,bins=logbins,
+>       histtype='step')
 >
 >plt.xlabel('mass (GeV/$c^2$)')
 >plt.ylabel('Events')
->plt.yscale('symlog')
 >plt.xscale('log')
 >plt.title('Mass of dimuons per event')
 >plt.autoscale()
