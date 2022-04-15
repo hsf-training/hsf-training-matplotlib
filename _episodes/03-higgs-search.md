@@ -1,5 +1,5 @@
 ---
-title: "More advanced plots"
+title: "Higgs search"
 teaching: 30
 exercises: 15
 questions:
