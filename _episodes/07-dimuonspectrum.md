@@ -120,7 +120,7 @@ Load the data
 
 ```python
 
-event=h5py.File('./hsf_matplotlib_notebooks/data-ep07-dimuonspectrum/dimuon100k.hdf5',mode='r')  #  Make sure you have the correct path to the dimuon file!
+event=h5py.File('./data-ep07-dimuonspectrum/dimuon100k.hdf5',mode='r')  #  Make sure you have the correct path to the dimuon file!
 ```
 
 And now extract it and perform sum
