@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
-teaching: 25
-exercises: 0
+teaching: 60
+exercises: 30
 questions:
 - "Why use matplotlib for HEP?"
 objectives:
@@ -30,7 +30,7 @@ ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # Plot some data on the axes.
 plt.show() # Show the figure
 ```
 
-this code produces the following figure
+This code produces the following figure:
 
 <!-- ![basic_plot](https://matplotlib.org/stable/_images/sphx_glr_usage_002.png) -->
 ![basic_plot](https://matplotlib.org/3.5.1/_images/sphx_glr_usage_001_2_0x.png)

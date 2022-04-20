@@ -1,7 +1,7 @@
 ---
 title: "Dimuon spectrum"
-teaching: 30
-exercises: 5
+teaching: 45
+exercises: 15
 questions:
 - "How to plot the DiMuon mass spectrum with matplotlib or mplhep"
 objectives:
@@ -120,7 +120,7 @@ Load the data
 
 ```python
 
-event=h5py.File('data/dimuon100k.hdf5',mode='r')  #  Make sure you have the correct path to the dimuon file!
+event=h5py.File('./hsf_matplotlib_notebooks/data-ep07-dimuonspectrum/dimuon100k.hdf5',mode='r')  #  Make sure you have the correct path to the dimuon file!
 ```
 
 And now extract it and perform sum

@@ -1,6 +1,6 @@
 ---
 title: "Plotting with mplhep for HEP style plotting"
-teaching: 15
+teaching: 30
 exercises: 15
 questions:
 - "How can I plot a data at publication quality?"

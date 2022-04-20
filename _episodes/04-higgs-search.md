@@ -1,6 +1,6 @@
 ---
 title: "Higgs search"
-teaching: 30
+teaching: 45
 exercises: 15
 questions:
 - "Why do we need to explore Data vs. MC distributions?"
@@ -76,7 +76,7 @@ for p in processes:
         # Load the dataframes
         sample = d[1] # Sample name
         samples.append(sample)
-        DataUproot = uproot.open(f'./Data_03_Higgs_Search/OpenData_Atlas_{sample}.root')
+        DataUproot = uproot.open(f'./data-ep04-higgs-search/OpenData_Atlas_{sample}.root')
         Tuples[sample] = DataUproot['myTree']
 ~~~
 {: .language-python}
