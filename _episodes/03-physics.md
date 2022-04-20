@@ -1,6 +1,6 @@
 ---
 title: "Physics background"
-teaching: 5
+teaching: 30
 exercises: 0
 questions:
 - "What is the physics behind the data?"
