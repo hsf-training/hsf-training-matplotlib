@@ -119,17 +119,16 @@ plt.style.use("default") # This is the default style for matplotlib, do not chan
 Load the data
 
 ```python
-
 event=h5py.File('./data-ep07-dimuonspectrum/dimuon100k.hdf5',mode='r')  #  Make sure you have the correct path to the dimuon file!
 ```
 
 And now extract it and perform sum
 
 ```python
-e=event['muons/e'][:]
-px =event['muons/px'][:]
-py =event['muons/py'][:]
-pz =event['muons/pz'][:]
+e = event['muons/e'][:]
+px = event['muons/px'][:]
+py = event['muons/py'][:]
+pz = event['muons/pz'][:]
 
 # We will check for muons that do not pass the kinematics
 print(len(px)) # Number of muons
@@ -164,7 +163,7 @@ plt.hist(M,bins=100,
          histtype='step',
         )
 
-plt.xlabel('$\mu_{mass}$ [GeV]')
+plt.xlabel(r'$\mu_{mass}$ [GeV]')
 plt.title('Muon Mass spectrum')
 plt.show()
 ```
@@ -207,7 +206,7 @@ $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} +
 
 ## Looping over all the muons and checking for the possible charge combinations
 
-First, let's assume that each event only has 2 muons. We will loop over both muons and keep under seperate lists those with same charge (\+,\+) or (\-,\-) and those with oppossite charge (\+-,\-+)
+First, let's assume that each event only has 2 muons. We will loop over both muons and keep under seperate lists those with same charge (\+,\+) or (\-,\-) and those with opposite charge (\+-,\-+)
 
 ```python
 def invmass(e, px, py, pz):
@@ -219,9 +218,9 @@ masses = invmass(e.reshape(-1, 2), px.reshape(-1, 2), py.reshape(-1, 2), pz.resh
 
 q_pairs = q.reshape(-1, 2)
 
-pm_mask = q_pairs[:,0]*q_pairs[:,1] <0
-pp_mask = q_pairs[:,0]+q_pairs[:,1] ==2
-nn_mask = q_pairs[:,0]+q_pairs[:,1] ==-2
+pm_mask = q_pairs[:,0]*q_pairs[:,1] < 0
+pp_mask = q_pairs[:,0]+q_pairs[:,1] == 2
+nn_mask = q_pairs[:,0]+q_pairs[:,1] == -2
 
 anomaly = ~(pm_mask | pp_mask | nn_mask)
 if anomaly.any():
