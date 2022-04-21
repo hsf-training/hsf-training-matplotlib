@@ -210,7 +210,7 @@ $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} +
 First, let's assume that each event only has 2 muons. We will loop over both muons and keep under seperate lists those with same charge (\+,\+) or (\-,\-) and those with oppossite charge (\+-,\-+)
 
 ```python
-def invmass_vectorized(e, px, py, pz):
+def invmass(e, px, py, pz):
     return np.sqrt(np.abs(e.sum(axis=-1)**2 - (px.sum(axis=-1)**2 + py.sum(axis=-1)**2 + pz.sum(axis=-1)**2)))
 ```
 
