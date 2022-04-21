@@ -70,13 +70,9 @@ nbins = 37
 M_hist = np.histogram(fourlep['M'], bins = nbins, range = (rmin,rmax))
 # the tuple `M_hist` that this function gives is so common in python that it is recognized by mplhep plotting functions
 
-<<<<<<< Updated upstream
-hist, bins = M_hist #hist=frecuency ; bins=Mass values
-width = 1.0*(bins[1] - bins[0])
-=======
 hist, bins = M_hist # hist=frequency ; bins=Mass values
 width = bins[1] - bins[0]
->>>>>>> Stashed changes
+
 center = (bins[:-1] + bins[1:]) / 2
 ```
 
