@@ -210,42 +210,24 @@ $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} +
 First, let's assume that each event only has 2 muons. We will loop over both muons and keep under seperate lists those with same charge (\+,\+) or (\-,\-) and those with oppossite charge (\+-,\-+)
 
 ```python
-def invmass(e,px,py,pz):                         # arguments for function is a list of 4-momentums 
-
-    etot,pxtot,pytot,pztot = 0,0,0,0 
-
-    for i in range(len(e)):                              # This loops over all of the 4-momentums in the list, and adds together all of their energy,
-        etot += e[i]                           # px, py, and pz components
-        pxtot += px[i]
-        pytot += py[i]
-        pztot += pz[i]                           
-        m2 = etot**2 - (pxtot**2 + pytot**2 + pztot**2)      # uses the total energy,px,py,and pz to calculate invariant mass
-    return(np.sqrt(abs(m2)))
+def invmass_vectorized(e, px, py, pz):
+    return np.sqrt(np.abs(e.sum(axis=-1)**2 - (px.sum(axis=-1)**2 + py.sum(axis=-1)**2 + pz.sum(axis=-1)**2)))
 ```
 
 ```python
+masses = invmass(e.reshape(-1, 2), px.reshape(-1, 2), py.reshape(-1, 2), pz.reshape(-1, 2))
 
-pp=[] # postive positive
-nn=[] # negative negative
-pm=[] # opposite charges
-M =[] # all combinations
+q_pairs = q.reshape(-1, 2)
 
-for i in range(0,len(q)-1,2) :  # loop every 2 muons
-    # Make a list with information for 2 muons 
-    E=[e[i],e[i+1]]
-    PX=[px[i],px[i+1]]
-    PY=[py[i],py[i+1]]
-    PZ=[pz[i],pz[i+1]]
-    M.append(invmass(E,PX,PY,PZ))
-    if q[i]*q[i+1] < 0 :
-        pm.append(invmass(E,PX,PY,PZ))
-    elif q[i]+q[i+1] == 2:
-        pp.append(invmass(E,PX,PY,PZ))
-    elif q[i]+q[i+1] == -2:
-        nn.append(invmass(E,PX,PY,PZ))
-    else : 
-        print('anomaly?')
-print("Done!")
+pm_mask = q_pairs[:,0]*q_pairs[:,1] <0
+pp_mask = q_pairs[:,0]+q_pairs[:,1] ==2
+nn_mask = q_pairs[:,0]+q_pairs[:,1] ==-2
+
+anomaly = ~(pm_mask | pp_mask | nn_mask)
+if anomaly.any():
+    print(f"{anomaly.sum()} anomalies detected")
+
+pp, nn, pm = masses[pp_mask], masses[nn_mask], masses[pm_mask]
 ```
 
 ## Now we plot for all combinations
