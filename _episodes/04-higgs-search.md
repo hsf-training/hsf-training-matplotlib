@@ -15,11 +15,11 @@ keypoints:
 ---
 In this episode, we will go through a first HEP analysis where you will be able to apply your knowledge of matplotlib and learn something new.
 
-As we mentioned before the goal is to reveal the decay of the Standard Model Higgs boson to two Z bosons and subsequently to four leptons
-(H->ZZ->llll), this is called as a "golden channel".
+As we mentioned before, the goal is to reveal the decay of the Standard Model Higgs boson to two Z bosons and subsequently to four leptons
+(`H->ZZ->llll`), this is called as a "golden channel".
 
-For this tutorial we will use the [ATLAS data](http://opendata.atlas.cern/samples-13tev/) collected during 2016 at a center-of-mass energy of 13 TeV, equivalent to 10fb⁻¹ of integrated luminosity.
-Here we will use the available 4 leptons final state samples for simulated samples (Monte Carlo "MC") and data, that after a selection, we will reveal a narrow invariant mass peak at 125 GeV, the Higgs.
+For this tutorial, we will use the [ATLAS data](http://opendata.atlas.cern/samples-13tev/) collected during 2016 at a center-of-mass energy of 13 TeV, equivalent to 10fb⁻¹ of integrated luminosity.
+Here, we will use the available 4 leptons final state samples for simulated samples (Monte Carlo "MC") and data, that after a selection, we will reveal a narrow invariant mass peak at 125 GeV, the Higgs.
 
 First we need to import numpy and the `matplotlib.pyplot` module under the name `plt`, as usual:
 ~~~
