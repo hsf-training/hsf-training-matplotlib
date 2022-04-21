@@ -13,11 +13,12 @@ objectives:
 keypoints:
 - In High-energy physics, histograms are used to analyze different data and MC distributions, using Matplotlib that is an important tool.
 ---
+In this episode, we will go through a first HEP analysis where you will be able to apply your knowledge of matplotlib and learn something new.
 
 As we mentioned before the goal is to reveal the decay of the Standard Model Higgs boson to two Z bosons and subsequently to four leptons
 (H->ZZ->llll), this is called as a "golden channel".
 
-For this tutorial we will use the ATLAS data collected during 2016 at a center-of-mass energy of 13 TeV, equivalent to 10fb⁻¹ of integrated luminosity.
+For this tutorial we will use the [ATLAS data](http://opendata.atlas.cern/samples-13tev/) collected during 2016 at a center-of-mass energy of 13 TeV, equivalent to 10fb⁻¹ of integrated luminosity.
 Here we will use the available 4 leptons final state samples for simulated samples (Monte Carlo "MC") and data, that after a selection, we will reveal a narrow invariant mass peak at 125 GeV, the Higgs.
 
 First we need to import numpy and the `matplotlib.pyplot` module under the name `plt`, as usual:
@@ -61,12 +62,11 @@ import uproot
 
 > ## Uproot tutorial
 >
-> If you want to learn more of the Uproot python Module you can take a look to the tutorial also given by the HEP software foundation in the following link
-> <https://hsf-training.github.io/hsf-training-uproot-webpage/index.html>
+> If you want to learn more of the Uproot python Module you can take a look to the tutorial also given by the HEP software foundation in the following
+> [link.](https://hsf-training.github.io/hsf-training-uproot-webpage/index.html)
 {: .callout}
 
-For this we will write the next function that takes the above list and return a dictionary with the dataframes of the samples:
-
+For each sample of the above `samples_dic`, we will return another dictionary that will contain all the "branches" or "variables"". 
 ~~~
 processes = samples_dic.keys()
 Tuples={}
@@ -81,7 +81,7 @@ for p in processes:
 ~~~
 {: .language-python}
 
-Let's take a look to the variables stored in out data samples, taking "data_A" as example
+Let's take a look to the "branches" stored in out data samples, taking "data_A" as example
 
 ~~~
 list(Tuples['data_A'].keys())
@@ -112,7 +112,7 @@ list(Tuples['data_A'].keys())
  ~~~
 {: .output}
 
-Let's access to the variables or branches as we normally called, and make a simple plot
+Let's access one of these "branches" and make a simple plot:
 
 ~~~
 branches={}
@@ -121,7 +121,7 @@ for s in samples:
 ~~~
 {: .language-python}
 
-Using the `plt.hist` method we can visualize the distribution the mass of the 4 leptons "m4l" for example fot the "data_A" sample.
+Using the pyplot `hist` function we can visualize the distribution the mass of the 4 leptons "m4l" for example fot the "data_A" sample.
 
 ~~~
 plt.title("First look at samples")
@@ -148,7 +148,9 @@ matplotlib.rcParams.update({'font.size': 16, 'font.family': 'serif'})
 ~~~
 {: .language-python}
 
-Let's do the plot again
+Note that this changes the global setting, but it can still be overwritten later.
+
+Let's do the plot again to see the changes:
 
 ~~~
 plt.title("First look at samples")
@@ -258,7 +260,7 @@ sum_leptons_test = branches['data_A']['sum_good_lep'] == 4
 ~~~
 {: .language-python}
 
-Moreover, we can visualize this information with Matplotlib making a histogram.
+We certainly can visualize this information with Matplotlib making a histogram :).
 > ## Exercise
 >
 > Make a histogram of the variable "sum_good_lep" for the sample "data_A" or another sample.
@@ -405,8 +407,7 @@ s
 
 And then make a plot, actually, let's make 2 plots, with matplotlib we can add sub-plots to the figure, then, we will be able to compare the MC distribution without and with weights.
 
-In order to do this, we will use the `subplot` function. Notice that in this case, we are creating a figure and defining the axes of the figure directly, the syntax of the functions that we call for these axes change a bit.
-
+In order to do this, we will use the `subplot` function. Notice that in this case, we are creating a figure and defining the axes of the figure directly, the syntax of the functions that we call for these axes change a bit with respect to the ones using only pyplot. 
 ~~~
 var_name = 'm4l'
 units = ' [GeV]'
@@ -458,7 +459,7 @@ len(stack_data_list_m4l)
 ~~~
 {: .output}
 
-To make more easy the data vs. MC final plot, we can define the following function that makes a histogram of the data and calculates the poisson uncertainty in each bin.
+To make more easy the data vs. MC final plot, we can define the following helper function that makes a histogram of the data and calculates the poisson uncertainty in each bin.
 When we want to make a plot that includes uncertainties we need to use the `plt.errorbar` function.
 
 ~~~
@@ -473,6 +474,7 @@ def plotData(data_var, range_ab, bins_samples):
 
 # Data vs. MC plot
 
+Finally, we can include the MC and data in the same figure, and see if they are in agreement :).
 ~~~
 plt.figure(figsize=(10,8))
 plotData(stack_data_list_m4l, rangos[0], bines)
@@ -511,5 +513,7 @@ plt.legend(fontsize=18,frameon=False)
 
 You can see at 125 GeV the component corresponding at the Higgs boson.
 ![m4lep_histogram_6]({{ page.root }}/fig/m4lep_histogram_6.png)
+
+**Bonus**: If you are more curious about other HEP analysis tools, you can take a look at this same example developed with the ROOT framework [here](https://root.cern.ch/doc/v622/df106__HiggsToFourLeptons_8py.html).
 
 {% include links.md %}
