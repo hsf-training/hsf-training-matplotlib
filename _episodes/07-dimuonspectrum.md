@@ -207,7 +207,7 @@ $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} +
 
 ## Looping over all the muons and checking for the possible charge combinations
 
-First, let's assume that each event only has 2 muons. We will loop over both muons and keep under seperate lists those with same charge (\+,\+) or (\-,\-) and those with oppossite charge (\+-,\-+)
+First, let's assume that each event only has 2 muons. We will loop over both muons and keep under separate lists those with same charge (\+,\+) or (\-,\-) and those with oppossite charge (\+-,\-+)
 
 ```python
 def invmass(e,px,py,pz):                         # arguments for function is a list of 4-momentums 
@@ -225,7 +225,7 @@ def invmass(e,px,py,pz):                         # arguments for function is a l
 
 ```python
 
-pp=[] # postive positive
+pp=[] # positive positive
 nn=[] # negative negative
 pm=[] # opposite charges
 M =[] # all combinations
@@ -260,7 +260,7 @@ I would like you to make these 4 histograms *in 4 different ways* focusing on on
 Remember, you'll have 4 charge combinations for each of these histograms.
 
 1. All charge combinations
-2. Only positve muons
+2. Only positive muons
 3. Only negative muons
 4. Only oppositly charged muons
 
@@ -300,7 +300,7 @@ plt.tight_layout();
 
 *Hint!*
 
-You could use the `np.logspace()` function for the binning. It helps in returing numbers spaced evenly on a log scale. You can find out more about it [here](https://numpy.org/doc/stable/reference/generated/numpy.logspace.html).
+You could use the `np.logspace()` function for the binning. It helps in returning numbers spaced evenly on a log scale. You can find out more about it [here](https://numpy.org/doc/stable/reference/generated/numpy.logspace.html).
 > ## Solution
 >```python
 >logbins=np.logspace(0,2.5,200)
