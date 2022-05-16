@@ -1,3 +1,5 @@
+[![HSF Training Center](https://img.shields.io/badge/HSF%20Training%20Center-browse-ff69b4)](https://hepsoftwarefoundation.org/training/curriculum.html)
+
 # Plotting with matplotlib
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
