@@ -38,7 +38,7 @@ Simply click on the Badge below and log in to SWAN with your CERN account.
 
 ## If you want to run locally
 
-We highly recommend you create a virtual enviroment first. Open your terminal and do
+We highly recommend you create a virtual environment first. Open your terminal and do
 
 
 ```bash
