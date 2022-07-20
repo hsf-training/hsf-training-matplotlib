@@ -37,18 +37,18 @@ import numpy as np
 
 # Samples
 
-In the following dictionary, we have classified the samples we will work on, starting with the "data" samples, 
+In the following dictionary, we have classified the samples we will work on, starting with the "data" samples,
 followed by the "higgs" MC samples and at the end the "zz" and "others" MC background components.
 
 ~~~
-samples_dic= {'data': [['data', 'data_A'], 
-                       ['data', 'data_B'], 
-                       ['data', 'data_C'], 
+samples_dic= {'data': [['data', 'data_A'],
+                       ['data', 'data_B'],
+                       ['data', 'data_C'],
                        ['data', 'data_D']],
-              'higgs': [['mc', 'mc_345060.ggH125_ZZ4lep'], 
-                        ['mc', 'mc_344235.VBFH125_ZZ4lep']], 
-              'zz': [['mc', 'mc_363490.llll']], 
-              'other': [['mc', 'mc_361106.Zee'], 
+              'higgs': [['mc', 'mc_345060.ggH125_ZZ4lep'],
+                        ['mc', 'mc_344235.VBFH125_ZZ4lep']],
+              'zz': [['mc', 'mc_363490.llll']],
+              'other': [['mc', 'mc_361106.Zee'],
                         ['mc', 'mc_361107.Zmumu']]}
 ~~~
 {: .language-python}
@@ -66,7 +66,7 @@ import uproot
 > [link.](https://hsf-training.github.io/hsf-training-uproot-webpage/index.html)
 {: .callout}
 
-For each sample of the above `samples_dic`, we will return another dictionary that will contain all the "branches" or "variables"". 
+For each sample of the above `samples_dic`, we will return another dictionary that will contain all the "branches" or "variables"".
 ~~~
 processes = samples_dic.keys()
 Tuples={}
@@ -196,7 +196,7 @@ plt.hist(branches['data_A']['m4l'])
 
 # Selection criteria
 
-Is very important to include some selection criteria in our samples MC and data that we are analyzing. 
+Is very important to include some selection criteria in our samples MC and data that we are analyzing.
 These selections are commonly know as "cuts".
 With these cuts we are able to select only events of our interest, this is, we will have a subset of our original samples and the distribution are going to change after this cuts.
 This will help out to do some physics analysis and start to search for the physics process in which we are interested.
@@ -407,12 +407,12 @@ s
 
 And then make a plot, actually, let's make 2 plots, with matplotlib we can add sub-plots to the figure, then, we will be able to compare the MC distribution without and with weights.
 
-In order to do this, we will use the `subplot` function. Notice that in this case, we are creating a figure and defining the axes of the figure directly, the syntax of the functions that we call for these axes change a bit with respect to the ones using only pyplot. 
+In order to do this, we will use the `subplot` function. Notice that in this case, we are creating a figure and defining the axes of the figure directly, the syntax of the functions that we call for these axes change a bit with respect to the ones using only pyplot.
 ~~~
 var_name = 'm4l'
 units = ' [GeV]'
 rangos = [[80,170]]
-bines = 24 
+bines = 24
 ~~~
 {: .language-python}
 
@@ -464,7 +464,7 @@ When we want to make a plot that includes uncertainties we need to use the `plt.
 
 ~~~
 def plotData(data_var, range_ab, bins_samples):
-    data_hist,bins = np.histogram(data_var, range=range_ab, bins=bins_samples) 
+    data_hist,bins = np.histogram(data_var, range=range_ab, bins=bins_samples)
     print(data_hist, bins)
     data_hist_errors = np.sqrt( data_hist )
     bin_center=(bins[1:]+bins[:-1])/2
