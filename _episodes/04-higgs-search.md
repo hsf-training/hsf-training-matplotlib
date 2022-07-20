@@ -121,7 +121,7 @@ for s in samples:
 ~~~
 {: .language-python}
 
-Using the pyplot `hist` function we can visualize the distribution the mass of the 4 leptons "m4l" for example fot the "data_A" sample.
+Using the pyplot `hist` function we can visualize the distribution the mass of the 4 leptons "m4l" for example for the "data_A" sample.
 
 ~~~
 plt.title("First look at samples")
