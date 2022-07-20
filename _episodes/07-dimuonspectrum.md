@@ -210,15 +210,15 @@ $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} +
 First, let's assume that each event only has 2 muons. We will loop over both muons and keep under separate lists those with same charge (\+,\+) or (\-,\-) and those with oppossite charge (\+-,\-+)
 
 ```python
-def invmass(e,px,py,pz):                         # arguments for function is a list of 4-momentums 
+def invmass(e,px,py,pz):                         # arguments for function is a list of 4-momentums
 
-    etot,pxtot,pytot,pztot = 0,0,0,0 
+    etot,pxtot,pytot,pztot = 0,0,0,0
 
     for i in range(len(e)):                              # This loops over all of the 4-momentums in the list, and adds together all of their energy,
         etot += e[i]                           # px, py, and pz components
         pxtot += px[i]
         pytot += py[i]
-        pztot += pz[i]                           
+        pztot += pz[i]
         m2 = etot**2 - (pxtot**2 + pytot**2 + pztot**2)      # uses the total energy,px,py,and pz to calculate invariant mass
     return(np.sqrt(abs(m2)))
 ```
@@ -231,7 +231,7 @@ pm=[] # opposite charges
 M =[] # all combinations
 
 for i in range(0,len(q)-1,2) :  # loop every 2 muons
-    # Make a list with information for 2 muons 
+    # Make a list with information for 2 muons
     E=[e[i],e[i+1]]
     PX=[px[i],px[i+1]]
     PY=[py[i],py[i+1]]
@@ -243,7 +243,7 @@ for i in range(0,len(q)-1,2) :  # loop every 2 muons
         pp.append(invmass(E,PX,PY,PZ))
     elif q[i]+q[i+1] == -2:
         nn.append(invmass(E,PX,PY,PZ))
-    else : 
+    else :
         print('anomaly?')
 print("Done!")
 ```
@@ -320,7 +320,7 @@ You could use the `np.logspace()` function for the binning. It helps in returnin
 
 ![png](../fig/output_26_0.png){: width="560px"}
 
-Depending on what you did, you may see hints of particles below $$20 GeV/c^2$$. It is possible you see signs of other particles at even higher energies. Plot your masses over a wide range of values, but then zoom in (change the plotting range) on different mass ranges to see if you can identify these particles.  
+Depending on what you did, you may see hints of particles below $$20 GeV/c^2$$. It is possible you see signs of other particles at even higher energies. Plot your masses over a wide range of values, but then zoom in (change the plotting range) on different mass ranges to see if you can identify these particles.
 
 ```python
 Image(url='https://twiki.cern.ch/twiki/pub/CMSPublic/HLTDiMuon2017and2018/CMS_HLT_DimuonMass_Inclusive_2017.png')
