@@ -241,7 +241,7 @@ I would like you to make these 4 histograms *in 4 different ways* focusing on on
 Remember, you'll have 4 charge combinations for each of these histograms.
 
 1. All charge combinations
-2. Only positve muons
+2. Only positive muons
 3. Only negative muons
 4. Only oppositly charged muons
 
@@ -281,7 +281,7 @@ plt.tight_layout();
 
 *Hint!*
 
-You could use the `np.logspace()` function for the binning. It helps in returing numbers spaced evenly on a log scale. You can find out more about it [here](https://numpy.org/doc/stable/reference/generated/numpy.logspace.html).
+You could use the `np.logspace()` function for the binning. It helps in returning numbers spaced evenly on a log scale. You can find out more about it [here](https://numpy.org/doc/stable/reference/generated/numpy.logspace.html).
 > ## Solution
 >```python
 >logbins=np.logspace(0,2.5,200)
@@ -301,7 +301,7 @@ You could use the `np.logspace()` function for the binning. It helps in returing
 
 ![png](../fig/output_26_0.png){: width="560px"}
 
-Depending on what you did, you may see hints of particles below $$20 GeV/c^2$$. It is possible you see signs of other particles at even higher energies. Plot your masses over a wide range of values, but then zoom in (change the plotting range) on different mass ranges to see if you can identify these particles.  
+Depending on what you did, you may see hints of particles below $$20 GeV/c^2$$. It is possible you see signs of other particles at even higher energies. Plot your masses over a wide range of values, but then zoom in (change the plotting range) on different mass ranges to see if you can identify these particles.
 
 ```python
 Image(url='https://twiki.cern.ch/twiki/pub/CMSPublic/HLTDiMuon2017and2018/CMS_HLT_DimuonMass_Inclusive_2017.png')

@@ -212,7 +212,7 @@ Here are a few example for combinations of these.
 '^k:'  # black triangle_up markers connected by a dotted line
 ```
 
-## With  HEP styling  
+## With  HEP styling
 
 We have available a useful python package called [mplhep](https://mplhep.readthedocs.io/en/latest/index.html#) which is a matplotlib wrapper for easy plotting required in high energy physics (HEP). Primarily “prebinned” 1D & 2D histograms and matplotlib style-sheets carrying recommended plotting styles of large LHC experiments - ATLAS, CMS & LHCb. This project is published on [GitHub](https://github.com/scikit-hep/mplhep) as part of the scikit-hep toolkit.
 
@@ -244,9 +244,9 @@ and with just this addition we can produce the same plot as before with this new
 
 ## Other types of plots
 
-With matplotlib there is no shortage of the kinds of plots to work with. Here we have only used line plots as a baseline to learn what things we can do. There are scatter plots, bar plots, stem plots and pie charts as well as visualize images, and vector fields and much more!
+With matplotlib, there is no shortage of the kinds of plots to work with. Here we have only used line plots as a baseline to learn what things we can do. There are scatter plots, bar plots, stem plots and pie charts. You can also visualize images, vector fields and much more!
 
-In High Energy Physics we typically work with binned data and produce histograms. Histograms are used mainly to tell us about how things are distributed rather than a relationship between 2 variables.
+In High Energy Physics, we typically work with binned data and produce histograms. Histograms are used mainly to tell us how things are distributed rather than a relationship between 2 variables.
 
 Matplotlib can take an array of data and with the `hist` python will bin the data to create histograms.
 

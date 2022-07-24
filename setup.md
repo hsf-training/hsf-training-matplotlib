@@ -22,23 +22,23 @@ If for whatever reason Binder is not working. All notebooks should have a
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
 Just click and run the cells that say **If on Colab**
 
-This only requires the user to have a Google account but it is much more stable and does not have the inactivity limit like Binder. 
+This only requires the user to have a Google account but it is much more stable and does not have the inactivity limit like Binder.
 
-Some details on Google Colab: 
+Some details on Google Colab:
 - Colab allows you to create a copy of the notebook and stores it in your google drive
-- Colab comes with some python libraries installed but not the ones required for our workshop. This forces us to run the first cell of the notebook which downloads the materials from Github and installs the necessary packages into your session. 
+- Colab comes with some python libraries installed but not the ones required for our workshop. This forces us to run the first cell of the notebook which downloads the materials from Github and installs the necessary packages into your session.
 - However, when running this cell for the first time, Colab will not be able to make use of some of the libraries installed unless we click on `Runtime` and then click on `Restart Runtime`. Rerun the first cell and we are good to go!
 - The caveat is that this procedure would need to be executed for each notebook in the lesson.
 
 ## Plan C: SWAN
-SWAN is a CERN based notebook hosting service. It is stable like Colab and setup is easy like Binder. 
+SWAN is a CERN based notebook hosting service. It is stable like Colab and setup is easy like Binder.
 Simply click on the Badge below and log in to SWAN with your CERN account.
 
 [![SWAN](https://swan.web.cern.ch/sites/swan.web.cern.ch/files/pictures/open_in_swan.svg)](https://cern.ch/swanserver/cgi-bin/go?projurl=https://github.com/plttraining/hsf_matplotlib_notebooks.git)
 
 ## If you want to run locally
 
-We highly recommend you create a virtual enviroment first. Open your terminal and do
+We highly recommend you create a virtual environment first. Open your terminal and do
 
 
 ```bash
