@@ -135,8 +135,9 @@ for s in samples:
 Using the pyplot `hist` function we can visualize the distribution the mass of the 4 leptons "m4l" for example for the "data_A" sample.
 
 ~~~
-plt.title("First look at samples")
-plt.hist(branches['data_A']['m4l'])
+fig, ax = plt.subplots()
+ax.set_title("First look at samples")
+ax.hist(branches["data_A"]["m4l"])
 ~~~
 {: .language-python}
 
@@ -164,8 +165,9 @@ Note that this changes the global setting, but it can still be overwritten later
 Let's do the plot again to see the changes:
 
 ~~~
-plt.title("First look at samples")
-plt.hist(branches['data_A']['m4l'])
+fig, ax = plt.subplots()
+ax.set_title("First look at samples")
+ax.hist(branches["data_A"]["m4l"])
 ~~~
 {: .language-python}
 
@@ -193,12 +195,13 @@ plt.hist(branches['data_A']['m4l'])
 > Include the axis labels "Events" and "m4l", in the axis y and x, respectively.
 > > ## Solution
 > > ~~~
-> > plt.figure(figsize=(12,8))
-> > plt.title("First look to the samples")
-> > plt.hist(branches['mc_363490.llll']['m4l'], label="zz", range=[0,200], bins=50)
-> > plt.xlabel("m4l")
-> > plt.ylabel("Events")
-> > plt.legend()
+> > fig, ax = plt.subplots()
+> > fig.set_size_inches((12, 8))
+> > ax.set_title("First look to the samples")
+> > ax.hist(branches["mc_363490.llll"]["m4l"], label="zz", range=[0, 200], bins=50)
+> > ax.set_xlabel("m4l")
+> > ax.set_ylabel("Events")
+> > ax.legend()
 > > ~~~
 > > {: .language-python}
 > > ![m4lep_histogram_2_0]({{ page.root }}/fig/m4lep_histogram_2_0.png)
@@ -274,16 +277,17 @@ We certainly can visualize this information with Matplotlib making a histogram :
 >Try to represent in you histogram what are the events that we wanted to keep using lines, arrows or text in you plot.
 > > ## Solution
 > > ~~~
-> > plt.figure(figsize=(12,8))
-> > plt.title("Cut")
-> > plt.hist(branches['data_A']['sum_good_lep'], range=[0,10], bins=10, label='data A')
-> > plt.arrow(2, 10, 2, 0,width = 0.15,head_width = 0.4, length_includes_head=True, color="red")
-> > plt.arrow(7, 10, -2, 0,width = 0.15,head_width = 0.4, length_includes_head=True, color="red")
-> > plt.axvline(x=4, color='red')
-> > plt.axvline(x=5, color='red')
-> > plt.xlabel("sum good lep")
-> > plt.ylabel("Events")
-> > plt.legend(frameon=False)
+> > fig, ax = plt.subplots()
+> > fig.set_size_inches((12, 8))
+> > ax.set_title("Cut")
+> > ax.hist(branches["data_A"]["sum_good_lep"], range=[0, 10], bins=10, label="data A")
+> > ax.arrow(2, 10, 2, 0,width=0.15, head_width=0.4, length_includes_head=True, color="red")
+> > ax.arrow(7, 10, -2, 0,width=0.15, head_width=0.4, length_includes_head=True, color="red")
+> > ax.axvline(x=4, color="red")
+> > ax.axvline(x=5, color="red")
+> > ax.set_xlabel("sum good lep")
+> > ax.set_ylabel("Events")
+> > ax.legend(frameon=False)
 > > ~~~
 > > {: .language-python}
 > > ![cut_histogram_3]({{ page.root }}/fig/cut_histogram_3.png)
@@ -294,20 +298,22 @@ Finally, let's save in a dictionary for all the samples the requirements mention
 ~~~
 selection_events = {}
 for s in samples:
-    trigger = ((branches[s]['trigM'] == True) | (branches[s]['trigE'] == True))
-    sum_leptons = branches[s]['sum_good_lep'] == 4
-    sum_charge = branches[s]['sum_lep_charge'] == 0
-    sum_types_ee = branches[s]['goodlep_sumtypes'] == 44
-    sum_types_mm = branches[s]['goodlep_sumtypes'] == 52
-    sum_types_em = branches[s]['goodlep_sumtypes'] == 48
-    sum_types_goodlep = (sum_types_ee | sum_types_mm | sum_types_em)
-    sum_lep_selection = (sum_leptons & sum_charge & sum_types_goodlep)
+    trigger = (branches[s]["trigM"] == True) | (branches[s]["trigE"] == True)
+    sum_leptons = branches[s]["sum_good_lep"] == 4
+    sum_charge = branches[s]["sum_lep_charge"] == 0
+    sum_types_ee = branches[s]["goodlep_sumtypes"] == 44
+    sum_types_mm = branches[s]["goodlep_sumtypes"] == 52
+    sum_types_em = branches[s]["goodlep_sumtypes"] == 48
+    sum_types_goodlep = sum_types_ee | sum_types_mm | sum_types_em
+    sum_lep_selection = sum_leptons & sum_charge & sum_types_goodlep
     # Select good leptons with high transverse momentum
-    pt_0_selection = branches[s]['goodlep_pt_0'] > 25000
-    pt_1_selection = branches[s]['goodlep_pt_1'] > 15000
-    pt_2_selection = branches[s]['goodlep_pt_2'] > 10000
-    high_pt_selection = (pt_0_selection & pt_1_selection & pt_2_selection)
-    final_selection = trigger & sum_types_goodlep & sum_lep_selection & high_pt_selection
+    pt_0_selection = branches[s]["goodlep_pt_0"] > 25000
+    pt_1_selection = branches[s]["goodlep_pt_1"] > 15000
+    pt_2_selection = branches[s]["goodlep_pt_2"] > 10000
+    high_pt_selection = pt_0_selection & pt_1_selection & pt_2_selection
+    final_selection = (
+        trigger & sum_types_goodlep & sum_lep_selection & high_pt_selection
+    )
     selection_events[s] = final_selection
 ~~~
 {: .language-python}
@@ -422,7 +428,8 @@ bins = 24
 {: .language-python}
 
 ~~~
-fig, (ax_1, ax_2) = plt.subplots(1,2, figsize=[18,7])
+fig, (ax_1, ax_2) = plt.subplots(1, 2)
+fig.set_size_inches((12, 8))
 ax_1.set_title("MC samples without weights")
 ax_1.hist(stack_mc_list_m4l, range=rangos[0], label=mc_samples, stacked=True, bins=bines)
 ax_1.set_ylabel('Events')
@@ -481,13 +488,21 @@ def plotData(data_var, range_ab, bins_samples):
 
 Finally, we can include the MC and data in the same figure, and see if they are in agreement :).
 ~~~
-plt.figure(figsize=(10,8))
-plotData(stack_data_list_m4l, rangos[0], bines)
-h1=plt.hist(stack_mc_list_m4l, range=rangos[0], label=mc_samples, stacked=True, weights=stack_weights_list, bins=bines)
-plt.ylabel('Events')
-plt.xlabel(var_name+units)
-plt.ylim(0,30)
-plt.legend(fontsize=18,frameon=False)
+fig, ax = plt.subplots()
+fig.set_size_inches((10, 8))
+plotData(stack_data_list_m4l, ranges[0], bins)
+h1 = plt.hist(
+    stack_mc_list_m4l,
+    range=ranges[0],
+    label=mc_samples,
+    stacked=True,
+    weights=stack_weights_list,
+    bins=bins,
+)
+ax.set_ylabel("Events")
+ax.set_xlabel(var_name + units)
+ax.set_ylim(0, 30)
+ax.legend(fontsize=18, frameon=False)
 ~~~
 {: .language-python}
 
@@ -498,17 +513,25 @@ plt.legend(fontsize=18,frameon=False)
 >
 > > ## Solution
 > > ~~~
-> > plt.figure(figsize=(12,8))
-> > plotData(stack_data_list_m4l, rangos[0], bines)
-> > h1=plt.hist(stack_mc_list_m4l, range=rangos[0], label=mc_samples, stacked=True, weights=stack_weights_list, bins=bines)
-> > plt.ylabel('Events', loc='top')
-> > plt.xlabel(r'$m^{H \rightarrow ZZ}_{4l}$'+units, loc='right')
-> > plt.tick_params(which='both', direction='in', length=6, width=1)
-> > plt.text(80,28,"ATLAS",weight='bold')
-> > plt.text(93,28,"Open Data")
-> > plt.text(80,25,r"$\sqrt{s}$"+" = 13 TeV,"+" $\int$Ldt = "+" 10 fb"+r"$^{-1}$")
-> > plt.ylim(0,30)
-> > plt.legend(frameon=False)
+> > fig, ax = plt.subplots()
+> > fig.set_size_inches((12, 8))
+> > plotData(stack_data_list_m4l, ranges[0], bins)
+> > h1 = plt.hist(
+> >     stack_mc_list_m4l,
+> >     range=ranges[0],
+> >     label=mc_samples,
+> >     stacked=True,
+> >     weights=stack_weights_list,
+> >     bins=bins,
+> > )
+> > ax.set_ylabel("Events", loc="top")
+> > ax.set_xlabel(r"$m^{H \rightarrow ZZ}_{4l}$" + units, loc="right")
+> > ax.tick_params(which="both", direction="in", length=6, width=1)
+> > ax.text(80, 28, "ATLAS", weight="bold")
+> > ax.text(93, 28, "Open Data")
+> > ax.text(80, 25, r"$\sqrt{s}$" + " = 13 TeV," + " $\int$Ldt = " + " 10 fb" + r"$^{-1}$")
+> > ax.set_ylim(0, 30)
+> > ax.legend(frameon=False)
 > > ~~~
 > > {: .language-python}
 > {: .solution}
