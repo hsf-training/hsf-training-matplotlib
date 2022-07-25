@@ -42,15 +42,25 @@ In the following dictionary, we have classified the samples we will work on, sta
 followed by the "higgs" MC samples and at the end the "zz" and "others" MC background components.
 
 ~~~
-samples_dic= {'data': [['data', 'data_A'],
-                       ['data', 'data_B'],
-                       ['data', 'data_C'],
-                       ['data', 'data_D']],
-              'higgs': [['mc', 'mc_345060.ggH125_ZZ4lep'],
-                        ['mc', 'mc_344235.VBFH125_ZZ4lep']],
-              'zz': [['mc', 'mc_363490.llll']],
-              'other': [['mc', 'mc_361106.Zee'],
-                        ['mc', 'mc_361107.Zmumu']]}
+samples_dic = {
+    "data": [
+        ["data", "data_A"],
+        ["data", "data_B"],
+        ["data", "data_C"],
+        ["data", "data_D"],
+    ],
+    "higgs": [
+        ["mc", "mc_345060.ggH125_ZZ4lep"],
+        ["mc", "mc_344235.VBFH125_ZZ4lep"],
+    ],
+    "zz": [
+        ["mc", "mc_363490.llll"],
+    ],
+    "other": [
+        ["mc", "mc_361106.Zee"],
+        ["mc", "mc_361107.Zmumu"],
+    ],
+}
 ~~~
 {: .language-python}
 
@@ -70,22 +80,24 @@ import uproot
 For each sample of the above `samples_dic`, we will return another dictionary that will contain all the "branches" or "variables"".
 ~~~
 processes = samples_dic.keys()
-Tuples={}
-samples=[]
+Tuples = {}
+samples = []
 for p in processes:
     for d in samples_dic[p]:
         # Load the dataframes
-        sample = d[1] # Sample name
+        sample = d[1]  # Sample name
         samples.append(sample)
-        DataUproot = uproot.open(f'./data-ep04-higgs-search/OpenData_Atlas_{sample}.root')
-        Tuples[sample] = DataUproot['myTree']
+        DataUproot = uproot.open(
+            f"./data-ep04-higgs-search/OpenData_Atlas_{sample}.root"
+        )
+        Tuples[sample] = DataUproot["myTree"]
 ~~~
 {: .language-python}
 
 Let's take a look to the "branches" stored in out data samples, taking "data_A" as example
 
 ~~~
-list(Tuples['data_A'].keys())
+list(Tuples["data_A"].keys())
 ~~~
 {: .language-python}
 
@@ -116,7 +128,7 @@ list(Tuples['data_A'].keys())
 Let's access one of these "branches" and make a simple plot:
 
 ~~~
-branches={}
+branches = {}
 for s in samples:
     branches[s] = Tuples[s].arrays()
 ~~~
@@ -215,7 +227,7 @@ Let's visualize some of these requirements. For now, let us continue working wit
 We can see how many good leptons we have in the event, by printing:
 
 ~~~
-branches['data_A']['good_lep']
+branches["data_A"]["good_lep"]
 ~~~
 {: .language-python}
 
@@ -228,7 +240,7 @@ From the previous output, we can notice that not all events have 4 good leptons.
 Therefore, we can use the sum of the number of good leptons per event. This variable is stored as "sum_good_lep".
 
 ~~~
-branches['data_A']['sum_good_lep']
+branches["data_A"]["sum_good_lep"]
 ~~~
 {: .language-python}
 
@@ -241,7 +253,7 @@ array([4, 4, 3, 4, 4, 4, 2, 4, 4, 4, 2, 4, 3, 4, 4, 4, 4, 4, 4, 2, 4, 4,
 We will keep the events with "sum_good_lep"==4 (this is the topology we are looking for).
 
 ~~~
-branches['data_A']['sum_good_lep'] == 4
+branches["data_A"]["sum_good_lep"] == 4
 ~~~
 {: .language-python}
 
@@ -257,7 +269,7 @@ array([ True,  True, False,  True,  True,  True, False,  True,  True,
 We can save this array in a variable to use later in a more complicated combination of requirements using the &, | and ~ logical operators.
 
 ~~~
-sum_leptons_test = branches['data_A']['sum_good_lep'] == 4
+sum_leptons_test = branches["data_A"]["sum_good_lep"] == 4
 ~~~
 {: .language-python}
 
@@ -287,7 +299,7 @@ We certainly can visualize this information with Matplotlib making a histogram :
 
 Finally, let's save in a dictionary for all the samples the requirements mentioned above as follows:
 ~~~
-selection_events={}
+selection_events = {}
 for s in samples:
     trigger = ((branches[s]['trigM'] == True) | (branches[s]['trigE'] == True))
     sum_leptons = branches[s]['sum_good_lep'] == 4
@@ -311,7 +323,7 @@ Moreover, we can compare, by printing, the number of initial  and final events a
 
 ~~~
 for s in samples:
-    print(s,'      Initial events: ', len(branches[s]['m4l']))s
+    print(s,"      Initial events: ", len(branches[s]["m4l"]))
 ~~~
 {: .language-python}
 
@@ -330,8 +342,7 @@ mc_361107.Zmumu       Initial events:  148
 
 ~~~
 for s in samples:
-    print(s,'      After selection: ', len(branches[s]['m4l'][selection_events[s]]))
-
+    print(s,"      After selection: ", len(branches[s]["m4l"][selection_events[s]]))
 ~~~
 {: .language-python}
 
@@ -356,7 +367,7 @@ To make a plot with all the MC samples we will do a stack plot.
 We will merge the samples following the classification we introduced at the beginning, that is:
 
 ~~~
-mc_samples=list(processes)[1:]
+mc_samples = list(processes)[1:]
 print(mc_samples)
 ~~~
 {: .language-python}
@@ -381,10 +392,10 @@ for s in mc_samples:
     list_sample_s = []
     list_weight_s = []
     for element in samples_dic[s]:
-        sample_s=element[1]
-        mc_selection_values = branches[sample_s]['m4l'][selection_events[sample_s]]
+        sample_s = element[1]
+        mc_selection_values = branches[sample_s]["m4l"][selection_events[sample_s]]
         list_sample_s += list(mc_selection_values)
-        mc_selection_weight = branches[sample_s]['weight'][selection_events[sample_s]]
+        mc_selection_weight = branches[sample_s]["weight"][selection_events[sample_s]]
         list_weight_s += list(mc_selection_weight)
     stack_mc_list_m4l.append(list_sample_s)
     stack_weights_list.append(list_weight_s)
@@ -410,10 +421,10 @@ And then make a plot, actually, let's make 2 plots, with matplotlib we can add s
 
 In order to do this, we will use the `subplot` function. Notice that in this case, we are creating a figure and defining the axes of the figure directly, the syntax of the functions that we call for these axes change a bit with respect to the ones using only pyplot.
 ~~~
-var_name = 'm4l'
-units = ' [GeV]'
-rangos = [[80,170]]
-bines = 24
+var_name = "m4l"
+units = " [GeV]"
+ranges = [[80,170]]
+bins = 24
 ~~~
 {: .language-python}
 
@@ -440,10 +451,10 @@ ax_2.legend(frameon=False)
 Let's append in `stack_dara_list_m4l` the values of the m4l variable for all the data samples A,B,C and D.
 
 ~~~
-stack_data_list_m4l=[]
-for element in samples_dic['data']:
-    sample_d=element[1]
-    data_list = list(branches[sample_d]['m4l'][selection_events[sample_d]])
+stack_data_list_m4l = []
+for element in samples_dic["data"]:
+    sample_d = element[1]
+    data_list = list(branches[sample_d]["m4l"][selection_events[sample_d]])
     stack_data_list_m4l += data_list
 ~~~
 {: .language-python}
