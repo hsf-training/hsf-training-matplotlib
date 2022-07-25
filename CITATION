@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "Please cite the following works when using this software."
 type: software
-title: " Matplotlib for HEP"
+title: "Matplotlib for HEP"
 abstract: "FIXME"
 authors:
 - family-names: "Oan Evans"
@@ -12,7 +12,7 @@ authors:
   given-names: "Marcela"
   orcid: "FIXME"
   affiliation: "Center for Research and Advanced Studies of the National Polytechnic Institute"
-- family-names: "Antonio Fidalgo-Rodríguez "
+- family-names: "Antonio Fidalgo-Rodríguez"
   given-names: "Guillermo"
   orcid: "FIXME"
   affiliation: "University of Puerto Rico, Mayagüez Campus"
