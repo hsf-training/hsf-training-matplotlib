@@ -1,6 +1,17 @@
 ---
 title: Setup
 ---
+
+  <iframe
+      src="https://indico.cern.ch/event/1058838/attachments/2427696/4157672/HSF%20Matplotlib%20Setup.mp4"
+      title= "HSF Matplotlib Setup"
+      width="100%"
+      height="500"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+
+## Binder setup
 For this tutorial we will be using [Binder](https://mybinder.org/). It offers a no setup, click and ready to go Jupyter Notebook environment.
 
 We will be using the following [Github Repository](https://github.com/plttraining/hsf_matplotlib_notebooks) to follow the lesson.
@@ -44,7 +55,7 @@ We highly recommend you create a virtual environment first. Open your terminal a
 ```bash
 conda create --name mpl
 conda activate mpl
-git clone https://github.com/plttraining/hsf_matplotlib_notebooks.git
+git clone https://github.com/hsf-training/hsf_matplotlib_notebooks.git
 cd hsf_matplotlib_notebooks
 # Now install the requirements
 conda install -c conda-forge --file requirements.txt
