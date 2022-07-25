@@ -3,9 +3,9 @@ title: "Coffee break"
 teaching: 0
 exercises: 15
 questions:
-- "Coffee or tea?"
+- "Cookies or cake?"
 objectives:
-- "Refresh your mental faculties with coffee and conversation"
+- "You have been doing it great. Get a sweet reward ;)"
 ---
 
 [![coffee](https://i.giphy.com/media/2jd7CRuYayGpW/giphy.webp)]()
