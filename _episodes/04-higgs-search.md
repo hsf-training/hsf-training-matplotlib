@@ -23,6 +23,7 @@ Here, we will use the available 4 leptons final state samples for simulated samp
 
 First we need to import numpy and the `matplotlib.pyplot` module under the name `plt`, as usual:
 ~~~
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 %matplotlib inline
 import numpy as np
@@ -144,7 +145,7 @@ plt.hist(branches['data_A']['m4l'])
 
 ~~~
 # Update the matplotlib configuration parameters:
-matplotlib.rcParams.update({'font.size': 16, 'font.family': 'serif'})
+mpl.rcParams.update({"font.size": 16, "font.family": "serif"})
 ~~~
 {: .language-python}
 
