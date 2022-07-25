@@ -102,26 +102,24 @@ list(Tuples["data_A"].keys())
 {: .language-python}
 
 ~~~
-['trigM',
+['lep_n',
+ 'goodlep_pt_2',
+ 'trigM',
  'm4l',
- 'lep_pt',
- 'sum_good_lep',
- 'lep_charge',
- 'lep_type',
- 'trigE',
- 'sum_lep_charge',
- 'channelNumber',
- 'goodlep_sumtypes',
- 'eventNumber',
- 'XSection',
- 'good_lep',
- 'lep_n',
- 'lep_z0',
  'weight',
- 'lep_phi',
- 'runNumber',
- 'lep_eta',
- 'lep_E']
+ 'lep_charge',
+ 'sum_good_lep',
+ 'trigE',
+ 'goodlep_pt_0',
+ 'goodlep_pt_1',
+ 'goodlep_sumtypes',
+ 'lep_type',
+ 'channelNumber',
+ 'lep_pt',
+ 'good_lep',
+ 'XSection',
+ 'lep_E',
+ 'sum_lep_charge']
  ~~~
 {: .output}
 
@@ -232,7 +230,7 @@ branches["data_A"]["good_lep"]
 {: .language-python}
 
 ~~~
-<JaggedArray [[1 1 1 1] [1 1 1 1] [1 1 1 0] ... [1 1 0 0] [1 1 1 1] [1 0 1 1]] at 0x7f24910f5d50>
+<Array [[1, 1, 1, 1], [1, ... 1], [1, 0, 1, 1]] type='32 * var * int32'>
 ~~~
 {: .output}
 
@@ -245,8 +243,7 @@ branches["data_A"]["sum_good_lep"]
 {: .language-python}
 
 ~~~
-array([4, 4, 3, 4, 4, 4, 2, 4, 4, 4, 2, 4, 3, 4, 4, 4, 4, 4, 4, 2, 4, 4,
-       4, 4, 4, 4, 4, 4, 2, 2, 4, 3], dtype=int32)
+<Array [4, 4, 3, 4, 4, 4, ... 4, 4, 2, 2, 4, 3] type='32 * int32'>
 ~~~
 {: .output}
 
@@ -258,11 +255,7 @@ branches["data_A"]["sum_good_lep"] == 4
 {: .language-python}
 
 ~~~
-
-array([ True,  True, False,  True,  True,  True, False,  True,  True,
-        True, False,  True, False,  True,  True,  True,  True,  True,
-        True, False,  True,  True,  True,  True,  True,  True,  True,
-        True, False, False,  True, False])
+<Array [True, True, False, ... True, False] type='32 * bool'>
 ~~~
 {: .output}
 
