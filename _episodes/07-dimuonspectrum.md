@@ -213,20 +213,78 @@ $$p_{\rm y parent} = p_{\rm y child 0} + p_{\rm y child 1} + p_{\rm y child 2} +
 
 $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} + ...$$
 
-## Looping over all the muons and checking for the possible charge combinations
+## Calculating the invariant mass of all particles
 
-First, let's assume that each event only has 2 muons. We will loop over both muons and keep under separate lists those with same charge (\+,\+) or (\-,\-) and those with opposite charge (\+-,\-+)
+Let us first implement this with a loop:
+
+```python
+def invmass(e, px, py, pz):
+    etot, pxtot, pytot, pztot = 0, 0, 0, 0
+
+    # This loops over all of the 4-momentums in the list, and adds together all of their energy,
+    # px, py, and pz components
+    for i in range(len(e)):
+        etot += e[i]
+        pxtot += px[i]
+        pytot += py[i]
+        pztot += pz[i]
+        # uses the total energy,px,py,and pz to calculate invariant mass
+        m2 = etot**2 - (pxtot**2 + pytot**2 + pztot**2)
+    return np.sqrt(abs(m2))
+```
+
+However, you might recall that python loops can be a performance issue.
+It doesn't matter if you're looping over a few hundred iterations, but if you're looking at millions of events, it's a problem.
+Let's use `numpy` to write the same code in a more compact and performant style:
 
 ```python
 def invmass(e, px, py, pz):
     return np.sqrt(np.abs(e.sum(axis=-1)**2 - (px.sum(axis=-1)**2 + py.sum(axis=-1)**2 + pz.sum(axis=-1)**2)))
 ```
 
+You might be wondering about the `axis=-1` that we used. This is because it allows our function to both operate on one-dimensional arrays (all particles in an event), or
+two-dimensional arrays (all particles in many events, with the first dimension being that of the events).
+
+## Looping over all the muons and checking for the possible charge combinations
+
+First, let's assume that each event only has 2 muons. We will loop over both muons and keep under separate lists those with same charge (\+,\+) or (\-,\-) and those with opposite charge (\+-,\-+).
+We can do this with a simple python loop:
+
 ```python
+# These lists collect the invariant masses
+pp = []  # positive positive
+nn = []  # negative negative
+pm = []  # opposite charges
+M = []  # all combinations
+
+for i in range(0, len(q) - 1, 2):  # loop every 2 muons
+    # Make a list with information for 2 muons
+    E = [e[i], e[i + 1]]
+    PX = [px[i], px[i + 1]]
+    PY = [py[i], py[i + 1]]
+    PZ = [pz[i], pz[i + 1]]
+    M.append(invmass(E, PX, PY, PZ))
+    if q[i] * q[i + 1] < 0:
+        pm.append(invmass(E, PX, PY, PZ))
+    elif q[i] + q[i + 1] == 2:
+        pp.append(invmass(E, PX, PY, PZ))
+    elif q[i] + q[i + 1] == -2:
+        nn.append(invmass(E, PX, PY, PZ))
+    else:
+        print("anomaly?")
+print("Done!")
+
+```
+
+Hoewver, again the *proper* way to do this is with numpy. It might be harder to read at first, but once you get used to the syntax, it is actually more transparent:
+
+```python
+# Use "reshape" to create pairs of particles
 masses = invmass(e.reshape(-1, 2), px.reshape(-1, 2), py.reshape(-1, 2), pz.reshape(-1, 2))
 
 q_pairs = q.reshape(-1, 2)
 
+# Create masks for our selections
 pm_mask = q_pairs[:,0]*q_pairs[:,1] < 0
 pp_mask = q_pairs[:,0]+q_pairs[:,1] == 2
 nn_mask = q_pairs[:,0]+q_pairs[:,1] == -2
