@@ -212,7 +212,7 @@ Here are a few example for combinations of these.
 '^k:'  # black triangle_up markers connected by a dotted line
 ```
 
-## With  HEP styling  
+## With  HEP styling
 
 We have available a useful python package called [mplhep](https://mplhep.readthedocs.io/en/latest/index.html#) which is a matplotlib wrapper for easy plotting required in high energy physics (HEP). Primarily “prebinned” 1D & 2D histograms and matplotlib style-sheets carrying recommended plotting styles of large LHC experiments - ATLAS, CMS & LHCb. This project is published on [GitHub](https://github.com/scikit-hep/mplhep) as part of the scikit-hep toolkit.
 
