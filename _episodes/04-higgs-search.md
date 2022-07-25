@@ -431,15 +431,15 @@ bins = 24
 fig, (ax_1, ax_2) = plt.subplots(1, 2)
 fig.set_size_inches((12, 8))
 ax_1.set_title("MC samples without weights")
-ax_1.hist(stack_mc_list_m4l, range=rangos[0], label=mc_samples, stacked=True, bins=bines)
-ax_1.set_ylabel('Events')
+ax_1.hist(stack_mc_list_m4l, range=ranges[0], label=mc_samples, stacked=True, bins=bines)
+ax_1.set_ylabel("Events")
 ax_1.set_xlabel(var_name+units)
 ax_1.legend(frameon=False)
 ax_2.set_title("MC samples with weights")
 ax_2.hist(stack_mc_list_m4l, range=rangos[0], label=mc_samples, stacked=True, weights=stack_weights_list, bins=bines)
-ax_2.set_ylabel('Events')
+ax_2.set_ylabel("Events")
 ax_2.set_xlabel(var_name+units)
-ax_2.tick_params(which='both',direction='in',top=True,right=True, length=6, width=1)
+ax_2.tick_params(which="both",direction="in",top=True,right=True, length=6, width=1)
 ax_2.legend(frameon=False)
 ~~~
 {: .language-python}
@@ -476,11 +476,13 @@ When we want to make a plot that includes uncertainties we need to use the `plt.
 
 ~~~
 def plotData(data_var, range_ab, bins_samples):
-    data_hist,bins = np.histogram(data_var, range=range_ab, bins=bins_samples)
+    data_hist, bins = np.histogram(data_var, range=range_ab, bins=bins_samples)
     print(data_hist, bins)
-    data_hist_errors = np.sqrt( data_hist )
-    bin_center=(bins[1:]+bins[:-1])/2
-    h0=plt.errorbar(x=bin_center, y=data_hist, yerr=data_hist_errors,fmt='ko', label='Data')
+    data_hist_errors = np.sqrt(data_hist)
+    bin_center = (bins[1:] + bins[:-1]) / 2
+    h0 = plt.errorbar(
+        x=bin_center, y=data_hist, yerr=data_hist_errors, fmt="ko", label="Data"
+    )
  ~~~
 {: .language-python}
 
