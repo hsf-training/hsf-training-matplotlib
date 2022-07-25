@@ -315,30 +315,22 @@ Remember, you'll have 4 charge combinations for each of these histograms.
 Below I will give you some code to get you started. Please make your changes/additions below this cell and look at each mass range.
 
 ```python
-# mass = 0-120
-plt.figure(figsize=(16, 10))
-plt.subplot(221)
-plt.hist(M, bins=100, range=(0, 120), histtype="step", label="All charge combinations")
-plt.xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
-plt.legend(fontsize=18)
+# Arguments shared by the .hist calls:
+kwargs = dict(
+    bins=100,
+    histtype="step",
+)
+fig, ax = plt.subplots(2, 2, figsize=(16, 10))
 
+ax[0][0].hist(M, range=(0, 120), label="All charge combinations", **kwargs)
+ax[0][1].hist(pp, range=(0, 120), label="$2+$", **kwargs)
+ax[1][0].hist(nn, range=(0, 120), label="$2-$", **kwargs)
+ax[1][1].hist(pm, range=(0, 120), label="Electrically neutral", **kwargs)
 
-plt.subplot(222)
-plt.hist(pp, bins=100, range=(0, 120), histtype="step", label="$2+$")
-plt.xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
-plt.legend(fontsize=18)
-
-
-plt.subplot(223)
-plt.hist(nn, bins=100, range=(0, 120), histtype="step", label="$2-$")
-plt.xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
-plt.legend(fontsize=18)
-
-
-plt.subplot(224)
-plt.hist(pm, bins=100, range=(0, 120), histtype="step", label="Electrically neutral")
-plt.xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
-plt.legend(fontsize=18)
+for irow in range(2):
+    for icol in range(2):
+        ax[irow][icol].set_xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
+        ax[irow][icol].legend(fontsize=18)
 
 plt.tight_layout()
 ```
