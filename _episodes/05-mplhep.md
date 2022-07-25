@@ -21,7 +21,7 @@ The method used is pretty common and useful for many purposes. First we have som
 
 # Install mplhep and setup
 
-```python 
+```python
 pip install mplhep
 
 import mplhep as hep
@@ -31,7 +31,7 @@ import matplotlib.pyplot as plt
 
 hep.style.use("CMS")
 # or use any of the following
-# {CMS | ATLAS | ALICE | LHCb1 | LHCb2} 
+# {CMS | ATLAS | ALICE | LHCb1 | LHCb2}
 ```
 
 ## Getting the data
@@ -186,21 +186,21 @@ yerrs = np.sqrt(hist)
 >    stack = True,
 >    bins = bins,
 >    histtype = 'fill',
->    color = ['grey','g','b'], 
->    alpha = .5, 
+>    color = ['grey','g','b'],
+>    alpha = .5,
 >    edgecolor = 'black',
 >    label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l']
 >)
 >
 > # Measured data
 > ax.errorbar(
->    center, 
->    hist, 
->    xerr = xerrs, 
+>    center,
+>    hist,
+>    xerr = xerrs,
 >    yerr = yerrs,
->    linestyle = 'None', 
+>    linestyle = 'None',
 >    color = 'black',
->    marker = 'o', 
+>    marker = 'o',
 >    label = 'Data'
 >)
 >
@@ -268,8 +268,8 @@ fig.show()
 >    stack=True,
 >    bins=bins,
 >    histtype='fill',
->    color=['grey','g','b','w'], 
->    alpha=[.5,.5,.5,1], 
+>    color=['grey','g','b','w'],
+>    alpha=[.5,.5,.5,1],
 >    edgecolor=['k','k','k','r'],
 >    label=[r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l','$m_{H}$ = 125 GeV']
 >)
@@ -278,13 +278,13 @@ fig.show()
 >
 ># Measured data
 >ax.errorbar(
->    center, 
->    hist, 
->    xerr = xerrs, 
->    yerr = yerrs, 
->    linestyle = 'None', 
+>    center,
+>    hist,
+>    xerr = xerrs,
+>    yerr = yerrs,
+>    linestyle = 'None',
 >    color = 'black',
->    marker = 'o', 
+>    marker = 'o',
 >    label = 'Data'
 >)
 >
