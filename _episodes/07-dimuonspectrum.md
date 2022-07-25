@@ -97,7 +97,10 @@ Your histogram should look something like the following sketch. The value of the
 
 ```python
 from IPython.display import Image
-Image(url='https://raw.githubusercontent.com/particle-physics-playground/playground/master/activities/images/dimuons_sketch.jpeg')
+
+Image(
+    url="https://raw.githubusercontent.com/particle-physics-playground/playground/master/activities/images/dimuons_sketch.jpeg"
+)
 ```
 
 <img src="https://raw.githubusercontent.com/particle-physics-playground/playground/master/activities/images/dimuons_sketch.jpeg" />
@@ -114,32 +117,35 @@ plt.style.use("default")
 Decide which styling you want to use
 
 ```python
-plt.style.use("default") # This is the default style for matplotlib, do not change this cell if you desire this option
+# This is the default style for matplotlib, do not change this cell if you desire this option
+plt.style.use("default")
 
-# hep.style.use("ROOT") # This is the mplhep style, uncomment this line for this styling.
+# This is the mplhep style, uncomment this line for this styling.
+# hep.style.use("ROOT")
 ```
 
 Load the data
 
 ```python
-event=h5py.File('./data-ep07-dimuonspectrum/dimuon100k.hdf5',mode='r')  #  Make sure you have the correct path to the dimuon file!
+#  Make sure you have the correct path to the dimuon file!
+event = h5py.File("./data-ep07-dimuonspectrum/dimuon100k.hdf5", mode="r")
 ```
 
 And now extract it and perform sum
 
 ```python
-e = event['muons/e'][:]
-px = event['muons/px'][:]
-py = event['muons/py'][:]
-pz = event['muons/pz'][:]
+e = event["muons/e"][:]
+px = event["muons/px"][:]
+py = event["muons/py"][:]
+pz = event["muons/pz"][:]
 
 # We will check for muons that do not pass the kinematics
-print(len(px)) # Number of muons
+print(len(px))  # Number of muons
 
 # See if there are any anomalies and clean them out
-cut=(e**2 - (px**2 + py**2 + pz**2)) <0
+cut = (e**2 - (px**2 + py**2 + pz**2)) < 0
 
-print(sum(cut)) # Count how many anomalies
+print(sum(cut))  # Count how many anomalies
 ```
 
     200000
@@ -149,8 +155,8 @@ print(sum(cut)) # Count how many anomalies
 We can use numpy to clean our arrays from anomalous events
 
 ```python
-e=np.delete(e,cut)
-px,py,pz=np.delete(px,cut),np.delete(py,cut),np.delete(pz,cut)
+e = np.delete(e, cut)
+px, py, pz = np.delete(px, cut), np.delete(py, cut), np.delete(pz, cut)
 ```
 
 Let's calculate the mass
@@ -162,12 +168,14 @@ M = (e**2 - (px**2 + py**2 + pz**2))**.5
 Make a histogram of the values of the Mass
 
 ```python
-plt.hist(M,bins=100,
-         histtype='step',
-        )
+plt.hist(
+    M,
+    bins=100,
+    histtype="step",
+)
 
-plt.xlabel(r'$\mu_{mass}$ [GeV]')
-plt.title('Muon Mass spectrum')
+plt.xlabel(r"$\mu_{mass}$ [GeV]")
+plt.title("Muon Mass spectrum")
 plt.show()
 ```
 
@@ -183,9 +191,7 @@ Using the code above, zoom in and fix the above plot to help **visually** estima
 
 > ## Solution
 >```python
->plt.hist(M,bins=100,log=False,
->         histtype='step',range=(0.1,0.11)
->        )
+>plt.hist(M, bins=100, log=False, histtype="step", range=(0.1, 0.11))
 >plt.show()
 >```
 >
@@ -252,32 +258,31 @@ Below I will give you some code to get you started. Please make your changes/add
 
 ```python
 # mass = 0-120
-
-plt.figure(figsize=(16,10))
+plt.figure(figsize=(16, 10))
 plt.subplot(221)
-plt.hist(M,bins=100,range=(0,120),histtype='step',label='All charge combinations')
-plt.xlabel(r'Mass (GeV/c$^2$)',fontsize=14)
+plt.hist(M, bins=100, range=(0, 120), histtype="step", label="All charge combinations")
+plt.xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
 plt.legend(fontsize=18)
 
 
 plt.subplot(222)
-plt.hist(pp,bins=100,range=(0,120),histtype='step',label='$2+$')
-plt.xlabel(r'Mass (GeV/c$^2$)',fontsize=14)
+plt.hist(pp, bins=100, range=(0, 120), histtype="step", label="$2+$")
+plt.xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
 plt.legend(fontsize=18)
 
 
 plt.subplot(223)
-plt.hist(nn,bins=100,range=(0,120),histtype='step',label='$2-$')
-plt.xlabel(r'Mass (GeV/c$^2$)',fontsize=14)
+plt.hist(nn, bins=100, range=(0, 120), histtype="step", label="$2-$")
+plt.xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
 plt.legend(fontsize=18)
 
 
 plt.subplot(224)
-plt.hist(pm,bins=100,range=(0,120),histtype='step',label='Electrically neutral')
-plt.xlabel(r'Mass (GeV/c$^2$)',fontsize=14)
+plt.hist(pm, bins=100, range=(0, 120), histtype="step", label="Electrically neutral")
+plt.xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
 plt.legend(fontsize=18)
 
-plt.tight_layout();
+plt.tight_layout()
 ```
 
 ## Exercise: Now calculate the mass per event and make the plot.
@@ -287,15 +292,14 @@ plt.tight_layout();
 You could use the `np.logspace()` function for the binning. It helps in returning numbers spaced evenly on a log scale. You can find out more about it [here](https://numpy.org/doc/stable/reference/generated/numpy.logspace.html).
 > ## Solution
 >```python
->logbins=np.logspace(0,2.5,200)
+>logbins = np.logspace(0, 2.5, 200)
 >
->plt.hist(pm,bins=logbins,
->       histtype='step')
+>plt.hist(pm, bins=logbins, histtype="step")
 >
->plt.xlabel('mass (GeV/$c^2$)')
->plt.ylabel('Events')
->plt.xscale('log')
->plt.title('Mass of dimuons per event')
+>plt.xlabel("mass (GeV/$c^2$)")
+>plt.ylabel("Events")
+>plt.xscale("log")
+>plt.title("Mass of dimuons per event")
 >plt.autoscale()
 >
 >plt.show()
