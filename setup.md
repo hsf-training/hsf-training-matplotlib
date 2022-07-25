@@ -55,7 +55,7 @@ We highly recommend you create a virtual environment first. Open your terminal a
 ```bash
 conda create --name mpl
 conda activate mpl
-git clone https://github.com/plttraining/hsf_matplotlib_notebooks.git
+git clone https://github.com/hsf-training/hsf_matplotlib_notebooks.git
 cd hsf_matplotlib_notebooks
 # Now install the requirements
 conda install -c conda-forge --file requirements.txt
