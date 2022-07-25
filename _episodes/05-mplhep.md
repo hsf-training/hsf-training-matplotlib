@@ -40,15 +40,33 @@ Now we will get some data stored in a github repository.
 
 ```python
 # Data for later use.
-csvs = [pd.read_csv('https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4e_2011.csv'),
-        pd.read_csv('https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4mu_2011.csv'),
-        pd.read_csv('https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/2e2mu_2011.csv')]
-csvs += [pd.read_csv('https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4mu_2012.csv'),
-         pd.read_csv('https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4e_2012.csv'),
-         pd.read_csv('https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/2e2mu_2012.csv')]
+csvs = [
+    pd.read_csv(
+        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4e_2011.csv"
+    ),
+    pd.read_csv(
+        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4mu_2011.csv"
+    ),
+    pd.read_csv(
+        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/2e2mu_2011.csv"
+    ),
+]
+csvs += [
+    pd.read_csv(
+        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4mu_2012.csv"
+    ),
+    pd.read_csv(
+        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4e_2012.csv"
+    ),
+    pd.read_csv(
+        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/2e2mu_2012.csv"
+    ),
+]
 # here we have added two lists of lists
 
-fourlep = pd.concat(csvs) # here we have merged them into one big list and simultainiously convert it into a pandas dataframe.
+fourlep = pd.concat(
+    csvs
+)  # here we have merged them into one big list and simultainiously convert it into a pandas dataframe.
 ```
 
 In this chapter we will see how to use mplhep commands to make a quality plot.
@@ -67,10 +85,11 @@ rmin = 70
 rmax = 181
 nbins = 37
 
-M_hist = np.histogram(fourlep['M'], bins = nbins, range = (rmin,rmax))
+M_hist = np.histogram(fourlep["M"], bins=nbins, range=(rmin, rmax))
 # the tuple `M_hist` that this function gives is so common in python that it is recognized by mplhep plotting functions
 
-hist, bins = M_hist # hist=frequency ; bins=Mass values
+
+hist, bins = M_hist  # hist=frequency ; bins=Mass values
 width = bins[1] - bins[0]
 
 center = (bins[:-1] + bins[1:]) / 2
@@ -79,6 +98,7 @@ center = (bins[:-1] + bins[1:]) / 2
 Let's look at some simulations from other processes there. Here are some Monte Carlo simulated values for such events that have already been weighted by luminosity, cross-section and number of events. Basically we create a set of values that have some randomness in them, just like a real measurement would have, but which follows the distribution that has been observed in those processes.
 
 Copy and paste these lines to your code
+
 
 ```python
 dy = np.array([0,0,0,0,0,0.354797,0.177398,2.60481,0,0,0,0,0,0,0,0,0,0.177398,0.177398,0,0.177398,0,0,0,0,0,0,0,0,0,0,0,0.177398,0,0,0,0])
@@ -96,14 +116,23 @@ We will look at how these numbers contribute what is measured in the accelerator
 ```python
 # ZZ, a pair of heavier bosons.
 
-plt.figure(figsize = (10,5))
-hep.histplot(zz,bins= bins,histtype='fill',color = 'b', alpha =.5, edgecolor= 'black',label = r'ZZ $\rightarrow$ 4l')
+fig, ax = plt.subplots(figsize = (10, 5))
+hep.histplot(
+    zz,
+    bins=bins,
+    histtype="fill",
+    color="b",
+    alpha=0.5,
+    edgecolor="black",
+    label=r"ZZ $\rightarrow$ 4l",
+    ax=ax
+)
 
-plt.xlabel('4l invariant mass (GeV)', fontsize = 15)
-plt.ylabel('Events / 3 GeV', fontsize = 15)
-plt.xlim(rmin,rmax)
-plt.legend()
-plt.show()
+ax.set_xlabel("4l invariant mass (GeV)", fontsize=15)
+ax.set_ylabel("Events / 3 GeV", fontsize=15)
+ax.set_xlim(rmin, rmax)
+ax.legend()
+fig.show()
 ```
 
 This would plot the following figure.
@@ -125,8 +154,8 @@ To stack histograms together with `hep.histplot` you can pass in a list of the v
 For the legend you can also pass each corresponding label as a list.
 Example:
 
- ```python
-label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l']
+```python
+label = [r"$t\bar{t}$", "Z/$\gamma^{*}$ + X", r"ZZ $\rightarrow$ 4l"]
 ```
 
 Also use python lists to specify the colors for each plot.
@@ -141,7 +170,7 @@ You can define both errors along the x and the y axis as python lists and add th
 Use this for the uncertainties.
 
 ```python
-xerrs = [width*0.5 for i in range(0, nbins)]
+xerrs = [width * 0.5 for i in range(0, nbins)]
 yerrs = np.sqrt(hist)
 ```
 
@@ -152,24 +181,40 @@ yerrs = np.sqrt(hist)
 >
 >xerrs = [width*0.5 for i in range(0, nbins)]
 >yerrs = np.sqrt(hist)
->plt.figure(figsize = (10,5))
->hep.histplot([ttbar,dy,zz],
->             stack=True,bins= bins,histtype='fill',
->             color = ['grey','g','b'], alpha =.5, edgecolor= 'black',
->             label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l'])
+>fig, ax = plt.subplots(figsize = (10, 5))
+>hep.histplot(
+>    [ttbar,dy,zz],
+>    stack = True,
+>    bins = bins,
+>    histtype = 'fill',
+>    color = ['grey','g','b'],
+>    alpha = .5,
+>    edgecolor = 'black',
+>    label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l'],
+>    ax=ax
+>)
+>
 > # Measured data
-> plt.errorbar(center, hist, xerr = xerrs, yerr = yerrs,
->                        linestyle = 'None', color = 'black',
->                        marker = 'o', label = 'Data')
->plt.title('$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n', fontsize = 15)
->plt.xlabel('$m_{4l}$ (GeV)', fontsize = 15)
->plt.ylabel('Events / 3 GeV\n', fontsize = 15)
->plt.ylim(0,25)
->plt.xlim(rmin,rmax)
->plt.legend(fontsize = 15)
+> ax.errorbar(
+>    center,
+>    hist,
+>    xerr = xerrs,
+>    yerr = yerrs,
+>    linestyle = 'None',
+>    color = 'black',
+>    marker = 'o',
+>    label = 'Data'
+>)
+>
+>ax.title('$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n', fontsize = 15)
+>ax.set_xlabel('$m_{4l}$ (GeV)', fontsize = 15)
+>ax.set_ylabel('Events / 3 GeV\n', fontsize = 15)
+>ax.set_ylim(0,25)
+>ax.set_xlim(rmin,rmax)
+>ax.legend(fontsize = 15)
 >hep.cms.label(rlabel='')
 >
->plt.show()
+>fig.show()
 >```
 > ![](../fig/background+data.png)
 {: .solution}
@@ -185,20 +230,27 @@ The following code will plot the signal from the montecarlo simulation of our Hi
 ```python
 # HZZ, our theoretical assumption of a Higgs via two Z bosons.
 
-plt.figure(figsize = (10,5))
+fig, ax = plt.subplots(figsize = (10, 5))
 
-hep.histplot(hzz,
-             stack=True,bins= bins,histtype='fill',
-             color ='w', alpha =1, edgecolor= 'r',
-             label = '$m_{H}$ = 125 GeV' )
-hep.cms.label(rlabel='')
-plt.legend()
+hep.histplot(
+    hzz,
+    stack=True,
+    bins=bins,
+    histtype="fill",
+    color="w",
+    alpha=1,
+    edgecolor="r",
+    label="$m_{H}$ = 125 GeV",
+    ax=ax
+)
+hep.cms.label(rlabel="")
+ax.legend()
 
-plt.xlabel('4l invariant mass (GeV)', fontsize = 15)
-plt.ylabel('Events / 3 GeV\n', fontsize = 15)
-plt.xlim(rmin,rmax)
+ax.set_xlabel("4l invariant mass (GeV)", fontsize=15)
+ax.set_ylabel("Events / 3 GeV\n", fontsize=15)
+ax.set_xlim(rmin, rmax)
 
-plt.show()
+fig.show()
 ```
 
 ![](../fig/hzz.png)
@@ -209,29 +261,46 @@ plt.show()
 
 > ## Solution
 >```python
->plt.figure(figsize = (15,5))
+>fig, ax = plt.subplots(figsize = (15, 5))
 >
 >xerrs = [width*0.5 for i in range(0, nbins)]
 >yerrs = np.sqrt(hist)
 >
->hep.histplot([ttbar,dy,zz,hzz],
->             stack=True,bins= bins,histtype='fill',
->             color = ['grey','g','b','w'], alpha =[.5,.5,.5,1], edgecolor= ['k','k','k','r'],
->             label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l','$m_{H}$ = 125 GeV'])
+>hep.histplot(
+>    [ttbar,dy,zz,hzz],
+>    stack=True,
+>    bins=bins,
+>    histtype='fill',
+>    color=['grey','g','b','w'],
+>    alpha=[.5,.5,.5,1],
+>    edgecolor=['k','k','k','r'],
+>    label=[r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l','$m_{H}$ = 125 GeV'],
+>    ax=ax
+>)
+>
 >hep.cms.label(rlabel='')
 >
 ># Measured data
->data_bar = plt.errorbar(center, hist, xerr = xerrs, yerr = yerrs, linestyle = 'None', color = 'black',
->                        marker = 'o', label = 'Data')
+>ax.errorbar(
+>    center,
+>    hist,
+>    xerr = xerrs,
+>    yerr = yerrs,
+>    linestyle = 'None',
+>    color = 'black',
+>    marker = 'o',
+>    label = 'Data'
+>)
 >
->plt.title('$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n', fontsize = 16)
->plt.xlabel('$m_{4l}$ (GeV)', fontsize = 15)
->plt.ylabel('Events / 3 GeV\n', fontsize = 15)
->plt.ylim(0,25)
->plt.xlim(rmin,rmax)
->plt.legend(fontsize = 15)
->plt.savefig("final-plot.png",dpi=140)
->plt.show()
+>ax.title('$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n', fontsize = 16)
+>ax.set_xlabel('$m_{4l}$ (GeV)', fontsize = 15)
+>ax.set_ylabel('Events / 3 GeV\n', fontsize = 15)
+>ax.set_ylim(0,25)
+>ax.set_xlim(rmin,rmax)
+>ax.legend(fontsize = 15)
+>
+>fig.savefig("final-plot.png",dpi=140)
+>fig.show()
 >```
 {: .solution}
 
