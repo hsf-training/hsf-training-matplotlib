@@ -125,6 +125,7 @@ hep.histplot(
     alpha=0.5,
     edgecolor="black",
     label=r"ZZ $\rightarrow$ 4l",
+    ax=ax
 )
 
 ax.set_xlabel("4l invariant mass (GeV)", fontsize=15)
@@ -189,7 +190,8 @@ yerrs = np.sqrt(hist)
 >    color = ['grey','g','b'], 
 >    alpha = .5, 
 >    edgecolor = 'black',
->    label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l']
+>    label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l'],
+>    ax=ax
 >)
 >
 > # Measured data
@@ -239,6 +241,7 @@ hep.histplot(
     alpha=1,
     edgecolor="r",
     label="$m_{H}$ = 125 GeV",
+    ax=ax
 )
 hep.cms.label(rlabel="")
 ax.legend()
@@ -271,7 +274,8 @@ fig.show()
 >    color=['grey','g','b','w'], 
 >    alpha=[.5,.5,.5,1], 
 >    edgecolor=['k','k','k','r'],
->    label=[r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l','$m_{H}$ = 125 GeV']
+>    label=[r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l','$m_{H}$ = 125 GeV'],
+>    ax=ax
 >)
 >
 >hep.cms.label(rlabel='')
