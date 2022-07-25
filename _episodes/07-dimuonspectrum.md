@@ -215,7 +215,7 @@ $$p_{\rm z parent} = p_{\rm z child 0} + p_{\rm y child 1} + p_{\rm z child 2} +
 
 ## Looping over all the muons and checking for the possible charge combinations
 
-First, let's assume that each event only has 2 muons. We will loop over both muons and keep under seperate lists those with same charge (\+,\+) or (\-,\-) and those with opposite charge (\+-,\-+)
+First, let's assume that each event only has 2 muons. We will loop over both muons and keep under separate lists those with same charge (\+,\+) or (\-,\-) and those with opposite charge (\+-,\-+)
 
 ```python
 def invmass(e, px, py, pz):
