@@ -11,7 +11,7 @@ objectives:
 - "Add error bars to the plot."
 - "Perform a Data vs. MC plot comparison."
 keypoints:
-- "In High-energy physics, histograms are used to analyze different data and MC distributions." 
+- "In High-energy physics, histograms are used to analyze different data and MC distributions."
 - "With Matplotlib, data can be binned and histograms can be plotted in a few lines."
 - "Using [Uproot](https://github.com/scikit-hep/uproot5) and Matplotlib, data in ROOT files can be display without need of a full ROOT installation."
 - "Histograms can be stacked and/or overlapped to make comparison between recorded and simulated data."
