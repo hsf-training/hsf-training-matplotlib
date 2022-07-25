@@ -3,11 +3,14 @@ title: "Dimuon spectrum"
 teaching: 45
 exercises: 15
 questions:
-- "How to plot the DiMuon mass spectrum with matplotlib or mplhep"
+- "Can you get the di-muon mass spectrum with Matplotlib and mplhep?"
 objectives:
-- "Apply our knowledge to other examples and other data formats"
+- "Time to apply your knowledge for producing a nice plot!"
+- "Learn about other data formats beside ROOT"
 keypoints:
-- "When in doubt use mplhep!"
+- "Any data format that can be loaded as an object in Python can be plotted using Matplotlib."
+- "Not always the default values will provide meaningful plots. When needed try to zoom changing the ranges in the distributions."
+- "When in doubt, check the documentation! The web is also full of good examples."
 ---
 
 # Introduction

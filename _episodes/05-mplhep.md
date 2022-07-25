@@ -3,11 +3,14 @@ title: "Plotting with mplhep for HEP style plotting"
 teaching: 30
 exercises: 15
 questions:
-- "How can I plot a data at publication quality?"
+- "How can I plot data at publication quality?"
+- "Which styles from HEP experiments are available?"
 objectives:
-- "Learn how to reproduce a (CMS/ATLAS) quality plot"
+- "Learn how to reproduce a plot with HEP experiments style using mplhep"
 keypoints:
-- "Use mplhep!"
+- "[Mplhep](https://github.com/scikit-hep/mplhep) is a wrapper for easily apply plotting styles approved in the HEP collaborations."
+- "Styles for LHC experiments (CMS, ATLAS, LHCb and ALICE) are available."
+- "If you would like to include a style for your collaboration, ask for it [opening an issue](https://github.com/scikit-hep/mplhep/issues)!"
 ---
 
 # Introduction

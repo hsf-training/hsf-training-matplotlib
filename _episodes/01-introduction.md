@@ -3,11 +3,17 @@ title: "Introduction"
 teaching: 60
 exercises: 30
 questions:
-- "Why use matplotlib for HEP?"
+- "Why to use Matplotlib for HEP?"
+- "What kind of plots can be done"
 objectives:
-- "Understand why matplotlib is useful for HEP"
+- "Understand the basics of Matplotlib"
+- "Learn how to manipulate the elements of a plot"
 keypoints:
-- "Matplotlib is great for HEP!"
+- "Matplotlib graphs data in Figures, each of which can contain components that can be manipulated: axis, legend, labels, etc."
+- "Many kinds of plots can be produced: scatter plots, bar plots, pie charts, and many more"
+- "HEP styling is available via the `mplhep` package, with recommended plotting styles from LHC experiments"
+- "Matplotlib can take objects containing data and bin them to produce histograms (which are very common in HEP)"
+- "Check the [Matplotlib documentation](https://matplotlib.org/) for getting details on all the available options"
 ---
 The example-based nature of [Matplotlib documentation](https://matplotlib.org/) is GREAT.
 
