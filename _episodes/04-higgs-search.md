@@ -262,7 +262,7 @@ branches["data_A"]["sum_good_lep"] == 4
 ~~~
 {: .output}
 
-We can save this array in a variable to use later in a more complicated combination of requirements using the &, | and ~ logical operators.
+We can save this array in a variable to use later in a more complicated combination of requirements using the `&`, `|` and `~` logical operators.
 
 ~~~
 sum_leptons_test = branches["data_A"]["sum_good_lep"] == 4
