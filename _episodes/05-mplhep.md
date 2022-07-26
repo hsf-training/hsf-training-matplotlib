@@ -119,7 +119,7 @@ We will look at how these numbers contribute what is measured in the accelerator
 ```python
 # ZZ, a pair of heavier bosons.
 
-fig, ax = plt.subplots(figsize = (10, 5))
+fig, ax = plt.subplots(figsize=(10, 5))
 hep.histplot(
     zz,
     bins=bins,
@@ -182,40 +182,43 @@ yerrs = np.sqrt(hist)
 > ## Solution (don't look before trying yourself)
 > ```python
 >
->xerrs = [width*0.5 for i in range(0, nbins)]
+>xerrs = [width * 0.5 for i in range(0, nbins)]
 >yerrs = np.sqrt(hist)
->fig, ax = plt.subplots(figsize = (10, 5))
+>fig, ax = plt.subplots(figsize=(10, 5))
 >hep.histplot(
->    [ttbar,dy,zz],
->    stack = True,
->    bins = bins,
->    histtype = 'fill',
->    color = ['grey','g','b'],
->    alpha = .5,
->    edgecolor = 'black',
->    label = [r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l'],
+>    [ttbar, dy, zz],
+>    stack=True,
+>    bins=bins,
+>    histtype="fill",
+>    color=["grey", "g", "b"],
+>    alpha=0.5,
+>    edgecolor="black",
+>    label=[r"$t\bar{t}$", "Z/$\gamma^{*}$ + X", r"ZZ $\rightarrow$ 4l"],
 >    ax=ax
 >)
 >
-> # Measured data
-> ax.errorbar(
+># Measured data
+>ax.errorbar(
 >    center,
 >    hist,
->    xerr = xerrs,
->    yerr = yerrs,
->    linestyle = 'None',
->    color = 'black',
->    marker = 'o',
->    label = 'Data'
+>    xerr=xerrs,
+>    yerr=yerrs,
+>    linestyle="None",
+>    color="black",
+>    marker="o",
+>    label="Data"
 >)
 >
->ax.title('$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n', fontsize = 15)
->ax.set_xlabel('$m_{4l}$ (GeV)', fontsize = 15)
->ax.set_ylabel('Events / 3 GeV\n', fontsize = 15)
->ax.set_ylim(0,25)
->ax.set_xlim(rmin,rmax)
->ax.legend(fontsize = 15)
->hep.cms.label(rlabel='')
+>ax.title(
+>    "$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n",
+>    fontsize=15,
+>)
+>ax.set_xlabel("$m_{4l}$ (GeV)", fontsize=15)
+>ax.set_ylabel("Events / 3 GeV\n", fontsize=15)
+>ax.set_ylim(0, 25)
+>ax.set_xlim(rmin, rmax)
+>ax.legend(fontsize=15)
+>hep.cms.label(rlabel="")
 >
 >fig.show()
 >```
@@ -233,7 +236,7 @@ The following code will plot the signal from the montecarlo simulation of our Hi
 ```python
 # HZZ, our theoretical assumption of a Higgs via two Z bosons.
 
-fig, ax = plt.subplots(figsize = (10, 5))
+fig, ax = plt.subplots(figsize=(10, 5))
 
 hep.histplot(
     hzz,
@@ -264,45 +267,53 @@ fig.show()
 
 > ## Solution
 >```python
->fig, ax = plt.subplots(figsize = (15, 5))
+>fig, ax = plt.subplots(figsize=(15, 5))
 >
->xerrs = [width*0.5 for i in range(0, nbins)]
+>xerrs = [width * 0.5 for i in range(0, nbins)]
 >yerrs = np.sqrt(hist)
 >
 >hep.histplot(
->    [ttbar,dy,zz,hzz],
+>    [ttbar, dy, zz, hzz],
 >    stack=True,
 >    bins=bins,
->    histtype='fill',
->    color=['grey','g','b','w'],
->    alpha=[.5,.5,.5,1],
->    edgecolor=['k','k','k','r'],
->    label=[r'$t\bar{t}$','Z/$\gamma^{*}$ + X',r'ZZ $\rightarrow$ 4l','$m_{H}$ = 125 GeV'],
+>    histtype="fill",
+>    color=["grey", "g", "b", "w"],
+>    alpha=[0.5, 0.5, 0.5, 1],
+>    edgecolor=["k", "k", "k", "r"],
+>    label=[
+>        r"$t\bar{t}$",
+>        "Z/$\gamma^{*}$ + X",
+>        r"ZZ $\rightarrow$ 4l",
+>        "$m_{H}$ = 125 GeV",
+>    ],
 >    ax=ax
 >)
 >
->hep.cms.label(rlabel='')
+>hep.cms.label(rlabel="")
 >
 ># Measured data
 >ax.errorbar(
 >    center,
 >    hist,
->    xerr = xerrs,
->    yerr = yerrs,
->    linestyle = 'None',
->    color = 'black',
->    marker = 'o',
->    label = 'Data'
+>    xerr=xerrs,
+>    yerr=yerrs,
+>    linestyle="None",
+>   color="black",
+>    marker="o",
+>    label="Data"
 >)
 >
->ax.title('$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n', fontsize = 16)
->ax.set_xlabel('$m_{4l}$ (GeV)', fontsize = 15)
->ax.set_ylabel('Events / 3 GeV\n', fontsize = 15)
->ax.set_ylim(0,25)
->ax.set_xlim(rmin,rmax)
->ax.legend(fontsize = 15)
+>ax.title(
+>    "$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n",
+>    fontsize=16,
+>)
+>ax.set_xlabel("$m_{4l}$ (GeV)", fontsize=15)
+>ax.set_ylabel("Events / 3 GeV\n", fontsize=15)
+>ax.set_ylim(0, 25)
+>ax.set_xlim(rmin, rmax)
+>ax.legend(fontsize=15)
 >
->fig.savefig("final-plot.png",dpi=140)
+>fig.savefig("final-plot.png", dpi=140)
 >fig.show()
 >```
 {: .solution}
