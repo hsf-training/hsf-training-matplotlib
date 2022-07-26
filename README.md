@@ -3,7 +3,7 @@
 # Plotting with matplotlib
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Contributing
@@ -44,6 +44,9 @@ the content of the lesson:
     <td align="center"><a href="https://github.com/ekauffma"><img src="https://avatars.githubusercontent.com/u/65742271?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ekauffma</b></sub></a><br /><a href="#content-ekauffma" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/amanmdesai"><img src="https://avatars.githubusercontent.com/u/98302868?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aman Desai</b></sub></a><br /><a href="#content-amanmdesai" title="Content">🖋</a></td>
     <td align="center"><a href="https://www.lieret.net"><img src="https://avatars.githubusercontent.com/u/13602468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kilian Lieret</b></sub></a><br /><a href="#content-klieret" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/michmx"><img src="https://avatars.githubusercontent.com/u/2147367?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michel H. Villanueva</b></sub></a><br /><a href="#content-michmx" title="Content">🖋</a></td>
   </tr>
 </table>
 
