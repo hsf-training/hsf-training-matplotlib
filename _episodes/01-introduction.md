@@ -225,11 +225,11 @@ Here are a few example for combinations of these.
 > x1 = np.linspace(1, 10)
 > y1, y2, y3 = np.log(x1), np.cos(x1), np.sin(x1)
 > fig, ax = plt.subplots()  # Create a figure containing a single axes.
-> ax.plot(x1, y1, linestyle="--", label="Dashed line")  # Create
+> ax.plot(x1, y1, linestyle="--", label="Dashed line")
 > ax.plot(x1, y2, linestyle=":", label="Dotted line style")
 > ax.plot(x1, y3, marker="o", label="Circle marker")
 > ax.legend()
-> plt.show()
+> fig.show()
 > ```
 {: .solution}
 
