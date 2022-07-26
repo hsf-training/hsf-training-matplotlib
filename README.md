@@ -3,7 +3,7 @@
 # Plotting with matplotlib
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Contributing
@@ -42,6 +42,7 @@ the content of the lesson:
     <td align="center"><a href="https://github.com/GuillermoFidalgo"><img src="https://avatars.githubusercontent.com/u/17858942?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Guillermo A. Fidalgo-Rodríguez</b></sub></a><br /><a href="#content-GuillermoFidalgo" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/Marchela04"><img src="https://avatars.githubusercontent.com/u/68828366?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marchela04</b></sub></a><br /><a href="#content-Marchela04" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/ekauffma"><img src="https://avatars.githubusercontent.com/u/65742271?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ekauffma</b></sub></a><br /><a href="#content-ekauffma" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/amanmdesai"><img src="https://avatars.githubusercontent.com/u/98302868?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aman Desai</b></sub></a><br /><a href="#content-amanmdesai" title="Content">🖋</a></td>
   </tr>
 </table>
 
