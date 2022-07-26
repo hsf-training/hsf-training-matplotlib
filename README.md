@@ -47,6 +47,7 @@ the content of the lesson:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/wdconinc"><img src="https://avatars.githubusercontent.com/u/4656391?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wouter Deconinck</b></sub></a><br /><a href="#content-wdconinc" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/michmx"><img src="https://avatars.githubusercontent.com/u/2147367?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michel H. Villanueva</b></sub></a><br /><a href="#content-michmx" title="Content">🖋</a></td>
   </tr>
 </table>
 
