@@ -477,7 +477,7 @@ To make more easy the data vs. MC final plot, we can define the following helper
 When we want to make a plot that includes uncertainties we need to use the `plt.errorbar` function.
 
 ~~~
-def plotData(data_var, range_ab, bins_samples):
+def plot_data(data_var, range_ab, bins_samples):
     data_hist, bins = np.histogram(data_var, range=range_ab, bins=bins_samples)
     print(data_hist, bins)
     data_hist_errors = np.sqrt(data_hist)
@@ -494,7 +494,7 @@ Finally, we can include the MC and data in the same figure, and see if they are 
 ~~~
 fig, ax = plt.subplots()
 fig.set_size_inches((10, 8))
-plotData(stack_data_list_m4l, ranges[0], bins)
+plot_data(stack_data_list_m4l, ranges[0], bins)
 h1 = plt.hist(
     stack_mc_list_m4l,
     range=ranges[0],
@@ -519,7 +519,7 @@ ax.legend(fontsize=18, frameon=False)
 > > ~~~
 > > fig, ax = plt.subplots()
 > > fig.set_size_inches((12, 8))
-> > plotData(stack_data_list_m4l, ranges[0], bins)
+> > plot_data(stack_data_list_m4l, ranges[0], bins)
 > > h1 = plt.hist(
 > >     stack_mc_list_m4l,
 > >     range=ranges[0],
