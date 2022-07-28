@@ -298,4 +298,8 @@ If you want to know what other parameters are available for the `plot` function,
 
 You can also use the built-in python functions `dir(obj)` and `help(obj)` for information on the methods and immediate documentation of the python objects given as an argument.
 
+> ## Note
+> Matplotlib also has some [cheatsheets and handouts](https://matplotlib.org/cheatsheets/) which might be useful for quick reference!
+{: .callout}
+
 {% include links.md %}
