@@ -4,7 +4,7 @@ teaching: 60
 exercises: 30
 questions:
 - "Why to use Matplotlib for HEP?"
-- "What kind of plots can be done"
+- "What kind of plots can be done?"
 objectives:
 - "Understand the basics of Matplotlib"
 - "Learn how to manipulate the elements of a plot"
