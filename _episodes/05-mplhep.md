@@ -24,9 +24,11 @@ The method used is pretty common and useful for many purposes. First we have som
 
 # Install mplhep and setup
 
-```python
+```bash
 pip install mplhep
+```
 
+```python
 import mplhep as hep
 import numpy as np
 import pandas as pd
