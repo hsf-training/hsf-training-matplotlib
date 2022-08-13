@@ -33,7 +33,7 @@ Matplotlib graphs your data on Figures (i.e., windows, Jupyter widgets, etc.), e
 ```python
 fig, ax = plt.subplots()  # Create a figure containing a single axes.
 ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # Plot some data on the axes.
-plt.show() # Show the figure
+plt.show()  # Show the figure
 ```
 
 This code produces the following figure:
@@ -85,14 +85,15 @@ For the following example you will need these lines as a starting point.
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
-#generate data points
-x1 = np.linspace(1,10)
-y1,y2,y3 = np.log(x1),np.cos(x1),np.sin(x1)
 
-#plotting
-plt.plot(x1,y1)
-plt.plot(x1,y2)
-plt.plot(x1,y3)
+# generate data points
+x1 = np.linspace(1, 10)
+y1, y2, y3 = np.log(x1), np.cos(x1), np.sin(x1)
+
+# plotting
+plt.plot(x1, y1)
+plt.plot(x1, y2)
+plt.plot(x1, y3)
 plt.show()
 ```
 
@@ -116,9 +117,9 @@ When you are done with it, only then you may use the `plt.show()` as this will d
 There are different ways to create a legend in matplotlib but the easiest one to use would be to pass the keyword argument `label` inside the `plt.plot()` and use the `plt.legend()` command to automatically detect and show the individual labels on the canvas
 
 ```python
-plt.plot(x1,y1,label="log")
-plt.plot(x1,y2,label="cos")
-plt.plot(x1,y3,label="sin")
+plt.plot(x1, y1, label="log")
+plt.plot(x1, y2, label="cos")
+plt.plot(x1, y3, label="sin")
 
 plt.legend()
 ```
@@ -128,7 +129,7 @@ plt.legend()
 As mentioned, by default `plt.plot` creates the canvas automatically. We can have finer control over the shape and quality of the plots by using the `plt.figure` command using the keyword arguments `figsize` and `dpi` as follows.
 
 ```python
-plt.figure(figsize = (10,10), dpi = 150)
+plt.figure(figsize=(10, 10), dpi=150)
 ```
 
 This has to be set **before** any instance of `plt.plot` and it sets the width and height to 10 and 10 inches respectively. The keyword `dpi` refers to a density of *Dots Per Inch*.
@@ -161,7 +162,7 @@ By default python will drop some ticks on the y and x axis but we can have contr
 - `ticks` : When this argument is specified with an array-like object, you can control the location of the ticks to show. For example :
 
 ```python
-plt.yticks(ticks=[1,2,5,6,7])
+plt.yticks(ticks=[1, 2, 5, 6, 7])
 ```
 
 Will only show the numbers `[1,2,5,6,7]` in their proper location.
@@ -169,7 +170,7 @@ Will only show the numbers `[1,2,5,6,7]` in their proper location.
 - `labels` : This can only be used if `ticks` is also specified. This will be the physical text shown on each of the locations specified by `ticks`. For example:
 
 ```python
-plt.yticks(ticks=[1,2,5,6,7],labels = ["One",2,"Five","Then sixth","The Last"])
+plt.yticks(ticks=[1, 2, 5, 6, 7], labels=["One", 2, "Five", "Then sixth", "The Last"])
 ```
 
 Will show each of the specified labels in the locations as specified by `ticks`
@@ -241,11 +242,12 @@ We have available a useful python package called [mplhep](https://mplhep.readthe
 
 ```python
 import mplhep as hep
-hep.style.use(hep.style.ROOT) # For now ROOT defaults to CMS
+
+hep.style.use(hep.style.ROOT)  # For now ROOT defaults to CMS
 # Or choose one of the experiment styles
 hep.style.use(hep.style.ATLAS)
 # or
-hep.style.use("CMS") # string aliases work too
+hep.style.use("CMS")  # string aliases work too
 # {"ALICE" | "ATLAS" | "CMS" | "LHCb1" | "LHCb2"}
 ```
 
@@ -275,18 +277,16 @@ We will discuss histograms more in detail later but here is an example code and 
 
 ```python
 # first lets get some fake data
-data=np.random.normal(size=10_000)
+data = np.random.normal(size=10_000)
 
 # now lets make the plot
-counts,bin_edges,_=plt.hist(data,bins=50,histtype='step')
+counts, bin_edges, _ = plt.hist(data, bins=50, histtype="step")
 
 # we need to get the centers in order get the correct location for the errobars
-bin_centers= bin_edges[:-1] + np.diff(bin_edges)/2
+bin_centers = bin_edges[:-1] + np.diff(bin_edges) / 2
 
 # add error bars
-plt.errorbar(bin_centers,counts,
-             yerr=np.sqrt(counts),
-             fmt='none')
+plt.errorbar(bin_centers, counts, yerr=np.sqrt(counts), fmt="none")
 plt.show()
 ```
 
