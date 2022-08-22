@@ -268,6 +268,12 @@ fig.show()
 {: .challenge}
 
 > ## Solution
+> Theory:
+> First, rest mass is not a conserved quantity.
+> The important idea is that in Higgs rest frame two Z bosons of 90 GeV each cannot be produced.
+> Secondly, the Higgs decays to one Z boson which is on-shell whereas the other Z boson is off-shell.
+> (On-shell particles are the ones that obey $$ E^2 = p^2 + m^2 $$ whereas off-shell particles do not.)
+>
 >```python
 >fig, ax = plt.subplots(figsize=(15, 5))
 >
