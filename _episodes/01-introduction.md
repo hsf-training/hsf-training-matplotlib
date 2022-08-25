@@ -71,7 +71,7 @@ Or the more traditional way
 
 Now, let's have a deeper look at the components of a Matplotlib figure.
 
-![parts of image](https://matplotlib.org/stable/_images/anatomy.png)
+![Names for different parts of a matplotlib plot](https://matplotlib.org/stable/_images/anatomy.png)
 
 ## How to work with some of these elements?
 
