@@ -19,6 +19,7 @@ repos:
       - id: check-symlinks
       - id: debug-statements
       - id: end-of-file-fixer
+      - id: blacken-docs
         files: ^(_episodes|README.md|setup.md)
       - id: mixed-line-ending
       - id: trailing-whitespace
