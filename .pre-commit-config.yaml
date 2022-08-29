@@ -32,6 +32,7 @@ repos:
         files: '.*\.md'
 
 - repo: https://https://github.com/asottile/blacken-docs
+    rev: "v1.12.1"
     hooks:
       - id: blacken-docs
         files: '.*\.md'
