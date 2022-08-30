@@ -131,7 +131,7 @@ hep.histplot(
     alpha=0.5,
     edgecolor="black",
     label=r"ZZ $\rightarrow$ 4l",
-    ax=ax
+    ax=ax,
 )
 
 ax.set_xlabel("4l invariant mass (GeV)", fontsize=15)
@@ -250,7 +250,7 @@ hep.histplot(
     alpha=1,
     edgecolor="r",
     label="$m_{H}$ = 125 GeV",
-    ax=ax
+    ax=ax,
 )
 hep.cms.label(rlabel="")
 ax.legend()
