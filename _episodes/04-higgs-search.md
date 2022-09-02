@@ -466,7 +466,7 @@ def plot_data(data_var, range_ab, bins_samples):
     print(data_hist, bins)
     data_hist_errors = np.sqrt(data_hist)
     bin_center = (bins[1:] + bins[:-1]) / 2
-    h0 = plt.errorbar(
+    h0 = ax.errorbar(
         x=bin_center, y=data_hist, yerr=data_hist_errors, fmt="ko", label="Data"
     )
 ```
@@ -478,7 +478,7 @@ Finally, we can include the MC and data in the same figure, and see if they are 
 fig, ax = plt.subplots()
 fig.set_size_inches((10, 8))
 plot_data(stack_data_list_m4l, ranges[0], bins)
-h1 = plt.hist(
+h1 = ax.hist(
     stack_mc_list_m4l,
     range=ranges[0],
     label=mc_samples,
@@ -502,7 +502,7 @@ ax.legend(fontsize=18, frameon=False)
 > > fig, ax = plt.subplots()
 > > fig.set_size_inches((12, 8))
 > > plot_data(stack_data_list_m4l, ranges[0], bins)
-> > h1 = plt.hist(
+> > h1 = ax.hist(
 > >     stack_mc_list_m4l,
 > >     range=ranges[0],
 > >     label=mc_samples,
