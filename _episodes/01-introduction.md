@@ -49,7 +49,7 @@ This code produces the following figure:
 > ```
 >
 >But what is useful is that if we wanted to do more than one plot in the same figure we could do this in two main ways.
-```python
+>```python
 > ax.plot(xpoints,ypoints , xpoints_2,ypoints_2, xpoints_3,ypoints_3)
 > ```
 > Or the more traditional way
