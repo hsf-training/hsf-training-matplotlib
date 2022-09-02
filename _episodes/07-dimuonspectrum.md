@@ -176,7 +176,7 @@ ax.hist(
 )
 
 ax.set_xlabel(r"$\mu_{mass}$ [GeV]")
-ax.title("Muon Mass spectrum")
+ax.set_title("Muon Mass spectrum")
 plt.show()
 ```
 
