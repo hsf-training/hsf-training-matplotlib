@@ -458,7 +458,7 @@ len(stack_data_list_m4l)
 {: .output}
 
 To make more easy the data vs. MC final plot, we can define the following helper function that makes a histogram of the data and calculates the poisson uncertainty in each bin.
-When we want to make a plot that includes uncertainties we need to use the `plt.errorbar` function.
+When we want to make a plot that includes uncertainties we need to use the `ax.errorbar` function.
 
 ```python
 def plot_data(data_var, range_ab, bins_samples):
