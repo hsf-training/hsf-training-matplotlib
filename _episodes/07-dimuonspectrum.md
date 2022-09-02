@@ -168,14 +168,15 @@ M = (e**2 - (px**2 + py**2 + pz**2))**.5
 Make a histogram of the values of the Mass
 
 ```python
-plt.hist(
+fig, ax = plt.subplots()
+ax.hist(
     M,
     bins=100,
     histtype="step",
 )
 
-plt.xlabel(r"$\mu_{mass}$ [GeV]")
-plt.title("Muon Mass spectrum")
+ax.xlabel(r"$\mu_{mass}$ [GeV]")
+ax.title("Muon Mass spectrum")
 plt.show()
 ```
 
@@ -191,7 +192,8 @@ Using the code above, zoom in and fix the above plot to help **visually** estima
 
 > ## Solution
 >```python
->plt.hist(M, bins=100, log=False, histtype="step", range=(0.1, 0.11))
+>fig, ax = plt.subplots()
+>ax.hist(M, bins=100, log=False, histtype="step", range=(0.1, 0.11))
 >plt.show()
 >```
 >
@@ -298,7 +300,7 @@ pp, nn, pm = masses[pp_mask], masses[nn_mask], masses[pm_mask]
 
 ## Now we plot for all combinations
 
-I would like you to make these 4 histograms *in 4 different ways* focusing on on different mass ranges. To look at these mass ranges, you'll want to use the `bins` and `range` options in the `plt.hist()` function.
+I would like you to make these 4 histograms *in 4 different ways* focusing on on different mass ranges. To look at these mass ranges, you'll want to use the `bins` and `range` options in the `ax.hist()` function.
 
 - *Mass range 1*: 0 - 120
 - *Mass range 2*: 2 - 4
@@ -343,14 +345,13 @@ You could use the `np.logspace()` function for the binning. It helps in returnin
 > ## Solution
 >```python
 >logbins = np.logspace(0, 2.5, 200)
->
->plt.hist(pm, bins=logbins, histtype="step")
->
->plt.xlabel("mass (GeV/$c^2$)")
->plt.ylabel("Events")
->plt.xscale("log")
->plt.title("Mass of dimuons per event")
->plt.autoscale()
+>fig, ax = plt.subplots()
+>ax.hist(pm, bins=logbins, histtype="step")
+>ax.xlabel("mass (GeV/$c^2$)")
+>ax.ylabel("Events")
+>ax.xscale("log")
+>ax.title("Mass of dimuons per event")
+>ax.autoscale()
 >
 >plt.show()
 >```
