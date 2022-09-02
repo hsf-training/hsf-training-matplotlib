@@ -480,7 +480,7 @@ Finally, we can include the MC and data in the same figure, and see if they are 
 fig, ax = plt.subplots()
 fig.set_size_inches((10, 8))
 plot_data(stack_data_list_m4l, ranges[0], bins)
-h1 = ax.hist(
+ax.hist(
     stack_mc_list_m4l,
     range=ranges[0],
     label=mc_samples,
@@ -504,7 +504,7 @@ ax.legend(fontsize=18, frameon=False)
 > > fig, ax = plt.subplots()
 > > fig.set_size_inches((12, 8))
 > > plot_data(stack_data_list_m4l, ranges[0], bins)
-> > h1 = ax.hist(
+> > ax.hist(
 > >     stack_mc_list_m4l,
 > >     range=ranges[0],
 > >     label=mc_samples,
