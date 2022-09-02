@@ -98,11 +98,12 @@ plt.show()
 
 ### Axes Labels
 
-In order to produce axes labels in matplotlib one uses the self descriptive command `xlabel` or `ylabel` like so
+In order to produce axes labels in matplotlib one uses the self descriptive command `set_xlabel` or `set_ylabel` like so
 
 ```python
-plt.xlabel("X values")
-plt.ylabel("Y values")
+fig, ax = plt.subplots()
+ax.set_xlabel("X values")
+ax.set_ylabel("Y values")
 ```
 
 One can also control the location, orientation and size of the text by adding the keyword arguments `size = 15, orientation = 45`
@@ -113,14 +114,14 @@ When you are done with it, only then you may use the `plt.show()` as this will d
 
 ### Legend
 
-There are different ways to create a legend in matplotlib but the easiest one to use would be to pass the keyword argument `label` inside the `plt.plot()` and use the `plt.legend()` command to automatically detect and show the individual labels on the canvas
+There are different ways to create a legend in matplotlib but the easiest one to use would be to pass the keyword argument `label` inside the `plt.plot()` and use the `ax.legend()` command to automatically detect and show the individual labels on the canvas
 
 ```python
 fig, ax = plt.subplots()
 ax.plot(x1, y1, label="log")
 ax.plot(x1, y2, label="cos")
 ax.plot(x1, y3, label="sin")
-plt.legend()
+ax.legend()
 plt.show()
 ```
 
@@ -129,7 +130,7 @@ plt.show()
 As mentioned, by default `plt.plot` creates the canvas automatically. We can have finer control over the shape and quality of the plots by using the `plt.figure` command using the keyword arguments `figsize` and `dpi` as follows.
 
 ```python
-plt.figure(figsize=(10, 10), dpi=150)
+fig, ax = plt.subplots(figsize=(10, 10), dpi=150)
 ```
 
 This has to be set **before** any instance of `plt.plot` and it sets the width and height to 10 and 10 inches respectively. The keyword `dpi` refers to a density of *Dots Per Inch*.
@@ -137,20 +138,20 @@ There is no particular reason to choose 150 as the value for dpi but there is a 
 
 ### Title
 
-The title of a plot is placed at the top of the figure with the command `plt.title`
+The title of a plot is placed at the top of the figure with the command `ax.set_title`
 
 ```python
-plt.title("A figure with multiple lines")
+ax.set_title("A figure with multiple lines")
 ```
 
 We can control the font size of the labels, the title and any text by passing the `fontsize` argument and giving any integer. This will determine the size in points.
 
 ### Grid
 
-Now lets add a grid with `plt.grid`. This is self explanatory.
+Now lets add a grid with `ax.grid`. This is self explanatory.
 
 ```python
-plt.grid()
+ax.grid()
 ```
 
 Another nice thing is that we can add the `alpha` argument to make the lines of the grid more or less "see through". This can also be done lines, dots, shades, and almost anything else that has color.
