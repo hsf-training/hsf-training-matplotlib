@@ -162,7 +162,7 @@ px, py, pz = np.delete(px, cut), np.delete(py, cut), np.delete(pz, cut)
 Let's calculate the mass
 
 ```python
-M = (e**2 - (px**2 + py**2 + pz**2))**.5
+M = (e**2 - (px**2 + py**2 + pz**2)) ** 0.5
 ```
 
 Make a histogram of the values of the Mass
@@ -241,7 +241,12 @@ Let's use `numpy` to write the same code in a more compact and performant style:
 
 ```python
 def invmass(e, px, py, pz):
-    return np.sqrt(np.abs(e.sum(axis=-1)**2 - (px.sum(axis=-1)**2 + py.sum(axis=-1)**2 + pz.sum(axis=-1)**2)))
+    return np.sqrt(
+        np.abs(
+            e.sum(axis=-1) ** 2
+            - (px.sum(axis=-1) ** 2 + py.sum(axis=-1) ** 2 + pz.sum(axis=-1) ** 2)
+        )
+    )
 ```
 
 You might be wondering about the `axis=-1` that we used. This is because it allows our function to both operate on one-dimensional arrays (all particles in an event), or
@@ -275,21 +280,22 @@ for i in range(0, len(q) - 1, 2):  # loop every 2 muons
     else:
         print("anomaly?")
 print("Done!")
-
 ```
 
 Hoewver, again the *proper* way to do this is with numpy. It might be harder to read at first, but once you get used to the syntax, it is actually more transparent:
 
 ```python
 # Use "reshape" to create pairs of particles
-masses = invmass(e.reshape(-1, 2), px.reshape(-1, 2), py.reshape(-1, 2), pz.reshape(-1, 2))
+masses = invmass(
+    e.reshape(-1, 2), px.reshape(-1, 2), py.reshape(-1, 2), pz.reshape(-1, 2)
+)
 
 q_pairs = q.reshape(-1, 2)
 
 # Create masks for our selections
-pm_mask = q_pairs[:,0]*q_pairs[:,1] < 0
-pp_mask = q_pairs[:,0]+q_pairs[:,1] == 2
-nn_mask = q_pairs[:,0]+q_pairs[:,1] == -2
+pm_mask = q_pairs[:, 0] * q_pairs[:, 1] < 0
+pp_mask = q_pairs[:, 0] + q_pairs[:, 1] == 2
+nn_mask = q_pairs[:, 0] + q_pairs[:, 1] == -2
 
 anomaly = ~(pm_mask | pp_mask | nn_mask)
 if anomaly.any():
@@ -362,7 +368,9 @@ You could use the `np.logspace()` function for the binning. It helps in returnin
 Depending on what you did, you may see hints of particles below $$20 GeV/c^2$$. It is possible you see signs of other particles at even higher energies. Plot your masses over a wide range of values, but then zoom in (change the plotting range) on different mass ranges to see if you can identify these particles.
 
 ```python
-Image(url='https://twiki.cern.ch/twiki/pub/CMSPublic/HLTDiMuon2017and2018/CMS_HLT_DimuonMass_Inclusive_2017.png')
+Image(
+    url="https://twiki.cern.ch/twiki/pub/CMSPublic/HLTDiMuon2017and2018/CMS_HLT_DimuonMass_Inclusive_2017.png"
+)
 ```
 
 <img src="https://twiki.cern.ch/twiki/pub/CMSPublic/HLTDiMuon2017and2018/CMS_HLT_DimuonMass_Inclusive_2017.png"/>

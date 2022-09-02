@@ -170,7 +170,9 @@ Will only show the numbers `[1,2,5,6,7]` in their proper location.
 - `labels` : This can only be used if `ticks` is also specified. This will be the physical text shown on each of the locations specified by `ticks`. For example:
 
 ```python
-ax.set_yticks(ticks=[1, 2, 5, 6, 7], labels=["One", 2, "Five", "Then sixth", "The Last"])
+ax.set_yticks(
+    ticks=[1, 2, 5, 6, 7], labels=["One", 2, "Five", "Then sixth", "The Last"]
+)
 ```
 
 Will show each of the specified labels in the locations as specified by `ticks`
