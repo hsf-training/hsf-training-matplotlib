@@ -44,17 +44,15 @@ This code produces the following figure:
 > ## Notice
 > If you look at the plot and the order of the list of numbers you can clearly see that the order of the arguments is of the form
 >
-> ~~~
+> ```python
 > ax.plot(xpoints,ypoints)
-> ~~~
-> {: .language-python}
+> ```
 >
 >But what is useful is that if we wanted to do more than one plot in the same figure we could do this in two main ways.
-> ~~~
+>```python
 > ax.plot(xpoints,ypoints , xpoints_2,ypoints_2, xpoints_3,ypoints_3)
-> ~~~
-> {: .language-python}
-Or the more traditional way
+> ```
+> Or the more traditional way
 > ```python
 > ax.plot(xpoints,ypoints)
 > ax.plot(xpoints_2,ypoints_2)
@@ -91,9 +89,10 @@ x1 = np.linspace(1, 10)
 y1, y2, y3 = np.log(x1), np.cos(x1), np.sin(x1)
 
 # plotting
-plt.plot(x1, y1)
-plt.plot(x1, y2)
-plt.plot(x1, y3)
+fig, ax = plt.subplots()
+ax.plot(x1, y1)
+ax.plot(x1, y2)
+ax.plot(x1, y3)
 plt.show()
 ```
 
@@ -117,11 +116,12 @@ When you are done with it, only then you may use the `plt.show()` as this will d
 There are different ways to create a legend in matplotlib but the easiest one to use would be to pass the keyword argument `label` inside the `plt.plot()` and use the `plt.legend()` command to automatically detect and show the individual labels on the canvas
 
 ```python
-plt.plot(x1, y1, label="log")
-plt.plot(x1, y2, label="cos")
-plt.plot(x1, y3, label="sin")
-
+fig, ax = plt.subplots()
+ax.plot(x1, y1, label="log")
+ax.plot(x1, y2, label="cos")
+ax.plot(x1, y3, label="sin")
 plt.legend()
+plt.show()
 ```
 
 ### The Figure (resize and set the resolution)
@@ -162,7 +162,7 @@ By default python will drop some ticks on the y and x axis but we can have contr
 - `ticks` : When this argument is specified with an array-like object, you can control the location of the ticks to show. For example :
 
 ```python
-plt.yticks(ticks=[1, 2, 5, 6, 7])
+ax.set_yticks((1, 2, 5, 6, 7))
 ```
 
 Will only show the numbers `[1,2,5,6,7]` in their proper location.
@@ -170,7 +170,7 @@ Will only show the numbers `[1,2,5,6,7]` in their proper location.
 - `labels` : This can only be used if `ticks` is also specified. This will be the physical text shown on each of the locations specified by `ticks`. For example:
 
 ```python
-plt.yticks(ticks=[1, 2, 5, 6, 7], labels=["One", 2, "Five", "Then sixth", "The Last"])
+ax.set_yticks(ticks=[1, 2, 5, 6, 7], labels=["One", 2, "Five", "Then sixth", "The Last"])
 ```
 
 Will show each of the specified labels in the locations as specified by `ticks`
@@ -280,13 +280,13 @@ We will discuss histograms more in detail later but here is an example code and 
 data = np.random.normal(size=10_000)
 
 # now lets make the plot
-counts, bin_edges, _ = plt.hist(data, bins=50, histtype="step")
+counts, bin_edges, _ = ax.hist(data, bins=50, histtype="step")
 
 # we need to get the centers in order get the correct location for the errobars
 bin_centers = bin_edges[:-1] + np.diff(bin_edges) / 2
 
 # add error bars
-plt.errorbar(bin_centers, counts, yerr=np.sqrt(counts), fmt="none")
+ax.errorbar(bin_centers, counts, yerr=np.sqrt(counts), fmt="none")
 plt.show()
 ```
 
