@@ -130,7 +130,7 @@ plt.show()
 As mentioned, by default `plt.plot` creates the canvas automatically. We can have finer control over the shape and quality of the plots by using the `plt.figure` command using the keyword arguments `figsize` and `dpi` as follows.
 
 ```python
-fig,ax=plt.subplots(figsize=(10, 10), dpi=150)
+fig, ax = plt.subplots(figsize=(10, 10), dpi=150)
 ```
 
 This has to be set **before** any instance of `plt.plot` and it sets the width and height to 10 and 10 inches respectively. The keyword `dpi` refers to a density of *Dots Per Inch*.
