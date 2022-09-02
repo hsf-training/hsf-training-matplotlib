@@ -175,7 +175,7 @@ ax.hist(
     histtype="step",
 )
 
-ax.xlabel(r"$\mu_{mass}$ [GeV]")
+ax.set_xlabel(r"$\mu_{mass}$ [GeV]")
 ax.title("Muon Mass spectrum")
 plt.show()
 ```
@@ -347,10 +347,10 @@ You could use the `np.logspace()` function for the binning. It helps in returnin
 >logbins = np.logspace(0, 2.5, 200)
 >fig, ax = plt.subplots()
 >ax.hist(pm, bins=logbins, histtype="step")
->ax.xlabel("mass (GeV/$c^2$)")
->ax.ylabel("Events")
->ax.xscale("log")
->ax.title("Mass of dimuons per event")
+>ax.set_xlabel("mass (GeV/$c^2$)")
+>ax.set_ylabel("Events")
+>ax.set_xscale("log")
+>ax.set_title("Mass of dimuons per event")
 >ax.autoscale()
 >
 >plt.show()
