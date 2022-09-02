@@ -467,10 +467,10 @@ def plot_data(data_var, range_ab, bins_samples):
     data_hist_errors = np.sqrt(data_hist)
     bin_center = (bins[1:] + bins[:-1]) / 2
     fig, ax = plt.subplots()
-    h0 = ax.errorbar(
+    ax.errorbar(
         x=bin_center, y=data_hist, yerr=data_hist_errors, fmt="ko", label="Data"
     )
-    plt.show()
+    return fig
 ```
 
 # Data vs. MC plot
