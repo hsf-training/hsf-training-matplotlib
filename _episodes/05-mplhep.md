@@ -169,7 +169,7 @@ To add the CMS logo you can use the `hep.cms.label()` function. [Look here](http
 
 ### Now add the data
 
-It's customary to use `plt.errorbar` as data is usually shown with uncertainties.
+It's customary to use `ax.errorbar` as data is usually shown with uncertainties.
 You can define both errors along the x and the y axis as python lists and add them to your data.
 
 Use this for the uncertainties.
