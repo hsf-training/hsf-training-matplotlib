@@ -108,13 +108,13 @@ ax.set_ylabel("Y values")
 
 One can also control the location, orientation and size of the text by adding the keyword arguments `size = 15, orientation = 45`
 
-An important detail is that when you want to do changes and show them in your plot you must apply these changes between the `plt.plot` and `plt.show()` commands.
-Why? These commands act on the canvas that is currently being drawn, so it should make sense that one has to first create the canvas with the plot with `plt.plot()` and apply changes afterwards.
+An important detail is that when you want to do changes and show them in your plot you must apply these changes between the `ax.plot` and `plt.show()` commands.
+Why? These commands act on the canvas that is currently being drawn, so it should make sense that one has to first create the canvas with the plot with `ax.plot()` and apply changes afterwards.
 When you are done with it, only then you may use the `plt.show()` as this will dump to the screen all changes applied. Any command used after `plt.show()` will return an error since matplotlib does not know what is the canvas to be worked on.
 
 ### Legend
 
-There are different ways to create a legend in matplotlib but the easiest one to use would be to pass the keyword argument `label` inside the `plt.plot()` and use the `ax.legend()` command to automatically detect and show the individual labels on the canvas
+There are different ways to create a legend in matplotlib but the easiest one to use would be to pass the keyword argument `label` inside the `ax.plot()` and use the `ax.legend()` command to automatically detect and show the individual labels on the canvas
 
 ```python
 fig, ax = plt.subplots()
@@ -127,13 +127,13 @@ plt.show()
 
 ### The Figure (resize and set the resolution)
 
-As mentioned, by default `plt.plot` creates the canvas automatically. We can have finer control over the shape and quality of the plots by using the `plt.figure` command using the keyword arguments `figsize` and `dpi` as follows.
+As mentioned, by default `fig, ax = plt.subplots()` creates the canvas automatically. We can have finer control over the shape and quality of the plots by using the keyword arguments `figsize` and `dpi` as follows.
 
 ```python
 fig, ax = plt.subplots(figsize=(10, 10), dpi=150)
 ```
 
-This has to be set **before** any instance of `plt.plot` and it sets the width and height to 10 and 10 inches respectively. The keyword `dpi` refers to a density of *Dots Per Inch*.
+This has to be set **before** any instance of `ax.plot` and it sets the width and height to 10 and 10 inches respectively. The keyword `dpi` refers to a density of *Dots Per Inch*.
 There is no particular reason to choose 150 as the value for dpi but there is a visually a noticeable difference in the size and quality of the plot.
 
 ### Title
@@ -182,7 +182,7 @@ Will show each of the specified labels in the locations as specified by `ticks`
 
 ## Linestyles and markers
 
-The basic `plt.plot` uses lines by default, but we can specify what to use as a marker or the linestyle for each line. Here is a table with the different options available
+The basic `ax.plot` uses lines by default, but we can specify what to use as a marker or the linestyle for each line. Here is a table with the different options available
 
 | character |      description      | character |     description     | character |  color  |
 |:---------:|:---------------------:|:---------:|:-------------------:|:---------:|:-------:|
