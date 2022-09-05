@@ -188,7 +188,7 @@ Doesn't really look like much. How about we fix that!
 
 Using the code above, zoom in and fix the above plot to help **visually** estimate the mass of the muon. Where is the value of the peak at?
 
-*Hint:* Google search for the arguments of the `plt.hist` function
+*Hint:* Google search for the arguments of the `ax.hist` function
 
 > ## Solution
 >```python
