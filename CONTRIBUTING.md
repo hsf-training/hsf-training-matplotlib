@@ -49,7 +49,8 @@ and to meet some of our community members.
 
 2. If you wish to change CSS style files, tools,
     or HTML boilerplate for lessons or workshops stored in `_includes` or `_layouts`,
-    please work in <https://github.com/hsf-training/hsf-styles>.
+    please work in <https://github.com/hsf-training/hsf-training-theme> or
+    <https://github.com/hsf-training/carpentry-cookiecutter>.
 
 ## What to Contribute
 
@@ -68,22 +69,6 @@ Reviews from novices and newcomers are particularly valuable:
 it is easy for people who have been using these lessons for a while
 to forget how impenetrable some of this material can be,
 so fresh eyes are always welcome.
-
-## What *Not* to Contribute
-
-Our lessons already contain more material than we can cover in a typical workshop,
-so we are usually *not* looking for more concepts or tools to add to them.
-As a rule,
-if you want to introduce a new idea,
-you must (a) estimate how long it will take to teach
-and (b) explain what you would take out to make room for it.
-The first encourages contributors to be honest about requirements;
-the second, to think hard about priorities.
-
-We are also not looking for exercises or other material that only run on one platform.
-Our workshops typically contain a mixture of Windows, macOS, and Linux users;
-in order to be usable,
-our lessons must run equally well on all three.
 
 ## Using GitHub
 
@@ -122,5 +107,5 @@ More information on how to contribute or how to contact us: [HSF training home][
 [github]: https://github.com
 [github-flow]: https://guides.github.com/introduction/flow/
 [github-join]: https://github.com/join
-[how-contribute]: https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github
+[how-contribute]: https://docs.github.com/en/get-started/quickstart/contributing-to-projects
 [issues]: https://guides.github.com/features/issues/

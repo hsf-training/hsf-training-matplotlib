@@ -11,7 +11,7 @@ ci:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: "v4.3.0"
+    rev: v4.3.0
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
@@ -23,14 +23,13 @@ repos:
       - id: mixed-line-ending
       - id: trailing-whitespace
         files: ^(_episodes|code|README.md|setup.md)
-        
+
   - repo: https://github.com/codespell-project/codespell
     rev: "v2.2.1"
     hooks:
       - id: codespell
         args: ["-I", "codespell.txt"]
         files: '.*\.md'
-        
 # === END CENTRALLY MAINTAINED FILE ===
 
   - repo: https://github.com/asottile/blacken-docs
