@@ -9,7 +9,7 @@
 > **Note**
 > Click [here](https://hsf-training.github.io/hsf-training-matplotlib/) for the training website!
 
-This training module introduces matplotlib and creates plots commonly used in HEP. 
+This training module introduces matplotlib and creates plots commonly used in HEP.
 It also introduces [mplhep](https://github.com/scikit-hep/mplhep/), a plotting library designed specifically for HEP plots.
 
 ## Contributing
