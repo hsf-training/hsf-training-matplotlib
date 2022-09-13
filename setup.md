@@ -14,9 +14,9 @@ title: Setup
 ## Binder setup
 For this tutorial we will be using [Binder](https://mybinder.org/). It offers a no setup, click and ready to go Jupyter Notebook environment.
 
-We will be using the following [Github Repository](https://github.com/plttraining/hsf_matplotlib_notebooks) to follow the lesson.
+We will be using the following [Github Repository](https://github.com/hsf-training/hsf_matplotlib_notebooks) to follow the lesson.
 
-You would only need to look for the [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plttraining/hsf_matplotlib_notebooks/main)
+You would only need to look for the [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hsf-training/hsf_matplotlib_notebooks/main)
 
 Binder is good for live coding sessions and thus has a 10-20 min inactivity timeout. If this occurs during the session follow these steps (they should work most of the time)
 - Click on cloud with down arrow
@@ -45,7 +45,7 @@ Some details on Google Colab:
 SWAN is a CERN based notebook hosting service. It is stable like Colab and setup is easy like Binder.
 Simply click on the Badge below and log in to SWAN with your CERN account.
 
-[![SWAN](https://swan.web.cern.ch/sites/swan.web.cern.ch/files/pictures/open_in_swan.svg)](https://cern.ch/swanserver/cgi-bin/go?projurl=https://github.com/plttraining/hsf_matplotlib_notebooks.git)
+[![SWAN](https://swan.web.cern.ch/sites/swan.web.cern.ch/files/pictures/open_in_swan.svg)](https://cern.ch/swanserver/cgi-bin/go?projurl=https://github.com/hsf-training/hsf_matplotlib_notebooks.git)
 
 ## If you want to run locally
 
