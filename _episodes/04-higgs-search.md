@@ -458,7 +458,7 @@ len(stack_data_list_m4l)
 {: .output}
 
 To make more easy the data vs. MC final plot, we can define the following helper function that makes a histogram of the data and calculates the poisson uncertainty in each bin.
-When we want to make a plot that includes uncertainties we need to use the `plt.errorbar` function.
+When we want to make a plot that includes uncertainties we need to use the `ax.errorbar` function.
 
 ```python
 def plot_data(data_var, range_ab, bins_samples):
@@ -466,9 +466,11 @@ def plot_data(data_var, range_ab, bins_samples):
     print(data_hist, bins)
     data_hist_errors = np.sqrt(data_hist)
     bin_center = (bins[1:] + bins[:-1]) / 2
-    h0 = plt.errorbar(
+    fig, ax = plt.subplots()
+    ax.errorbar(
         x=bin_center, y=data_hist, yerr=data_hist_errors, fmt="ko", label="Data"
     )
+    return fig
 ```
 
 # Data vs. MC plot
@@ -478,7 +480,7 @@ Finally, we can include the MC and data in the same figure, and see if they are 
 fig, ax = plt.subplots()
 fig.set_size_inches((10, 8))
 plot_data(stack_data_list_m4l, ranges[0], bins)
-h1 = plt.hist(
+ax.hist(
     stack_mc_list_m4l,
     range=ranges[0],
     label=mc_samples,
@@ -502,7 +504,7 @@ ax.legend(fontsize=18, frameon=False)
 > > fig, ax = plt.subplots()
 > > fig.set_size_inches((12, 8))
 > > plot_data(stack_data_list_m4l, ranges[0], bins)
-> > h1 = plt.hist(
+> > ax.hist(
 > >     stack_mc_list_m4l,
 > >     range=ranges[0],
 > >     label=mc_samples,

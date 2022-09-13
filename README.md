@@ -1,10 +1,16 @@
 [![pages-build-deployment](https://github.com/hsf-training/hsf-training-matplotlib/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/hsf-training/hsf-training-matplotlib/actions/workflows/pages/pages-build-deployment)
 [![HSF Training Center](https://img.shields.io/badge/HSF%20Training%20Center-browse-ff69b4)](https://hepsoftwarefoundation.org/training/curriculum.html)
-# Plotting with matplotlib
+# Matplotlib for HEP
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+> **Note**
+> Click [here](https://hsf-training.github.io/hsf-training-matplotlib/) for the training website!
+
+This training module introduces matplotlib and creates plots commonly used in HEP.
+It also introduces [mplhep](https://github.com/scikit-hep/mplhep/), a plotting library designed specifically for HEP plots.
 
 ## Contributing
 
@@ -20,12 +26,6 @@ repository. For making your contribution, we use the GitHub flow, which is
 nicely explained in the chapter [Contributing to a Project](http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) in Pro Git
 by Scott Chacon.
 Look for the tag ![good_first_issue](https://img.shields.io/badge/-good%20first%20issue-gold.svg). This indicates that the maintainers will welcome a pull request fixing this issue.
-
-## Maintainer(s)
-
-Current maintainers of this lesson are
-
-* Meirin Oan Evans
 
 ## Authors
 
