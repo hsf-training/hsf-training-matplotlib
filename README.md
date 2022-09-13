@@ -24,10 +24,12 @@ how to write new episodes.
 Quick summary of how to get a local preview: Install [jekyll](https://jekyllrb.com/) and then run
 
 ```
-make serve
-# or after the first time
+bundle install
+bundle update
 bundle exec jekyll serve
 ```
+
+Unless we change framework versions, only the last command needs to be typed after the first time.
 
 Please see the current list of [issues](https://github.com/hsf-training/hsf-training-matplotlib/issues) for ideas for contributing to this
 repository. For making your contribution, we use the GitHub flow, which is
