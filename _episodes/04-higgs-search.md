@@ -265,7 +265,7 @@ We certainly can visualize this information with Matplotlib making a histogram :
 >
 > Make a histogram of the variable "sum_good_lep" for the sample "data_A" or another sample.
 >
->Try to represent in your histogram what are the events that we wanted to keep using lines, arrows or text in you plot.
+>Try to represent in your histogram what are the events that we wanted to keep using lines, arrows or text in your plot.
 > > ## Solution
 > > ```python
 > > fig, ax = plt.subplots()
