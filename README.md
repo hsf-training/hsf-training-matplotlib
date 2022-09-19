@@ -3,7 +3,7 @@
 # Matplotlib for HEP
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > **Note**
@@ -46,19 +46,22 @@ the content of the lesson:
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://meirinoanevans.wixsite.com/portfolio"><img src="https://avatars1.githubusercontent.com/u/32399892?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Meirin Oan Evans</b></sub></a><br /><a href="#content-meevans1" title="Content">🖋</a></td>
-    <td align="center"><a href="https://github.com/amorenobr"><img src="https://avatars.githubusercontent.com/u/60275989?v=4?s=100" width="100px;" alt=""/><br /><sub><b>amorenobr</b></sub></a><br /><a href="#content-amorenobr" title="Content">🖋</a></td>
-    <td align="center"><a href="https://github.com/GuillermoFidalgo"><img src="https://avatars.githubusercontent.com/u/17858942?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Guillermo A. Fidalgo-Rodríguez</b></sub></a><br /><a href="#content-GuillermoFidalgo" title="Content">🖋</a></td>
-    <td align="center"><a href="https://github.com/Marchela04"><img src="https://avatars.githubusercontent.com/u/68828366?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marchela04</b></sub></a><br /><a href="#content-Marchela04" title="Content">🖋</a></td>
-    <td align="center"><a href="https://github.com/ekauffma"><img src="https://avatars.githubusercontent.com/u/65742271?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ekauffma</b></sub></a><br /><a href="#content-ekauffma" title="Content">🖋</a></td>
-    <td align="center"><a href="https://github.com/amanmdesai"><img src="https://avatars.githubusercontent.com/u/98302868?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aman Desai</b></sub></a><br /><a href="#content-amanmdesai" title="Content">🖋</a></td>
-    <td align="center"><a href="https://www.lieret.net"><img src="https://avatars.githubusercontent.com/u/13602468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kilian Lieret</b></sub></a><br /><a href="#content-klieret" title="Content">🖋</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/wdconinc"><img src="https://avatars.githubusercontent.com/u/4656391?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wouter Deconinck</b></sub></a><br /><a href="#content-wdconinc" title="Content">🖋</a></td>
-    <td align="center"><a href="https://github.com/michmx"><img src="https://avatars.githubusercontent.com/u/2147367?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michel H. Villanueva</b></sub></a><br /><a href="#content-michmx" title="Content">🖋</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://meirinoanevans.wixsite.com/portfolio"><img src="https://avatars1.githubusercontent.com/u/32399892?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Meirin Oan Evans</b></sub></a><br /><a href="#content-meevans1" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/amorenobr"><img src="https://avatars.githubusercontent.com/u/60275989?v=4?s=100" width="100px;" alt=""/><br /><sub><b>amorenobr</b></sub></a><br /><a href="#content-amorenobr" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/GuillermoFidalgo"><img src="https://avatars.githubusercontent.com/u/17858942?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Guillermo A. Fidalgo-Rodríguez</b></sub></a><br /><a href="#content-GuillermoFidalgo" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/Marchela04"><img src="https://avatars.githubusercontent.com/u/68828366?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marchela04</b></sub></a><br /><a href="#content-Marchela04" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/ekauffma"><img src="https://avatars.githubusercontent.com/u/65742271?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ekauffma</b></sub></a><br /><a href="#content-ekauffma" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/amanmdesai"><img src="https://avatars.githubusercontent.com/u/98302868?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aman Desai</b></sub></a><br /><a href="#content-amanmdesai" title="Content">🖋</a></td>
+      <td align="center"><a href="https://www.lieret.net"><img src="https://avatars.githubusercontent.com/u/13602468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kilian Lieret</b></sub></a><br /><a href="#content-klieret" title="Content">🖋</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/wdconinc"><img src="https://avatars.githubusercontent.com/u/4656391?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wouter Deconinck</b></sub></a><br /><a href="#content-wdconinc" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/michmx"><img src="https://avatars.githubusercontent.com/u/2147367?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michel H. Villanueva</b></sub></a><br /><a href="#content-michmx" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/PaxtonDevs"><img src="https://avatars.githubusercontent.com/u/102482753?v=4?s=100" width="100px;" alt=""/><br /><sub><b>PaxtonDevs</b></sub></a><br /><a href="#content-PaxtonDevs" title="Content">🖋</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->
