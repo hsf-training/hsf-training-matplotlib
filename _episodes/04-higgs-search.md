@@ -205,7 +205,7 @@ ax.hist(branches["data_A"]["m4l"])
 
 # Selection criteria
 
-Is very important to include some selection criteria in our samples MC and data that we are analyzing.
+It is very important to include some selection criteria in our samples MC and data that we are analyzing.
 These selections are commonly know as "cuts".
 With these cuts we are able to select only events of our interest, this is, we will have a subset of our original samples and the distribution are going to change after this cuts.
 This will help out to do some physics analysis and start to search for the physics process in which we are interested.
