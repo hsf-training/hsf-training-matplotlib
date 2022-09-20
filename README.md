@@ -31,6 +31,13 @@ bundle exec jekyll serve
 
 Unless we change framework versions, only the last command needs to be typed after the first time.
 
+Before committing anything, we also ask you to install the [pre-commit](pre-commit) hooks of this repository:
+
+```bash
+pip3 install pre-commit
+pre-commit install
+```
+
 Please see the current list of [issues](https://github.com/hsf-training/hsf-training-matplotlib/issues) for ideas for contributing to this
 repository. For making your contribution, we use the GitHub flow, which is
 nicely explained in the chapter [Contributing to a Project](http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) in Pro Git
@@ -76,3 +83,4 @@ Even more people contributed to the framework, but they are too many to list!
 To cite this lesson, please consult with [CITATION](CITATION)
 
 [lesson-example]: https://carpentries.github.io/lesson-example
+[pre-commit]: https://pre-commit.com/
