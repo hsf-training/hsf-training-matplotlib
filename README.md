@@ -31,7 +31,7 @@ bundle exec jekyll serve
 
 Unless we change framework versions, only the last command needs to be typed after the first time.
 
-Before committing anything, we also ask you to install the [pre-commit](pre-commit) hooks of this repository:
+Before committing anything, we also ask you to install the [pre-commit][pre-commit] hooks of this repository:
 
 ```bash
 pip3 install pre-commit
