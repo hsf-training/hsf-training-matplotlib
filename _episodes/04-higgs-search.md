@@ -311,7 +311,7 @@ Moreover, we can compare, by printing, the number of initial  and final events a
 
 ```python
 for s in samples:
-    print(s, "      Initial events: ", len(branches[s]["m4l"]))
+    print(f"{s}       Initial events:  {len(branches[s]["m4l"])}")
 ```
 
 ~~~
@@ -329,7 +329,7 @@ mc_361107.Zmumu       Initial events:  148
 
 ```python
 for s in samples:
-    print(s, "      After selection: ", len(branches[s]["m4l"][selection_events[s]]))
+    print(f"{s}       After selection:  {len(branches[s]["m4l"][selection_events[s]])}")
 ```
 
 ~~~
@@ -415,7 +415,7 @@ fig.set_size_inches((12, 8))
 ax_1.set_title("MC samples without weights")
 ax_1.hist(stack_mc_list_m4l, range=ranges[0], label=mc_samples, stacked=True, bins=bins)
 ax_1.set_ylabel("Events")
-ax_1.set_xlabel(var_name + units)
+ax_1.set_xlabel(f"{var_name}{units}")
 ax_1.legend(frameon=False)
 ax_2.set_title("MC samples with weights")
 ax_2.hist(
@@ -427,7 +427,7 @@ ax_2.hist(
     bins=bins,
 )
 ax_2.set_ylabel("Events")
-ax_2.set_xlabel(var_name + units)
+ax_2.set_xlabel(f"{var_name}{units}")
 ax_2.tick_params(which="both", direction="in", top=True, right=True, length=6, width=1)
 ax_2.legend(frameon=False)
 ```
@@ -489,7 +489,7 @@ ax.hist(
     bins=bins,
 )
 ax.set_ylabel("Events")
-ax.set_xlabel(var_name + units)
+ax.set_xlabel(f"{var_name}{units}")
 ax.set_ylim(0, 30)
 ax.legend(fontsize=18, frameon=False)
 ```
