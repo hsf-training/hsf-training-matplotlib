@@ -390,7 +390,7 @@ We can check the lengths, to see that everything is ok.
 
 ```python
 for k in range(0, 3):
-    print(len(stack_mc_list_m4l[k]), len(stack_weights_list[k]))
+    print(f"{len(stack_mc_list_m4l[k])} {len(stack_weights_list[k])}")
 ```
 
 ~~~
@@ -463,7 +463,7 @@ When we want to make a plot that includes uncertainties we need to use the `ax.e
 ```python
 def plot_data(data_var, range_ab, bins_samples):
     data_hist, bins = np.histogram(data_var, range=range_ab, bins=bins_samples)
-    print(data_hist, bins)
+    print(f"{data_hist} {bins}")
     data_hist_errors = np.sqrt(data_hist)
     bin_center = (bins[1:] + bins[:-1]) / 2
     fig, ax = plt.subplots()
