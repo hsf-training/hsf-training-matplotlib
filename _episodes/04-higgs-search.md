@@ -311,7 +311,7 @@ Moreover, we can compare, by printing, the number of initial  and final events a
 
 ```python
 for s in samples:
-    print(f"{s}       Initial events:  {len(branches[s]["m4l"])}")
+    print(f"{s}       Initial events:  {len(branches[s]['m4l'])}")
 ```
 
 ~~~
@@ -329,7 +329,7 @@ mc_361107.Zmumu       Initial events:  148
 
 ```python
 for s in samples:
-    print(f"{s}       After selection:  {len(branches[s]["m4l"][selection_events[s]])}")
+    print(f"{s}       After selection:  {len(branches[s]['m4l'][selection_events[s]])}")
 ```
 
 ~~~
