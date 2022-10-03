@@ -319,9 +319,9 @@ data_A       Initial events:  32
 data_B       Initial events:  108
 data_C       Initial events:  174
 data_D       Initial events:  277
-mc_345060.ggH125_ZZ4lep       Initial events:  163316
-mc_344235.VBFH125_ZZ4lep       Initial events:  189542
-mc_363490.llll       Initial events:  547603
+mc_345060.ggH125_ZZ4lep       Initial events:  163,316
+mc_344235.VBFH125_ZZ4lep       Initial events:  189,542
+mc_363490.llll       Initial events:  547,603
 mc_361106.Zee       Initial events:  244
 mc_361107.Zmumu       Initial events:  148
 ~~~
@@ -339,9 +339,9 @@ data_A       After selection:  18
 data_B       After selection:  52
 data_C       After selection:  93
 data_D       After selection:  158
-mc_345060.ggH125_ZZ4lep       After selection:  141559
-mc_344235.VBFH125_ZZ4lep       After selection:  161087
-mc_363490.llll       After selection:  454699
+mc_345060.ggH125_ZZ4lep       After selection:  141,559
+mc_344235.VBFH125_ZZ4lep       After selection:  161,087
+mc_363490.llll       After selection:  454,699
 mc_361106.Zee       After selection:  27
 mc_361107.Zmumu       After selection:  16
 ~~~
@@ -396,8 +396,8 @@ for k in range(0, 3):
 ```
 
 ~~~
-302646 302646
-454699 454699
+302,646 302,646
+454,699 454,699
 43 43
 ~~~
 {: .output}
