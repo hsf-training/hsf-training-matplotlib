@@ -45,29 +45,21 @@ Now we will get some data stored in a github repository.
 
 ```python
 # Data for later use.
+file_names = [
+    "4e_2011.csv",
+    "4mu_2011.csv",
+    "2e2mu_2011.csv",
+    "4mu_2012.csv",
+    "4e_2012.csv",
+    "2e2mu_2012.csv",
+]
+
 csvs = [
     pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4e_2011.csv"
-    ),
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4mu_2011.csv"
-    ),
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/2e2mu_2011.csv"
-    ),
+        f"https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/{file_name}"
+    )
+    for file_name in file_names
 ]
-csvs += [
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4mu_2012.csv"
-    ),
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4e_2012.csv"
-    ),
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/2e2mu_2012.csv"
-    ),
-]
-# here we have added two lists of lists
 
 fourlep = pd.concat(
     csvs
