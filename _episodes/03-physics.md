@@ -7,7 +7,7 @@ questions:
 objectives:
 - "Learn the basics of the physics processes present in the data"
 keypoints:
-- "Analysis studies Higgs boson decays"
+- "The Higgs decay mechanisms at proton-proton colliders are explored with a focus on Higgs decay to four leptons"
 ---
 
 <!-- Mathjax Support -->
