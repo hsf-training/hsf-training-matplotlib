@@ -53,17 +53,12 @@ file_names = [
     "4e_2012.csv",
     "2e2mu_2012.csv",
 ]
+basepath = "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/"
 
-csvs = [
-    pd.read_csv(
-        f"https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/{file_name}"
-    )
-    for file_name in file_names
-]
+# here we have merged them into one big list and simultaneously convert it into a pandas dataframe.
+csvs = [pd.read_csv(f"{basepath}{file_name}") for file_name in file_names]
 
-fourlep = pd.concat(
-    csvs
-)  # here we have merged them into one big list and simultainiously convert it into a pandas dataframe.
+fourlep = pd.concat(csvs)
 ```
 
 In this chapter we will see how to use mplhep commands to make a quality plot.
