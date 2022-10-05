@@ -71,7 +71,7 @@ the content of the lesson:
     </tr>
   </tbody>
   <tfoot>
-    
+
   </tfoot>
 </table>
 
