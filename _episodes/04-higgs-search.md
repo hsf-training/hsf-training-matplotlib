@@ -205,7 +205,7 @@ ax.hist(branches["data_A"]["m4l"])
 
 # Selection criteria
 
-Is very important to include some selection criteria in our samples MC and data that we are analyzing.
+It is very important to include some selection criteria in our samples MC and data that we are analyzing.
 These selections are commonly know as "cuts".
 With these cuts we are able to select only events of our interest, this is, we will have a subset of our original samples and the distribution are going to change after this cuts.
 This will help out to do some physics analysis and start to search for the physics process in which we are interested.
@@ -265,7 +265,7 @@ We certainly can visualize this information with Matplotlib making a histogram :
 >
 > Make a histogram of the variable "sum_good_lep" for the sample "data_A" or another sample.
 >
->Try to represent in you histogram what are the events that we wanted to keep using lines, arrows or text in you plot.
+>Try to represent in your histogram what are the events that we wanted to keep using lines, arrows or text in your plot.
 > > ## Solution
 > > ```python
 > > fig, ax = plt.subplots()
@@ -311,7 +311,7 @@ Moreover, we can compare, by printing, the number of initial  and final events a
 
 ```python
 for s in samples:
-    print(s, "      Initial events: ", len(branches[s]["m4l"]))
+    print(f"{s}       Initial events:  {len(branches[s]['m4l']):,}")
 ```
 
 ~~~
@@ -319,9 +319,9 @@ data_A       Initial events:  32
 data_B       Initial events:  108
 data_C       Initial events:  174
 data_D       Initial events:  277
-mc_345060.ggH125_ZZ4lep       Initial events:  163316
-mc_344235.VBFH125_ZZ4lep       Initial events:  189542
-mc_363490.llll       Initial events:  547603
+mc_345060.ggH125_ZZ4lep       Initial events:  163,316
+mc_344235.VBFH125_ZZ4lep       Initial events:  189,542
+mc_363490.llll       Initial events:  547,603
 mc_361106.Zee       Initial events:  244
 mc_361107.Zmumu       Initial events:  148
 ~~~
@@ -329,7 +329,9 @@ mc_361107.Zmumu       Initial events:  148
 
 ```python
 for s in samples:
-    print(s, "      After selection: ", len(branches[s]["m4l"][selection_events[s]]))
+    print(
+        f"{s}       After selection:  {len(branches[s]['m4l'][selection_events[s]]):,}"
+    )
 ```
 
 ~~~
@@ -337,9 +339,9 @@ data_A       After selection:  18
 data_B       After selection:  52
 data_C       After selection:  93
 data_D       After selection:  158
-mc_345060.ggH125_ZZ4lep       After selection:  141559
-mc_344235.VBFH125_ZZ4lep       After selection:  161087
-mc_363490.llll       After selection:  454699
+mc_345060.ggH125_ZZ4lep       After selection:  141,559
+mc_344235.VBFH125_ZZ4lep       After selection:  161,087
+mc_363490.llll       After selection:  454,699
 mc_361106.Zee       After selection:  27
 mc_361107.Zmumu       After selection:  16
 ~~~
@@ -390,12 +392,12 @@ We can check the lengths, to see that everything is ok.
 
 ```python
 for k in range(0, 3):
-    print(len(stack_mc_list_m4l[k]), len(stack_weights_list[k]))
+    print(f"{len(stack_mc_list_m4l[k]):,} {len(stack_weights_list[k]):,}")
 ```
 
 ~~~
-302646 302646
-454699 454699
+302,646 302,646
+454,699 454,699
 43 43
 ~~~
 {: .output}
@@ -415,7 +417,7 @@ fig.set_size_inches((12, 8))
 ax_1.set_title("MC samples without weights")
 ax_1.hist(stack_mc_list_m4l, range=ranges[0], label=mc_samples, stacked=True, bins=bins)
 ax_1.set_ylabel("Events")
-ax_1.set_xlabel(var_name + units)
+ax_1.set_xlabel(f"{var_name}{units}")
 ax_1.legend(frameon=False)
 ax_2.set_title("MC samples with weights")
 ax_2.hist(
@@ -427,7 +429,7 @@ ax_2.hist(
     bins=bins,
 )
 ax_2.set_ylabel("Events")
-ax_2.set_xlabel(var_name + units)
+ax_2.set_xlabel(f"{var_name}{units}")
 ax_2.tick_params(which="both", direction="in", top=True, right=True, length=6, width=1)
 ax_2.legend(frameon=False)
 ```
@@ -463,7 +465,7 @@ When we want to make a plot that includes uncertainties we need to use the `ax.e
 ```python
 def plot_data(data_var, range_ab, bins_samples):
     data_hist, bins = np.histogram(data_var, range=range_ab, bins=bins_samples)
-    print(data_hist, bins)
+    print(f"{data_hist} {bins}")
     data_hist_errors = np.sqrt(data_hist)
     bin_center = (bins[1:] + bins[:-1]) / 2
     fig, ax = plt.subplots()
@@ -489,7 +491,7 @@ ax.hist(
     bins=bins,
 )
 ax.set_ylabel("Events")
-ax.set_xlabel(var_name + units)
+ax.set_xlabel(f"{var_name}{units}")
 ax.set_ylim(0, 30)
 ax.legend(fontsize=18, frameon=False)
 ```

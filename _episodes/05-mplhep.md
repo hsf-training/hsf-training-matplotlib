@@ -145,12 +145,11 @@ This would plot the following figure.
 
 ![](../fig/zz.png)
 
-# Exercise:
-
-### Plot each of the backgrounds individually. You should have something similar to
-
-![](../fig/drellyan.png)
-![](../fig/ttbar.png)
+> ## Exercise
+> Plot each of the backgrounds individually. You should have something similar to
+> ![](../fig/drellyan.png)
+> ![](../fig/ttbar.png)
+{: .challenge}
 
 ### Stacking histograms and adding the CMS logo.
 
