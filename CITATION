@@ -18,7 +18,7 @@ authors:
   affiliation: "University of Puerto Rico, Mayagüez Campus"
 - family-names: "Moreno Briceño"
   given-names: "Alexander"
-  orcid: "FIXME"
+  orcid: "https://orcid.org/0000-0001-8415-2543"
   affiliation: "Universidad Antonio Nariño"
 repository-code: "https://github.com/hsf-training/hsf-training-matplotlib"
 url: "https://hsf-training.github.io/hsf-training-matplotlib/"
