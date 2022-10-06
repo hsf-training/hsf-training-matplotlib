@@ -252,66 +252,66 @@ fig.show()
 
 > ## Bonus question: how can something, that seems to have a mass of roughly 125 GeV decay via two Z bosons, with mass over 90 GeV?
 >Add that graph with all background + data and see how it lines up.
+>> ## Solution
+>> Theory:
+>>
+>> First, one can see from pair-annihilation that rest mass is not a conserved quantity (only total energy is conserved).
+>> The important idea is that in Higgs rest frame two "on-shell" Z bosons of 90 GeV each cannot be produced.
+>> Secondly, the Higgs decays to one Z boson which is on-shell whereas the other Z boson is off-shell.
+>> (On-shell particles are the ones that obey $$ E^2 = p^2 + m^2 $$ whereas off-shell particles do not.)
+>>
+>>```python
+>>fig, ax = plt.subplots(figsize=(15, 5))
+>>
+>>xerrs = [width * 0.5 for i in range(0, nbins)]
+>>yerrs = np.sqrt(hist)
+>>
+>>hep.histplot(
+>>    [ttbar, dy, zz, hzz],
+>>    stack=True,
+>>    bins=bins,
+>>    histtype="fill",
+>>    color=["grey", "g", "b", "w"],
+>>    alpha=[0.5, 0.5, 0.5, 1],
+>>    edgecolor=["k", "k", "k", "r"],
+>>    label=[
+>>        r"$t\bar{t}$",
+>>        "Z/$\gamma^{*}$ + X",
+>>        "$m_{H}$ = 125 GeV",
+>>        r"ZZ $\rightarrow$ 4l",
+>>    ],
+>>    ax=ax
+>>)
+>>
+>>hep.cms.label(rlabel="")
+>>
+>># Measured data
+>>ax.errorbar(
+>>    center,
+>>    hist,
+>>    xerr=xerrs,
+>>   yerr=yerrs,
+>>    linestyle="None",
+>>   color="black",
+>>    marker="o",
+>>    label="Data"
+>>)
+>>
+>>ax.title(
+>>    "$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n",
+>>    fontsize=16,
+>>)
+>>ax.set_xlabel("$m_{4l}$ (GeV)", fontsize=15)
+>>ax.set_ylabel("Events / 3 GeV\n", fontsize=15)
+>>ax.set_ylim(0, 25)
+>>ax.set_xlim(rmin, rmax)
+>>ax.legend(fontsize=15)
+>>
+>>fig.savefig("final-plot.png", dpi=140)
+>>fig.show()
+>>```
+>{: .solution}
 {: .challenge}
-
-> ## Solution
-> Theory:
-> First, rest mass is not a conserved quantity.
-> The important idea is that in Higgs rest frame two Z bosons of 90 GeV each cannot be produced.
-> Secondly, the Higgs decays to one Z boson which is on-shell whereas the other Z boson is off-shell.
-> (On-shell particles are the ones that obey $$ E^2 = p^2 + m^2 $$ whereas off-shell particles do not.)
->
->```python
->fig, ax = plt.subplots(figsize=(15, 5))
->
->xerrs = [width * 0.5 for i in range(0, nbins)]
->yerrs = np.sqrt(hist)
->
->hep.histplot(
->    [ttbar, dy, zz, hzz],
->    stack=True,
->    bins=bins,
->    histtype="fill",
->    color=["grey", "g", "b", "w"],
->    alpha=[0.5, 0.5, 0.5, 1],
->    edgecolor=["k", "k", "k", "r"],
->    label=[
->        r"$t\bar{t}$",
->        "Z/$\gamma^{*}$ + X",
->        r"ZZ $\rightarrow$ 4l",
->        "$m_{H}$ = 125 GeV",
->    ],
->    ax=ax
->)
->
->hep.cms.label(rlabel="")
->
-># Measured data
->ax.errorbar(
->    center,
->    hist,
->    xerr=xerrs,
->    yerr=yerrs,
->    linestyle="None",
->   color="black",
->    marker="o",
->    label="Data"
->)
->
->ax.title(
->    "$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n",
->    fontsize=16,
->)
->ax.set_xlabel("$m_{4l}$ (GeV)", fontsize=15)
->ax.set_ylabel("Events / 3 GeV\n", fontsize=15)
->ax.set_ylim(0, 25)
->ax.set_xlim(rmin, rmax)
->ax.legend(fontsize=15)
->
->fig.savefig("final-plot.png", dpi=140)
->fig.show()
->```
-{: .solution}
 
 ![](../fig/final-plot.png)
 
