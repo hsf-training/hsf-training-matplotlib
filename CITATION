@@ -1,1 +1,30 @@
-FIXME: describe how to cite this lesson.
+cff-version: 1.2.0
+message: "Please cite the following works when using this software."
+type: software
+title: "Matplotlib for HEP"
+abstract: "A training module that introduces Matplotlib and commonly used plots in HEP."
+authors:
+- family-names: "Oan Evans"
+  given-names: "Meirin"
+  orcid: "https://orcid.org/0000-0002-4259-018X"
+  affiliation: "University of Sussex"
+- family-names: "García Hernández"
+  given-names: "Marcela"
+  orcid: "https://orcid.org/0000-0003-2393-3367"
+  affiliation: "Center for Research and Advanced Studies of the National Polytechnic Institute"
+- family-names: "Antonio Fidalgo-Rodríguez"
+  given-names: "Guillermo"
+  orcid: "https://orcid.org/0000-0001-8605-9772"
+  affiliation: "University of Puerto Rico, Mayagüez Campus"
+- family-names: "Moreno Briceño"
+  given-names: "Alexander"
+  orcid: "https://orcid.org/0000-0001-8415-2543"
+  affiliation: "Universidad Antonio Nariño"
+repository-code: "https://github.com/hsf-training/hsf-training-matplotlib"
+url: "https://hsf-training.github.io/hsf-training-matplotlib/"
+keywords:
+  - hep
+  - matplotlib
+  - python
+  - training
+license: "CC-BY-4.0"
