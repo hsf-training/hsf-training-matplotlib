@@ -45,33 +45,20 @@ Now we will get some data stored in a github repository.
 
 ```python
 # Data for later use.
-csvs = [
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4e_2011.csv"
-    ),
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4mu_2011.csv"
-    ),
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/2e2mu_2011.csv"
-    ),
+file_names = [
+    "4e_2011.csv",
+    "4mu_2011.csv",
+    "2e2mu_2011.csv",
+    "4mu_2012.csv",
+    "4e_2012.csv",
+    "2e2mu_2012.csv",
 ]
-csvs += [
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4mu_2012.csv"
-    ),
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/4e_2012.csv"
-    ),
-    pd.read_csv(
-        "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/2e2mu_2012.csv"
-    ),
-]
-# here we have added two lists of lists
+basepath = "https://raw.githubusercontent.com/GuillermoFidalgo/Python-for-STEM-Teachers-Workshop/master/data/"
 
-fourlep = pd.concat(
-    csvs
-)  # here we have merged them into one big list and simultainiously convert it into a pandas dataframe.
+# here we have merged them into one big list and simultaneously convert it into a pandas dataframe.
+csvs = [pd.read_csv(f"{basepath}{file_name}") for file_name in file_names]
+
+fourlep = pd.concat(csvs)
 ```
 
 In this chapter we will see how to use mplhep commands to make a quality plot.
@@ -145,12 +132,11 @@ This would plot the following figure.
 
 ![](../fig/zz.png)
 
-# Exercise:
-
-### Plot each of the backgrounds individually. You should have something similar to
-
-![](../fig/drellyan.png)
-![](../fig/ttbar.png)
+> ## Exercise
+> Plot each of the backgrounds individually. You should have something similar to
+> ![](../fig/drellyan.png)
+> ![](../fig/ttbar.png)
+{: .challenge}
 
 ### Stacking histograms and adding the CMS logo.
 
