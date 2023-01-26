@@ -194,23 +194,8 @@ The basic `ax.plot` uses lines by default, but we can specify what to use as a m
 | '<'       | triangle_left marker  |           |                     | 'y'       | yellow  |
 | '>'       | triangle_right marker |           |                     | 'k'       | black   |
 | '1'       | tri_down marker       |           |                     | 'w'       | white   |
-| '2'       | tri_up marker         |           |                     |           |         |
-| '3'       | tri_left marker       |           |                     |           |         |
-| '4'       | tri_right marker      |           |                     |           |         |
-| '8'       | octagon marker        |           |                     |           |         |
-| 's'       | square marker         |           |                     |           |         |
-| 'p'       | pentagon marker       |           |                     |           |         |
-| 'P'       | plus (filled) marker  |           |                     |           |         |
-| '*'       | star marker           |           |                     |           |         |
-| 'h'       | hexagon1 marker       |           |                     |           |         |
-| 'H'       | hexagon2 marker       |           |                     |           |         |
-| '+'       | plus marker           |           |                     |           |         |
-| 'x'       | x marker              |           |                     |           |         |
-| 'X'       | x (filled) marker     |           |                     |           |         |
-| 'D'       | diamond marker        |           |                     |           |         |
-| 'd'       | thin_diamond marker   |           |                     |           |         |
-| '\|'      | vline marker          |           |                     |           |         |
-| '_'       | hline marker          |           |                     |           |         |
+
+For further examples, see the matplotlib docs [Linestyles](https://matplotlib.org/stable/gallery/lines_bars_and_markers/linestyles.html) and [Markers](https://matplotlib.org/stable/gallery/lines_bars_and_markers/marker_reference.html)
 
 Here are a few example for combinations of these.
 
