@@ -64,7 +64,7 @@ fourlep = pd.concat(csvs)
 In this chapter we will see how to use mplhep commands to make a quality plot.
 
 This is our goal
-![](../fig/Hto4lep_plot.png)
+![](../fig/Hto4lep_plot.png){:width="80%"}
 
 ## Let's begin!
 
@@ -130,12 +130,12 @@ fig.show()
 
 This would plot the following figure.
 
-![](../fig/zz.png)
+![](../fig/zz.png){:width="70%"}
 
 > ## Exercise
 > Plot each of the backgrounds individually. You should have something similar to
-> ![](../fig/drellyan.png)
-> ![](../fig/ttbar.png)
+> ![](../fig/drellyan.png){:width="50%"}
+> ![](../fig/ttbar.png){:width="50%"}
 {: .challenge}
 
 ### Stacking histograms and adding the CMS logo.
@@ -211,7 +211,7 @@ yerrs = np.sqrt(hist)
 >
 >fig.show()
 >```
-> ![](../fig/background+data.png)
+> ![](../fig/background+data.png){:width="80%"}
 {: .solution}
 
 # Putting it all together
@@ -248,7 +248,7 @@ ax.set_xlim(rmin, rmax)
 fig.show()
 ```
 
-![](../fig/hzz.png)
+![](../fig/hzz.png){:width="70%"}
 
 > ## Bonus question: how can something, that seems to have a mass of roughly 125 GeV decay via two Z bosons, with mass over 90 GeV?
 >Add that graph with all background + data and see how it lines up.
@@ -307,7 +307,7 @@ fig.show()
 >```
 {: .solution}
 
-![](../fig/final-plot.png)
+![](../fig/final-plot.png){:width="80%"}
 
 # Done! We are ready to publish :)
 

@@ -148,7 +148,7 @@ ax.hist(branches["data_A"]["m4l"])
 ~~~
 {: .output}
 
-![m4lep_histogram_0]({{ page.root }}/fig/m4lep_histogram_0.png)
+![m4lep_histogram_0]({{ page.root }}/fig/m4lep_histogram_0.png){:width="50%"}
 
 **Tip:** In the previous plot the numbers in the axis are very small, we can change the font size (and font family) for all the following plots, including in our code:
 
@@ -176,7 +176,7 @@ ax.hist(branches["data_A"]["m4l"])
 ~~~
 {: .output}
 
-![m4lep_histogram_1]({{ page.root }}/fig/m4lep_histogram_1.png)
+![m4lep_histogram_1]({{ page.root }}/fig/m4lep_histogram_1.png){:width="50%"}
 
 > ## Exercise
 >
@@ -199,7 +199,7 @@ ax.hist(branches["data_A"]["m4l"])
 > > ax.set_ylabel("Events")
 > > ax.legend()
 > > ```
-> > ![m4lep_histogram_2_0]({{ page.root }}/fig/m4lep_histogram_2_0.png)
+> > ![m4lep_histogram_2_0]({{ page.root }}/fig/m4lep_histogram_2_0.png){:width="50%"}
 > {: .solution}
 {: .challenge}
 
@@ -280,7 +280,7 @@ We certainly can visualize this information with Matplotlib making a histogram :
 > > ax.set_ylabel("Events")
 > > ax.legend(frameon=False)
 > > ```
-> > ![cut_histogram_3]({{ page.root }}/fig/cut_histogram_3.png)
+> > ![cut_histogram_3]({{ page.root }}/fig/cut_histogram_3.png){:width="50%"}
 > {: .solution}
 {: .challenge}
 
@@ -434,7 +434,7 @@ ax_2.tick_params(which="both", direction="in", top=True, right=True, length=6, w
 ax_2.legend(frameon=False)
 ```
 
-![MC_histogram_4]({{ page.root }}/fig/MC_histogram_4.png)
+![MC_histogram_4]({{ page.root }}/fig/MC_histogram_4.png){:width="70%"}
 
 # Data samples
 
@@ -496,7 +496,7 @@ ax.set_ylim(0, 30)
 ax.legend(fontsize=18, frameon=False)
 ```
 
-![m4lep_histogram_5]({{ page.root }}/fig/m4lep_histogram_5.png)
+![m4lep_histogram_5]({{ page.root }}/fig/m4lep_histogram_5.png){:width="50%"}
 > ## Exercise
 >
 > Modify a bit the previous code to include the ticks and text, in the text and axis labels use latex to achieve the final plot.
@@ -529,7 +529,7 @@ ax.legend(fontsize=18, frameon=False)
 ### Final Plot
 
 You can see at 125 GeV the component corresponding at the Higgs boson.
-![m4lep_histogram_6]({{ page.root }}/fig/m4lep_histogram_6.png)
+![m4lep_histogram_6]({{ page.root }}/fig/m4lep_histogram_6.png){:width="50%"}
 
 **Bonus**: If you are more curious about other HEP analysis tools, you can take a look at this same example developed with the ROOT framework [here](https://root.cern.ch/doc/v622/df106__HiggsToFourLeptons_8py.html).
 
