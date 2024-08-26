@@ -106,7 +106,7 @@ ax.set_xlabel("X values")
 ax.set_ylabel("Y values")
 ```
 
-One can also control the location, orientation and size of the text by adding the keyword arguments `size = 15, orientation = 45`
+One can also control the size and rotation of the text by adding the keyword arguments `size = 15, rotation = 45`
 
 An important detail is that when you want to do changes and show them in your plot you must apply these changes between the `ax.plot` and `plt.show()` commands.
 Why? These commands act on the canvas that is currently being drawn, so it should make sense that one has to first create the canvas with the plot with `ax.plot()` and apply changes afterwards.
