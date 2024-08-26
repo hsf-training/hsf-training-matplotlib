@@ -38,8 +38,7 @@ plt.show()  # Show the figure
 
 This code produces the following figure:
 
-<!-- ![basic_plot](https://matplotlib.org/stable/_images/sphx_glr_usage_002.png) -->
-![basic_plot](https://matplotlib.org/3.5.1/_images/sphx_glr_usage_001_2_0x.png)
+![basic_plot](https://matplotlib.org/3.5.1/_images/sphx_glr_usage_001_2_0x.png){:width="50%"}
 
 > ## Notice
 > If you look at the plot and the order of the list of numbers you can clearly see that the order of the arguments is of the form
@@ -61,7 +60,7 @@ This code produces the following figure:
 > Both methods allow you to produce a plot like the following *(we will later see how to produce them in more detail)*
 > > ## See example plot
 > >
-> > ![3linesplot_ver1](../fig/3linesplot_ver2.png)
+> > ![3linesplot_ver1](../fig/3linesplot_ver2.png){:width="50%"}
 > {: .solution}
 {: .callout}
 
@@ -69,7 +68,7 @@ This code produces the following figure:
 
 Now, let's have a deeper look at the components of a Matplotlib figure.
 
-![Names for different parts of a matplotlib plot](https://matplotlib.org/stable/_images/anatomy.png)
+![Names for different parts of a matplotlib plot](https://matplotlib.org/stable/_images/anatomy.png){:width="50%"}
 
 ## How to work with some of these elements?
 
@@ -241,7 +240,7 @@ hep.style.use("CMS")  # string aliases work too
 
 and with just this addition we can produce the same plot as before with this new look.
 
-![mplhep-figure](../fig/mplhep_fig.png)
+![mplhep-figure](../fig/mplhep_fig.png){:width="50%"}
 
 > ## Warning
 >
@@ -278,7 +277,7 @@ ax.errorbar(bin_centers, counts, yerr=np.sqrt(counts), fmt="none")
 plt.show()
 ```
 
-![first histogram](../fig/first_histo.png)
+![first histogram](../fig/first_histo.png){:width="50%"}
 
 # More information?
 
