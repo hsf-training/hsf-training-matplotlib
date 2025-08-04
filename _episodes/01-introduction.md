@@ -20,6 +20,15 @@ The example-based nature of [Matplotlib documentation](https://matplotlib.org/) 
 Matplotlib is the standard when it comes to making plots in Python. It is versatile and allows for lots of functionality and different ways to produce many plots.
 We will be focusing on using matplotlib for High Energy Physics.
 
+> ## Modern Best Practices
+> 
+> While matplotlib has evolved significantly, some key modern practices include:
+> - Using explicit figure and axes creation with `fig, ax = plt.subplots()`
+> - Leveraging context managers for temporary styling changes
+> - Using more descriptive parameter names (e.g., `alpha=0.8` instead of just transparency)
+> - Taking advantage of improved default styling in matplotlib 3.x+
+{: .callout}
+
 # A simple example
 
 As with any Python code it is always good practice to import the necessary libraries as a first step.
@@ -38,8 +47,7 @@ plt.show()  # Show the figure
 
 This code produces the following figure:
 
-<!-- ![basic_plot](https://matplotlib.org/stable/_images/sphx_glr_usage_002.png) -->
-![basic_plot](https://matplotlib.org/3.5.1/_images/sphx_glr_usage_001_2_0x.png)
+![basic_plot](https://matplotlib.org/stable/_images/sphx_glr_usage_001.png)
 
 > ## Notice
 > If you look at the plot and the order of the list of numbers you can clearly see that the order of the arguments is of the form
@@ -130,11 +138,11 @@ plt.show()
 As mentioned, by default `fig, ax = plt.subplots()` creates the canvas automatically. We can have finer control over the shape and quality of the plots by using the keyword arguments `figsize` and `dpi` as follows.
 
 ```python
-fig, ax = plt.subplots(figsize=(10, 10), dpi=150)
+fig, ax = plt.subplots(figsize=(10, 8), dpi=100)  # More common aspect ratio
 ```
 
-This has to be set **before** any instance of `ax.plot` and it sets the width and height to 10 and 10 inches respectively. The keyword `dpi` refers to a density of *Dots Per Inch*.
-There is no particular reason to choose 150 as the value for dpi but there is a visually a noticeable difference in the size and quality of the plot.
+This has to be set **before** any instance of `ax.plot` and it sets the width and height to 10 and 8 inches respectively. The keyword `dpi` refers to a density of *Dots Per Inch*.
+Modern displays typically use 100 DPI as a good default, though you can increase to 150 or 200 for higher quality output.
 
 ### Title
 
@@ -231,12 +239,17 @@ We have available a useful python package called [mplhep](https://mplhep.readthe
 ```python
 import mplhep as hep
 
-hep.style.use(hep.style.ROOT)  # For now ROOT defaults to CMS
-# Or choose one of the experiment styles
+# Modern mplhep usage - choose one of the experiment styles
 hep.style.use(hep.style.ATLAS)
-# or
-hep.style.use("CMS")  # string aliases work too
-# {"ALICE" | "ATLAS" | "CMS" | "LHCb1" | "LHCb2"}
+# or using string aliases (recommended)
+hep.style.use("CMS")  
+# Available styles: {"ALICE" | "ATLAS" | "CMS" | "LHCb1" | "LHCb2" | "ROOT"}
+
+# You can also use context managers for temporary styling
+with hep.style.use("ATLAS"):
+    fig, ax = plt.subplots()
+    ax.plot(x, y)
+    plt.show()
 ```
 
 and with just this addition we can produce the same plot as before with this new look.
@@ -267,14 +280,23 @@ We will discuss histograms more in detail later but here is an example code and 
 # first lets get some fake data
 data = np.random.normal(size=10_000)
 
+# create figure
+fig, ax = plt.subplots()
+
 # now lets make the plot
-counts, bin_edges, _ = ax.hist(data, bins=50, histtype="step")
+counts, bin_edges, _ = ax.hist(data, bins=50, histtype="step", alpha=0.8)
 
-# we need to get the centers in order get the correct location for the errobars
-bin_centers = bin_edges[:-1] + np.diff(bin_edges) / 2
+# we need to get the centers in order get the correct location for the error bars
+bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2  # More explicit bin center calculation
 
-# add error bars
-ax.errorbar(bin_centers, counts, yerr=np.sqrt(counts), fmt="none")
+# add error bars (Poisson errors for counts)
+ax.errorbar(bin_centers, counts, yerr=np.sqrt(counts), fmt="none", capsize=2)
+
+# Add labels and improve appearance
+ax.set_xlabel("Value")
+ax.set_ylabel("Counts")
+ax.set_title("Histogram with Error Bars")
+ax.grid(True, alpha=0.3)
 plt.show()
 ```
 
