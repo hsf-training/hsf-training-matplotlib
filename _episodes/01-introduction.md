@@ -244,12 +244,6 @@ hep.style.use(hep.style.ATLAS)
 # or using string aliases (recommended)
 hep.style.use("CMS")
 # Available styles: {"ALICE" | "ATLAS" | "CMS" | "LHCb1" | "LHCb2" | "ROOT"}
-
-# You can also use context managers for temporary styling
-with hep.style.use("ATLAS"):
-    fig, ax = plt.subplots()
-    ax.plot(x, y)
-    plt.show()
 ```
 
 and with just this addition we can produce the same plot as before with this new look.
