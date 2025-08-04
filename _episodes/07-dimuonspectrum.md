@@ -177,13 +177,7 @@ Make a histogram of the values of the Mass
 
 ```python
 fig, ax = plt.subplots(figsize=(10, 6))  # Better figure size
-ax.hist(
-    M,
-    bins=100,
-    histtype="step",
-    alpha=0.8,
-    linewidth=2
-)
+ax.hist(M, bins=100, histtype="step", alpha=0.8, linewidth=2)
 
 ax.set_xlabel(r"$\mu_{mass}$ [GeV]", fontsize=12)
 ax.set_ylabel("Number of muons", fontsize=12)
@@ -342,12 +336,7 @@ Below I will give you some code to get you started. Please make your changes/add
 
 ```python
 # Arguments shared by the .hist calls:
-kwargs = dict(
-    bins=100,
-    histtype="step",
-    alpha=0.8,
-    linewidth=2
-)
+kwargs = dict(bins=100, histtype="step", alpha=0.8, linewidth=2)
 fig, ax = plt.subplots(2, 2, figsize=(16, 10))
 
 ax[0][0].hist(masses, range=(0, 120), label="All charge combinations", **kwargs)

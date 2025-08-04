@@ -129,7 +129,7 @@ ax.set_xlabel("4l invariant mass (GeV)", fontsize=15)
 ax.set_ylabel("Events / 3 GeV", fontsize=15)
 ax.set_xlim(rmin, rmax)
 ax.legend()
-plt.show() 
+plt.show()
 ```
 
 This would plot the following figure.

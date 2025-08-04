@@ -419,7 +419,14 @@ bins = 24
 ```python
 fig, (ax_1, ax_2) = plt.subplots(1, 2, figsize=(12, 8))  # Modern figsize parameter
 ax_1.set_title("MC samples without weights")
-ax_1.hist(stack_mc_list_m4l, range=ranges[0], label=mc_samples, stacked=True, bins=bins, alpha=0.8)
+ax_1.hist(
+    stack_mc_list_m4l,
+    range=ranges[0],
+    label=mc_samples,
+    stacked=True,
+    bins=bins,
+    alpha=0.8,
+)
 ax_1.set_ylabel("Events")
 ax_1.set_xlabel(f"{var_name}{units}")
 ax_1.legend(frameon=False)
@@ -433,7 +440,7 @@ ax_2.hist(
     stacked=True,
     weights=stack_weights_list,
     bins=bins,
-    alpha=0.8
+    alpha=0.8,
 )
 ax_2.set_ylabel("Events")
 ax_2.set_xlabel(f"{var_name}{units}")
@@ -475,7 +482,7 @@ When we want to make a plot that includes uncertainties we need to use the `ax.e
 def plot_data(data_var, range_ab, bins_samples, ax=None):
     """
     Plot data histogram with Poisson error bars.
-    
+
     Parameters:
     -----------
     data_var : array-like
@@ -486,7 +493,7 @@ def plot_data(data_var, range_ab, bins_samples, ax=None):
         Number of bins
     ax : matplotlib.axes.Axes, optional
         Axes to plot on. If None, creates new figure
-    
+
     Returns:
     --------
     fig : matplotlib.figure.Figure or None
@@ -495,30 +502,30 @@ def plot_data(data_var, range_ab, bins_samples, ax=None):
     data_hist, bins = np.histogram(data_var, range=range_ab, bins=bins_samples)
     print(f"Data histogram: {data_hist}")
     print(f"Bin edges: {bins}")
-    
+
     # Poisson errors (sqrt(N) for each bin)
     data_hist_errors = np.sqrt(data_hist)
-    
+
     # Calculate bin centers more explicitly
     bin_centers = (bins[:-1] + bins[1:]) / 2
-    
+
     if ax is None:
         fig, ax = plt.subplots()
         return_fig = True
     else:
         fig = None
         return_fig = False
-    
+
     ax.errorbar(
-        x=bin_centers, 
-        y=data_hist, 
-        yerr=data_hist_errors, 
-        fmt="ko", 
+        x=bin_centers,
+        y=data_hist,
+        yerr=data_hist_errors,
+        fmt="ko",
         label="Data",
         capsize=3,
-        markersize=5
+        markersize=5,
     )
-    
+
     return fig if return_fig else None
 ```
 
@@ -526,7 +533,7 @@ def plot_data(data_var, range_ab, bins_samples, ax=None):
 
 Finally, we can include the MC and data in the same figure, and see if they are in agreement :).
 ```python
-fig, ax = plt.subplots(figsize=(10, 8))  
+fig, ax = plt.subplots(figsize=(10, 8))
 plot_data(stack_data_list_m4l, ranges[0], bins, ax=ax)
 ax.hist(
     stack_mc_list_m4l,
@@ -535,7 +542,7 @@ ax.hist(
     stacked=True,
     weights=stack_weights_list,
     bins=bins,
-    alpha=0.8
+    alpha=0.8,
 )
 ax.set_ylabel("Events")
 ax.set_xlabel(f"{var_name}{units}")

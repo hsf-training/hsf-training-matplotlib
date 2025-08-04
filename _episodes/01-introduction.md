@@ -21,7 +21,7 @@ Matplotlib is the standard when it comes to making plots in Python. It is versat
 We will be focusing on using matplotlib for High Energy Physics.
 
 > ## Modern Best Practices
-> 
+>
 > While matplotlib has evolved significantly, some key modern practices include:
 > - Using explicit figure and axes creation with `fig, ax = plt.subplots()`
 > - Leveraging context managers for temporary styling changes
@@ -242,7 +242,7 @@ import mplhep as hep
 # Modern mplhep usage - choose one of the experiment styles
 hep.style.use(hep.style.ATLAS)
 # or using string aliases (recommended)
-hep.style.use("CMS")  
+hep.style.use("CMS")
 # Available styles: {"ALICE" | "ATLAS" | "CMS" | "LHCb1" | "LHCb2" | "ROOT"}
 
 # You can also use context managers for temporary styling
@@ -287,7 +287,9 @@ fig, ax = plt.subplots()
 counts, bin_edges, _ = ax.hist(data, bins=50, histtype="step", alpha=0.8)
 
 # we need to get the centers in order get the correct location for the error bars
-bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2  # More explicit bin center calculation
+bin_centers = (
+    bin_edges[:-1] + bin_edges[1:]
+) / 2  # More explicit bin center calculation
 
 # add error bars (Poisson errors for counts)
 ax.errorbar(bin_centers, counts, yerr=np.sqrt(counts), fmt="none", capsize=2)
