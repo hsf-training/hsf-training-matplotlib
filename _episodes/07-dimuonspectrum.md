@@ -123,11 +123,6 @@ plt.style.use("default")
 
 # Option 2: Modern mplhep style (uncomment to use)
 # hep.style.use("ROOT")  # or "CMS", "ATLAS", "ALICE", "LHCb1", "LHCb2"
-
-# Option 3: Use context manager for temporary styling
-# with hep.style.use("ROOT"):
-#     # your plotting code here
-#     pass
 ```
 
 Load the data

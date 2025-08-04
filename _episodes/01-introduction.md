@@ -47,7 +47,7 @@ plt.show()  # Show the figure
 
 This code produces the following figure:
 
-![basic_plot](https://matplotlib.org/stable/_images/sphx_glr_usage_001.png)
+![basic_plot](https://matplotlib.org/3.5.1/_images/sphx_glr_usage_001_2_0x.png)
 
 > ## Notice
 > If you look at the plot and the order of the list of numbers you can clearly see that the order of the arguments is of the form
@@ -138,7 +138,7 @@ plt.show()
 As mentioned, by default `fig, ax = plt.subplots()` creates the canvas automatically. We can have finer control over the shape and quality of the plots by using the keyword arguments `figsize` and `dpi` as follows.
 
 ```python
-fig, ax = plt.subplots(figsize=(10, 8), dpi=100)  # More common aspect ratio
+fig, ax = plt.subplots(figsize=(10, 8), dpi=100)
 ```
 
 This has to be set **before** any instance of `ax.plot` and it sets the width and height to 10 and 8 inches respectively. The keyword `dpi` refers to a density of *Dots Per Inch*.

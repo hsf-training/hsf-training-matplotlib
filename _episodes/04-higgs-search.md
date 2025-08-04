@@ -417,7 +417,7 @@ bins = 24
 ```
 
 ```python
-fig, (ax_1, ax_2) = plt.subplots(1, 2, figsize=(12, 8))  # Modern figsize parameter
+fig, (ax_1, ax_2) = plt.subplots(1, 2, figsize=(12, 8))
 ax_1.set_title("MC samples without weights")
 ax_1.hist(
     stack_mc_list_m4l,
