@@ -17,9 +17,9 @@ keypoints:
 
 ## Looking at the dimuon spectrum over a wide energy range
 
-<!-- Mathjax Support -->
+<!-- MathJax Support -->
 <script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
 <h3>Learning goals</h3>
@@ -111,17 +111,23 @@ import h5py
 import matplotlib.pyplot as plt
 import mplhep as hep
 
+# Modern styling approach
 plt.style.use("default")
 ```
 
 Decide which styling you want to use
 
 ```python
-# This is the default style for matplotlib, do not change this cell if you desire this option
+# Option 1: Default matplotlib style
 plt.style.use("default")
 
-# This is the mplhep style, uncomment this line for this styling.
-# hep.style.use("ROOT")
+# Option 2: Modern mplhep style (uncomment to use)
+# hep.style.use("ROOT")  # or "CMS", "ATLAS", "ALICE", "LHCb1", "LHCb2"
+
+# Option 3: Use context manager for temporary styling
+# with hep.style.use("ROOT"):
+#     # your plotting code here
+#     pass
 ```
 
 Load the data
@@ -138,6 +144,7 @@ e = event["muons/e"][:]
 px = event["muons/px"][:]
 py = event["muons/py"][:]
 pz = event["muons/pz"][:]
+q = event["muons/q"][:]  # Extract charge information - needed for later analysis
 
 # We will check for muons that do not pass the kinematics
 print(len(px))  # Number of muons
@@ -157,6 +164,7 @@ We can use numpy to clean our arrays from anomalous events
 ```python
 e = np.delete(e, cut)
 px, py, pz = np.delete(px, cut), np.delete(py, cut), np.delete(pz, cut)
+q = np.delete(q, cut)  # Also clean the charge array
 ```
 
 Let's calculate the mass
@@ -168,15 +176,20 @@ M = (e**2 - (px**2 + py**2 + pz**2)) ** 0.5
 Make a histogram of the values of the Mass
 
 ```python
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(10, 6))  # Better figure size
 ax.hist(
     M,
     bins=100,
     histtype="step",
+    alpha=0.8,
+    linewidth=2
 )
 
-ax.set_xlabel(r"$\mu_{mass}$ [GeV]")
-ax.set_title("Muon Mass spectrum")
+ax.set_xlabel(r"$\mu_{mass}$ [GeV]", fontsize=12)
+ax.set_ylabel("Number of muons", fontsize=12)
+ax.set_title("Muon Mass spectrum", fontsize=14)
+ax.grid(True, alpha=0.3)  # Add subtle grid
+plt.tight_layout()  # Better spacing
 plt.show()
 ```
 
@@ -192,8 +205,13 @@ Using the code above, zoom in and fix the above plot to help **visually** estima
 
 > ## Solution
 >```python
->fig, ax = plt.subplots()
->ax.hist(M, bins=100, log=False, histtype="step", range=(0.1, 0.11))
+>fig, ax = plt.subplots(figsize=(10, 6))
+>ax.hist(M, bins=100, histtype="step", range=(0.1, 0.11), alpha=0.8, linewidth=2)
+>ax.set_xlabel(r"$\mu_{mass}$ [GeV]", fontsize=12)
+>ax.set_ylabel("Number of muons", fontsize=12)
+>ax.set_title("Muon Mass spectrum (zoomed)", fontsize=14)
+>ax.grid(True, alpha=0.3)
+>plt.tight_layout()
 >plt.show()
 >```
 >
@@ -282,7 +300,7 @@ for i in range(0, len(q) - 1, 2):  # loop every 2 muons
 print("Done!")
 ```
 
-Hoewver, again the *proper* way to do this is with numpy. It might be harder to read at first, but once you get used to the syntax, it is actually more transparent:
+However, again the *proper* way to do this is with numpy. It might be harder to read at first, but once you get used to the syntax, it is actually more transparent:
 
 ```python
 # Use "reshape" to create pairs of particles
@@ -327,10 +345,12 @@ Below I will give you some code to get you started. Please make your changes/add
 kwargs = dict(
     bins=100,
     histtype="step",
+    alpha=0.8,
+    linewidth=2
 )
 fig, ax = plt.subplots(2, 2, figsize=(16, 10))
 
-ax[0][0].hist(M, range=(0, 120), label="All charge combinations", **kwargs)
+ax[0][0].hist(masses, range=(0, 120), label="All charge combinations", **kwargs)
 ax[0][1].hist(pp, range=(0, 120), label="$2+$", **kwargs)
 ax[1][0].hist(nn, range=(0, 120), label="$2-$", **kwargs)
 ax[1][1].hist(pm, range=(0, 120), label="Electrically neutral", **kwargs)
@@ -338,9 +358,12 @@ ax[1][1].hist(pm, range=(0, 120), label="Electrically neutral", **kwargs)
 for irow in range(2):
     for icol in range(2):
         ax[irow][icol].set_xlabel(r"Mass (GeV/c$^2$)", fontsize=14)
-        ax[irow][icol].legend(fontsize=18)
+        ax[irow][icol].set_ylabel("Events", fontsize=12)
+        ax[irow][icol].legend(fontsize=16)  # Slightly smaller font
+        ax[irow][icol].grid(True, alpha=0.3)  # Add subtle grid
 
 plt.tight_layout()
+plt.show()  # Add explicit show
 ```
 
 ## Exercise: Now calculate the mass per event and make the plot.
@@ -351,14 +374,15 @@ You could use the `np.logspace()` function for the binning. It helps in returnin
 > ## Solution
 >```python
 >logbins = np.logspace(0, 2.5, 200)
->fig, ax = plt.subplots()
->ax.hist(pm, bins=logbins, histtype="step")
->ax.set_xlabel("mass (GeV/$c^2$)")
->ax.set_ylabel("Events")
+>fig, ax = plt.subplots(figsize=(10, 6))
+>ax.hist(pm, bins=logbins, histtype="step", alpha=0.8, linewidth=2)
+>ax.set_xlabel("Mass (GeV/$c^2$)", fontsize=12)
+>ax.set_ylabel("Events", fontsize=12)
 >ax.set_xscale("log")
->ax.set_title("Mass of dimuons per event")
+>ax.set_title("Mass of dimuons per event", fontsize=14)
+>ax.grid(True, alpha=0.3)
 >ax.autoscale()
->
+>plt.tight_layout()
 >plt.show()
 >```
 {: .solution}
