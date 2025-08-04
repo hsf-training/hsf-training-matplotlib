@@ -339,7 +339,7 @@ Below I will give you some code to get you started. Please make your changes/add
 kwargs = dict(bins=100, histtype="step", alpha=0.8, linewidth=2)
 fig, ax = plt.subplots(2, 2, figsize=(16, 10))
 
-ax[0][0].hist(masses, range=(0, 120), label="All charge combinations", **kwargs)
+ax[0][0].hist(M, range=(0, 120), label="All charge combinations", **kwargs)
 ax[0][1].hist(pp, range=(0, 120), label="$2+$", **kwargs)
 ax[1][0].hist(nn, range=(0, 120), label="$2-$", **kwargs)
 ax[1][1].hist(pm, range=(0, 120), label="Electrically neutral", **kwargs)
