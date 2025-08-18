@@ -139,7 +139,6 @@ e = event["muons/e"][:]
 px = event["muons/px"][:]
 py = event["muons/py"][:]
 pz = event["muons/pz"][:]
-q = event["muons/q"][:]  # Extract charge information - needed for later analysis
 
 # We will check for muons that do not pass the kinematics
 print(len(px))  # Number of muons
@@ -159,7 +158,6 @@ We can use numpy to clean our arrays from anomalous events
 ```python
 e = np.delete(e, cut)
 px, py, pz = np.delete(px, cut), np.delete(py, cut), np.delete(pz, cut)
-q = np.delete(q, cut)  # Also clean the charge array
 ```
 
 Let's calculate the mass
