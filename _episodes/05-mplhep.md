@@ -8,7 +8,7 @@ questions:
 objectives:
 - "Learn how to reproduce a plot with HEP experiments style using mplhep"
 keypoints:
-- "[Mplhep](https://github.com/scikit-hep/mplhep) is a wrapper for easily apply plotting styles approved in the HEP collaborations."
+- "[Mplhep](https://github.com/scikit-hep/mplhep) is a wrapper for easily applying plotting styles approved in the HEP collaborations."
 - "Styles for LHC experiments (CMS, ATLAS, LHCb and ALICE) are available."
 - "If you would like to include a style for your collaboration, ask for it [opening an issue](https://github.com/scikit-hep/mplhep/issues)!"
 ---
@@ -34,9 +34,13 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# Modern mplhep style setting
 hep.style.use("CMS")
-# or use any of the following
-# {CMS | ATLAS | ALICE | LHCb1 | LHCb2}
+# Available experiment styles: {CMS | ATLAS | ALICE | LHCb1 | LHCb2 | ROOT}
+
+# Alternative: use context manager for temporary styling
+# with hep.style.use("CMS"):
+#     # your plotting code here
 ```
 
 ## Getting the data
@@ -125,7 +129,7 @@ ax.set_xlabel("4l invariant mass (GeV)", fontsize=15)
 ax.set_ylabel("Events / 3 GeV", fontsize=15)
 ax.set_xlim(rmin, rmax)
 ax.legend()
-fig.show()
+plt.show()
 ```
 
 This would plot the following figure.
@@ -198,7 +202,7 @@ yerrs = np.sqrt(hist)
 >    label="Data"
 >)
 >
->ax.title(
+>ax.set_title(
 >    "$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n",
 >    fontsize=15,
 >)
@@ -209,7 +213,7 @@ yerrs = np.sqrt(hist)
 >ax.legend(fontsize=15)
 >hep.cms.label(rlabel="")
 >
->fig.show()
+>plt.show()
 >```
 > ![](../fig/background+data.png)
 {: .solution}
@@ -245,7 +249,7 @@ ax.set_xlabel("4l invariant mass (GeV)", fontsize=15)
 ax.set_ylabel("Events / 3 GeV\n", fontsize=15)
 ax.set_xlim(rmin, rmax)
 
-fig.show()
+plt.show()
 ```
 
 ![](../fig/hzz.png)
@@ -292,7 +296,7 @@ fig.show()
 >    label="Data"
 >)
 >
->ax.title(
+>ax.set_title(
 >    "$ \sqrt{s} = 7$ TeV, L = 2.3 $fb^{-1}$; $\sqrt{s} = 8$ TeV, L = 11.6 $fb^{-1}$ \n",
 >    fontsize=16,
 >)
@@ -303,7 +307,7 @@ fig.show()
 >ax.legend(fontsize=15)
 >
 >fig.savefig("final-plot.png", dpi=140)
->fig.show()
+>plt.show()
 >```
 {: .solution}
 

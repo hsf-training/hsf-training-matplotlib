@@ -30,7 +30,7 @@ Binder is good for live coding sessions and thus has a 10-20 min inactivity time
 ## Plan B: Google Colab
 
 If for whatever reason Binder is not working. All notebooks should have a
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hsf-training/hsf_matplotlib_notebooks/blob/main/)
 Just click and run the cells that say **If on Colab**
 
 This only requires the user to have a Google account but it is much more stable and does not have the inactivity limit like Binder.
@@ -41,33 +41,54 @@ Some details on Google Colab:
 - However, when running this cell for the first time, Colab will not be able to make use of some of the libraries installed unless we click on `Runtime` and then click on `Restart Runtime`. Rerun the first cell and we are good to go!
 - The caveat is that this procedure would need to be executed for each notebook in the lesson.
 
-## Plan C: SWAN
+## Plan C: GitHub Codespaces
+
+GitHub Codespaces provides a cloud-based development environment with pre-configured dependencies. This is a modern alternative that works well for educational content.
+
+1. Go to the [notebooks repository](https://github.com/hsf-training/hsf_matplotlib_notebooks)
+2. Click the green "Code" button and select "Codespaces"
+3. Create a new codespace or use an existing one
+4. The environment will be automatically configured with Python and Jupyter
+
+## Plan D: SWAN
 SWAN is a CERN based notebook hosting service. It is stable like Colab and setup is easy like Binder.
-Simply click on the Badge below and log in to SWAN with your CERN account.
+Simply click on the Badge below and log in to SWAN with your CERN account (CERN account required).
 
 [![SWAN](https://swan.web.cern.ch/sites/swan.web.cern.ch/files/pictures/open_in_swan.svg)](https://cern.ch/swanserver/cgi-bin/go?projurl=https://github.com/hsf-training/hsf_matplotlib_notebooks.git)
 
 ## If you want to run locally
 
-We highly recommend you create a virtual environment first. Open your terminal and do
+We highly recommend you create a virtual environment first. Choose one of the following approaches:
 
-
+### Option 1: Using conda (recommended for scientific Python)
 ```bash
-conda create --name mpl
+conda create --name mpl python=3.11
 conda activate mpl
 git clone https://github.com/hsf-training/hsf_matplotlib_notebooks.git
 cd hsf_matplotlib_notebooks
-# Now install the requirements
+# Install requirements
 conda install -c conda-forge --file requirements.txt
-conda install notebook jupyterlab
+conda install jupyterlab
 ```
-Now you can launch your jupyter notebook or jupyter-lab session
+
+### Option 2: Using pip and venv
 ```bash
-jupyter notebook --no-browser
-# Or
-jupyter lab --no-browser
+python -m venv mpl-env
+source mpl-env/bin/activate  # On Windows: mpl-env\Scripts\activate
+git clone https://github.com/hsf-training/hsf_matplotlib_notebooks.git
+cd hsf_matplotlib_notebooks
+# Install requirements
+pip install -r requirements.txt
+pip install jupyterlab
 ```
-Then copy one of the urls printed on the terminal window and paste in your browser.
+
+Now you can launch JupyterLab (recommended) or the classic notebook:
+```bash
+jupyter lab --no-browser
+# Or for classic notebook interface
+jupyter notebook --no-browser
+```
+Then copy one of the URLs printed on the terminal window and paste in your browser.
 
 
 Your feedback is very welcome! Most helpful for us is if you "[Improve this page on GitHub](https://github.com/hsf-training/hsf-training-matplotlib/edit/gh-pages/setup.md)". If you prefer anonymous feedback, please [fill this form](https://forms.gle/9ge6rkYk6UMUt2WT8).

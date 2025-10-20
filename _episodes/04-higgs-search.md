@@ -13,7 +13,7 @@ objectives:
 keypoints:
 - "In High-energy physics, histograms are used to analyze different data and MC distributions."
 - "With Matplotlib, data can be binned and histograms can be plotted in a few lines."
-- "Using [Uproot](https://github.com/scikit-hep/uproot5) and Matplotlib, data in ROOT files can be display without need of a full ROOT installation."
+- "Using [Uproot](https://github.com/scikit-hep/uproot5) and Matplotlib, data in ROOT files can be displayed without need of a full ROOT installation."
 - "Histograms can be stacked and/or overlapped to make comparison between recorded and simulated data."
 ---
 In this episode, we will go through a first HEP analysis where you will be able to apply your knowledge of matplotlib and learn something new.
@@ -150,14 +150,19 @@ ax.hist(branches["data_A"]["m4l"])
 
 ![m4lep_histogram_0]({{ page.root }}/fig/m4lep_histogram_0.png)
 
-**Tip:** In the previous plot the numbers in the axis are very small, we can change the font size (and font family) for all the following plots, including in our code:
+**Tip:** In the previous plot the numbers in the axis are very small, we can change the font size (and font family) for all the following plots. Modern best practice is to use context managers or explicit parameter setting:
 
 ```python
-# Update the matplotlib configuration parameters:
-mpl.rcParams.update({"font.size": 16, "font.family": "serif"})
+# Modern approach - use context manager for temporary changes
+with plt.rc_context({"font.size": 16, "font.family": "serif"}):
+    fig, ax = plt.subplots()
+    # your plotting code here
+
+# Or update global settings (affects all subsequent plots)
+plt.rcParams.update({"font.size": 16, "font.family": "serif"})
 ```
 
-Note that this changes the global setting, but it can still be overwritten later.
+The context manager approach is preferred when you want temporary styling changes, while `plt.rcParams.update()` is better for permanent changes in your session.
 
 Let's do the plot again to see the changes:
 
@@ -412,13 +417,21 @@ bins = 24
 ```
 
 ```python
-fig, (ax_1, ax_2) = plt.subplots(1, 2)
-fig.set_size_inches((12, 8))
+fig, (ax_1, ax_2) = plt.subplots(1, 2, figsize=(12, 8))
 ax_1.set_title("MC samples without weights")
-ax_1.hist(stack_mc_list_m4l, range=ranges[0], label=mc_samples, stacked=True, bins=bins)
+ax_1.hist(
+    stack_mc_list_m4l,
+    range=ranges[0],
+    label=mc_samples,
+    stacked=True,
+    bins=bins,
+    alpha=0.8,
+)
 ax_1.set_ylabel("Events")
 ax_1.set_xlabel(f"{var_name}{units}")
 ax_1.legend(frameon=False)
+ax_1.grid(True, alpha=0.3)  # Add subtle grid
+
 ax_2.set_title("MC samples with weights")
 ax_2.hist(
     stack_mc_list_m4l,
@@ -427,11 +440,14 @@ ax_2.hist(
     stacked=True,
     weights=stack_weights_list,
     bins=bins,
+    alpha=0.8,
 )
 ax_2.set_ylabel("Events")
 ax_2.set_xlabel(f"{var_name}{units}")
 ax_2.tick_params(which="both", direction="in", top=True, right=True, length=6, width=1)
+ax_2.grid(True, alpha=0.3)  # Add subtle grid
 ax_2.legend(frameon=False)
+plt.tight_layout()  # Better subplot spacing
 ```
 
 ![MC_histogram_4]({{ page.root }}/fig/MC_histogram_4.png)
@@ -463,25 +479,62 @@ To make more easy the data vs. MC final plot, we can define the following helper
 When we want to make a plot that includes uncertainties we need to use the `ax.errorbar` function.
 
 ```python
-def plot_data(data_var, range_ab, bins_samples):
+def plot_data(data_var, range_ab, bins_samples, ax=None):
+    """
+    Plot data histogram with Poisson error bars.
+
+    Parameters:
+    -----------
+    data_var : array-like
+        Data to histogram
+    range_ab : tuple
+        Range for histogram (min, max)
+    bins_samples : int
+        Number of bins
+    ax : matplotlib.axes.Axes, optional
+        Axes to plot on. If None, creates new figure
+
+    Returns:
+    --------
+    fig : matplotlib.figure.Figure or None
+        Figure object if ax was None, otherwise None
+    """
     data_hist, bins = np.histogram(data_var, range=range_ab, bins=bins_samples)
-    print(f"{data_hist} {bins}")
+    print(f"Data histogram: {data_hist}")
+    print(f"Bin edges: {bins}")
+
+    # Poisson errors (sqrt(N) for each bin)
     data_hist_errors = np.sqrt(data_hist)
-    bin_center = (bins[1:] + bins[:-1]) / 2
-    fig, ax = plt.subplots()
+
+    # Calculate bin centers more explicitly
+    bin_centers = (bins[:-1] + bins[1:]) / 2
+
+    if ax is None:
+        fig, ax = plt.subplots()
+        return_fig = True
+    else:
+        fig = None
+        return_fig = False
+
     ax.errorbar(
-        x=bin_center, y=data_hist, yerr=data_hist_errors, fmt="ko", label="Data"
+        x=bin_centers,
+        y=data_hist,
+        yerr=data_hist_errors,
+        fmt="ko",
+        label="Data",
+        capsize=3,
+        markersize=5,
     )
-    return fig
+
+    return fig if return_fig else None
 ```
 
 # Data vs. MC plot
 
 Finally, we can include the MC and data in the same figure, and see if they are in agreement :).
 ```python
-fig, ax = plt.subplots()
-fig.set_size_inches((10, 8))
-plot_data(stack_data_list_m4l, ranges[0], bins)
+fig, ax = plt.subplots(figsize=(10, 8))
+plot_data(stack_data_list_m4l, ranges[0], bins, ax=ax)
 ax.hist(
     stack_mc_list_m4l,
     range=ranges[0],
@@ -489,11 +542,14 @@ ax.hist(
     stacked=True,
     weights=stack_weights_list,
     bins=bins,
+    alpha=0.8,
 )
 ax.set_ylabel("Events")
 ax.set_xlabel(f"{var_name}{units}")
 ax.set_ylim(0, 30)
-ax.legend(fontsize=18, frameon=False)
+ax.grid(True, alpha=0.3)  # Add subtle grid
+ax.legend(fontsize=16, frameon=False)  # Slightly smaller font
+plt.tight_layout()  # Better spacing
 ```
 
 ![m4lep_histogram_5]({{ page.root }}/fig/m4lep_histogram_5.png)

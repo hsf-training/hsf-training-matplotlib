@@ -1,0 +1,22 @@
+# Core scientific computing packages
+numpy>=1.21.0
+pandas>=1.5.0
+matplotlib>=3.6.0
+
+# HEP-specific packages  
+mplhep>=0.3.0
+uproot>=4.0.0
+hist>=2.6.0
+
+# Data storage and I/O
+h5py>=3.7.0
+
+# Jupyter ecosystem (for local development)
+jupyterlab>=4.0.0
+notebook>=6.5.0
+ipywidgets>=8.0.0
+
+# Optional: Additional useful packages for HEP analysis
+# awkward>=2.0.0  # Uncomment if working with awkward arrays
+# scikit-learn>=1.1.0  # Uncomment if doing ML analysis
+# scipy>=1.9.0  # Uncomment if doing statistical analysis
