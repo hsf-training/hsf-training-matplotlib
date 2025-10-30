@@ -180,7 +180,7 @@ ax.set_title("Muon Mass spectrum")
 plt.show()
 ```
 
-![png](../fig/output_15_0.png){: width="560px"}
+![png](../fig/output_15_0.png){:width="50%"}
 
 Doesn't really look like much. How about we fix that!
 
@@ -197,9 +197,8 @@ Using the code above, zoom in and fix the above plot to help **visually** estima
 >plt.show()
 >```
 >
->![png](../fig/output_17_0.png){: width="560px" .image-with-shadow }
+>![png](../fig/output_17_0.png){: width="50%" .image-with-shadow }
 {: .solution}
->
 
 # Let's make the dimuon spectrum
 
@@ -363,7 +362,7 @@ You could use the `np.logspace()` function for the binning. It helps in returnin
 >```
 {: .solution}
 
-![png](../fig/output_26_0.png){: width="560px"}
+![png](../fig/output_26_0.png){:width="50%"}
 
 Depending on what you did, you may see hints of particles below $$20 GeV/c^2$$. It is possible you see signs of other particles at even higher energies. Plot your masses over a wide range of values, but then zoom in (change the plotting range) on different mass ranges to see if you can identify these particles.
 
@@ -373,6 +372,7 @@ Image(
 )
 ```
 
-<img src="https://twiki.cern.ch/twiki/pub/CMSPublic/HLTDiMuon2017and2018/CMS_HLT_DimuonMass_Inclusive_2017.png"/>
+
+![CMS_HLT_DimuonMass_Inclusive_2017](https://twiki.cern.ch/twiki/pub/CMSPublic/HLTDiMuon2017and2018/CMS_HLT_DimuonMass_Inclusive_2017.png){:width="70%"}
 
 {% include links.md %}
