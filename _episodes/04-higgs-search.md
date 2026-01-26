@@ -177,7 +177,6 @@ ax.hist(branches["data_A"]["m4l"])
 {: .output}
 
 ![m4lep_histogram_1]({{ page.root }}/fig/m4lep_histogram_1.png)
-
 > ## Exercise
 >
 > Make the histogram of the variable `m4l` for sample `mc_363490.llll`.
@@ -497,6 +496,11 @@ ax.legend(fontsize=18, frameon=False)
 ```
 
 ![m4lep_histogram_5]({{ page.root }}/fig/m4lep_histogram_5.png)
+
+> ## Physics Tip: The Higgs Signal
+> When looking at the invariant mass distribution, the peak at $125 \text{GeV}$  represents the reconstructed Higgs Boson.
+> **Data vs. MC:** The Black dots represent actual ATLAS experiment data, while the colored histograms are Monte Carlo (MC) Simulations. We compare them to see if our theoretical models match reality! {: .challenge}
+
 > ## Exercise
 >
 > Modify a bit the previous code to include the ticks and text, in the text and axis labels use latex to achieve the final plot.
