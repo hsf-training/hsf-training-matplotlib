@@ -497,9 +497,11 @@ ax.legend(fontsize=18, frameon=False)
 
 ![m4lep_histogram_5]({{ page.root }}/fig/m4lep_histogram_5.png)
 
-> ## Physics Tip: The Higgs Signal
-> When looking at the invariant mass distribution, the peak at $125 \text{GeV}$  represents the reconstructed Higgs Boson.
-> **Data vs. MC:** The Black dots represent actual ATLAS experiment data, while the colored histograms are Monte Carlo (MC) Simulations. We compare them to see if our theoretical models match reality! {: .challenge}
+> ## Challenge: Python unpacking & Physics Logic
+>
+> **Python Unpacking:** In the code'fig, (ax_1, ax_2) = plt.subplots(1,2)', we use "tuple unpacking" to assign the figure and two separate plot axes to variables in one go.
+> **Physics  Logic:** For newcomers, remember the black dots are actual **Data** from ATLAS, while colored histograms are **Monte Carlo (MC)** simulations.We compare them to verify the $125 \text{Gev} Higgs signal matches theory! {: .challenge}
+
 
 > ## Exercise
 >
