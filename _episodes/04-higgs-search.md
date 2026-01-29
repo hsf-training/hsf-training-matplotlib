@@ -409,6 +409,19 @@ units = " [GeV]"
 ranges = [[80, 170]]
 bins = 24
 ```
+> ## Challenge: Python unpacking & Physics Logic
+> 
+> **Python Unpacking:** In the code `fig, (ax_1, ax_2) = plt.subplots(1, 2)`, we use `tuple unpacking` to assign the figure and two separate plot axes to variables in one go. For example:
+>
+> ``` python
+> packed_data = (1, (2, 3))
+> a, (b, c) = packed_data
+> assert a == 1 and b == 2 and c == 3
+> ```
+> 
+> **Physics Logic:** For newcomers, remember the black dots are actual **Data** from ATLAS, while colored histograms are **Monte Carlo (MC)** simulations. We compare them to verify the 125 GeV Higgs signal matches theory!
+{: .challenge}
+
 
 ```python
 fig, (ax_1, ax_2) = plt.subplots(1, 2)
@@ -499,8 +512,6 @@ ax.legend(fontsize=18, frameon=False)
 
 > ## Challenge: Python unpacking & Physics Logic
 >
-> **Python Unpacking:** In the code'fig, (ax_1, ax_2) = plt.subplots(1,2)', we use "tuple unpacking" to assign the figure and two separate plot axes to variables in one go.
-> **Physics  Logic:** For newcomers, remember the black dots are actual **Data** from ATLAS, while colored histograms are **Monte Carlo (MC)** simulations.We compare them to verify the $125 \text{Gev} Higgs signal matches theory! {: .challenge}
 
 
 > ## Exercise
