@@ -410,7 +410,7 @@ units = " [GeV]"
 ranges = [[80, 170]]
 bins = 24
 ```
-> ## Python Unpacking & Physics Logic
+> ##Python Unpacking & Physics Logic
 >
 > In the code `fig, (ax_1, ax_2) = plt.subplots(1, 2)`, we use 'tuple unpacking'.
 > This is a very common pattern in Python when a function returns multiple values.
@@ -419,7 +419,7 @@ bins = 24
 > distributions side-by-side.
 {: .callout}
 
->
+
 
 ```python
 fig, (ax_1, ax_2) = plt.subplots(1, 2)
