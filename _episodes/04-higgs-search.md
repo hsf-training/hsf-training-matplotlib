@@ -411,11 +411,11 @@ ranges = [[80, 170]]
 bins = 24
 ```
 > ## Python Unpacking & Physics Logic
-> 
-> In the code `fig, (ax_1, ax_2) = plt.subplots(1, 2)`, we use 'tuple unpacking'. 
-> This is a very common pattern in Python when a function returns multiple values. 
-> Here, `subplots` returns a figure object and an array of axes. We "unpack" them 
-> into two separate variables, `ax_1` and `ax_2`, so we can plot different 
+>
+> In the code `fig, (ax_1, ax_2) = plt.subplots(1, 2)`, we use 'tuple unpacking'.
+> This is a very common pattern in Python when a function returns multiple values.
+> Here, `subplots` returns a figure object and an array of axes. We "unpack" them
+> into two separate variables, `ax_1` and `ax_2`, so we can plot different
 > distributions side-by-side.
 {: .callout}
 
