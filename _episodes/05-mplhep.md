@@ -152,7 +152,7 @@ label = [r"$t\bar{t}$", "Z/$\gamma^{*}$ + X", r"ZZ $\rightarrow$ 4l"]
 
 Also use python lists to specify the colors for each plot.
 
-To add the CMS logo you can use the `hep.cms.label()` function. [Look here](https://mplhep.readthedocs.io/en/latest/api.html) for more information on mplhep methods like this one.
+To add the CMS logo you can use the `hep.cms.label()` function. [Look here](https://mplhep.readthedocs.io/en/latest/api/) for more information on mplhep methods like this one.
 
 ### Now add the data
 

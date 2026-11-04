@@ -30,7 +30,7 @@ Binder is good for live coding sessions and thus has a 10-20 min inactivity time
 ## Plan B: Google Colab
 
 If for whatever reason Binder is not working. All notebooks should have a
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)
 Just click and run the cells that say **If on Colab**
 
 This only requires the user to have a Google account but it is much more stable and does not have the inactivity limit like Binder.
