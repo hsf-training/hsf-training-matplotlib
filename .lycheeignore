@@ -1,0 +1,8 @@
+# Known broken links, left for the lesson maintainers to decide on
+# (see hsf-training/hsf-training-ai-maintenance#4).
+# Feedback form in setup.md no longer exists.
+https://forms\.gle/9ge6rkYk6UMUt2WT8
+# Old ATLAS Open Data samples page in 04-higgs-search.md.
+http://opendata\.atlas\.cern/samples-13tev/
+# Deleted GitHub account in the all-contributors table.
+https://github\.com/PaxtonDevs
